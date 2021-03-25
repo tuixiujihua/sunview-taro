@@ -1,0 +1,55 @@
+{
+	"compilerOptions": {
+		"target": "es2017",
+		"module": "commonjs",
+		"removeComments": false,
+		"preserveConstEnums": true,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"noImplicitAny": false,
+		"allowSyntheticDefaultImports": true,
+		"outDir": "lib",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"strictNullChecks": true,
+		"sourceMap": true,
+		"baseUrl": ".",
+		"rootDir": ".",
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"typeRoots": [
+			"node_modules/@types",
+			"global.d.ts"
+		],
+		"paths": {
+			"@/src": ["./src"],
+			"@/src/*": ["./src"],
+			"@/lib": ["./lib"],
+			"@/lib/*": ["./lib"],
+			"@/components": ["./lib/components"],
+			"@/components/*": ["./lib/components"],
+			"@/styles": ["./lib/styles"],
+			"@/styles/*": ["./lib/styles"],
+			"@/utils": ["./lib/utils"],
+			"@/utils/*": ["./lib/utils"],
+			"@/mixins": ["./lib/mixins"],
+			"@/mixins/*": ["./lib/mixins"],
+		}
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.less",
+		"src/**/*.vue",
+		"lib/**/*.ts",
+		"lib/**/*.d.ts",
+		"lib/**/*.less",
+		"lib/**/*.vue",
+	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	],
+	"compileOnSave": false
+}
