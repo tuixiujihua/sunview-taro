@@ -1,7 +1,7 @@
 import { View } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
 import { SColorIcon } from '@/components'
-import './index.less'
+import './index.scss'
 export default {
 	setup() {
 		let icons: Array<String> = [

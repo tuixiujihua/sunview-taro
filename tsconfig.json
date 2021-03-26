@@ -40,11 +40,11 @@
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.d.ts",
-		"src/**/*.less",
+		"src/**/*.scss",
 		"src/**/*.vue",
 		"lib/**/*.ts",
 		"lib/**/*.d.ts",
-		"lib/**/*.less",
+		"lib/**/*.scss",
 		"lib/**/*.vue",
 	],
 	"exclude": [

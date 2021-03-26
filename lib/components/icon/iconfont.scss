@@ -1,12 +1,13 @@
 @font-face {
+	$baseURL: "//at.alicdn.com/t/font_2445478_aph5acomtl6";
 	font-family: 'iconfont';
 	/* project id 2445478 */
-	src: url('//at.alicdn.com/t/font_2445478_aph5acomtl6.eot');
-	src: url('//at.alicdn.com/t/font_2445478_aph5acomtl6.eot?#iefix') format('embedded-opentype'),
-		url('//at.alicdn.com/t/font_2445478_aph5acomtl6.woff2') format('woff2'),
-		url('//at.alicdn.com/t/font_2445478_aph5acomtl6.woff') format('woff'),
-		url('//at.alicdn.com/t/font_2445478_aph5acomtl6.ttf') format('truetype'),
-		url('//at.alicdn.com/t/font_2445478_aph5acomtl6.svg#iconfont') format('svg');
+	src: url('#{$baseURL}.eot');
+	src: url('#{$baseURL}.eot?#iefix') format('embedded-opentype'),
+	url('#{$baseURL}.woff2') format('woff2'),
+	url('#{$baseURL}.woff') format('woff'),
+	url('#{$baseURL}.ttf') format('truetype'),
+	url('#{$baseURL}.svg#iconfont') format('svg');
 }
 
 .iconfont {

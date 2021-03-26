@@ -1,7 +1,7 @@
 import { View } from "@tarojs/components"
 import { h, mergeProps } from "@vue/runtime-core"
 import Taro from '@tarojs/taro'
-import './index.less';
+import './index.scss';
 
 export default {
 	props: {
