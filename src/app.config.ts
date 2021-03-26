@@ -1,8 +1,10 @@
 export default {
 	pages: [
+		"pages/index/index",
 		"pages/icon/index",
 		"pages/color-icon/index",
-		"pages/index/index",
+		"pages/button/index",
+		"pages/spin/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

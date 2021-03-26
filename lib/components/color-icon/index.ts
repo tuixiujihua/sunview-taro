@@ -14,14 +14,14 @@ export default {
 			default: 48,
 		},
 	},
-	render() {
-		return h(View, mergeProps({
-			class: ["s-color-icon", `color-icon-${this.icon}`],
+	setup(props, { attrs }) {
+		return () => h(View, mergeProps({
+			class: ["s-color-icon", `color-icon-${props.icon}`],
 			style: {
-				width: Taro.pxTransform(this.size),
-				height: Taro.pxTransform(this.size),
-				backgroundSize: Taro.pxTransform(this.size),
+				width: Taro.pxTransform(props.size),
+				height: Taro.pxTransform(props.size),
+				backgroundSize: Taro.pxTransform(props.size),
 			}
-		}, this.$attrs))
+		}, attrs))
 	}
 }

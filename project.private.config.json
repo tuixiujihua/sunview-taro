@@ -1,0 +1,41 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "彩色图标",
+          "pathName": "pages/color-icon/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "图标",
+          "pathName": "pages/icon/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "按钮",
+          "pathName": "pages/button/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "加载指示器",
+          "pathName": "pages/spin/index",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

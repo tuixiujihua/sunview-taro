@@ -19,16 +19,16 @@ export default {
 			default: ""
 		}
 	},
-	render() {
-		return h(View, mergeProps({
-			class: ["s-icon", "iconfont", `icon-${this.icon}`],
+	setup(props, { attrs }) {
+		return () => h(View, mergeProps({
+			class: ["s-icon", "iconfont", `icon-${props.icon}`],
 			style: {
-				width: Taro.pxTransform(this.size),
-				height: Taro.pxTransform(this.size),
-				lineHeight: Taro.pxTransform(this.size),
-				fontSize: Taro.pxTransform(this.size),
-				color: this.color
+				width: Taro.pxTransform(props.size),
+				height: Taro.pxTransform(props.size),
+				lineHeight: Taro.pxTransform(props.size),
+				fontSize: Taro.pxTransform(props.size),
+				color: props.color
 			}
-		}, this.$attrs))
+		}, attrs))
 	}
 }
