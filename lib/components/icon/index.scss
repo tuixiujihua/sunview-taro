@@ -1,3 +1,6 @@
 @import "./iconfont.scss";
 
-.s-icon {}
+.s-icon {
+	display: inline-block;
+	position: relative;
+}

@@ -1,7 +1,8 @@
 .s-color-icon {
-	$baseURL: "https://jieqd-static.oss-cn-beijing.aliyuncs.com/icons";
-
 	display: inline-block;
+	position: relative;
+
+	$baseURL: "https://jieqd-static.oss-cn-beijing.aliyuncs.com/icons";
 
 	&.color-icon-adobe-ae {
 		background: url("#{$baseURL}/icon-adobe-ae.png") no-repeat center;
