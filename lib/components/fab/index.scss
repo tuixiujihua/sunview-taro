@@ -1,0 +1,15 @@
+.s-fab {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.2),
+		0 12px 20px 0 rgba(0, 0, 0, 0.14),
+		0 2px 36px 0 rgba(0, 0, 0, 0.12);
+
+	.s-button {
+		.s-button-icon {
+			margin: unset;
+		}
+	}
+}

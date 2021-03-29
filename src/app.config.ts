@@ -5,6 +5,7 @@ export default {
 		"pages/color-icon/index",
 		"pages/button/index",
 		"pages/spin/index",
+		"pages/fab/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

@@ -33,6 +33,12 @@
         {
           "name": "加载指示器",
           "pathName": "pages/spin/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "浮动按钮",
+          "pathName": "pages/fab/index",
           "scene": null
         }
       ]
