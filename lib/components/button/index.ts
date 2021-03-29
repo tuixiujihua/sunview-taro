@@ -75,7 +75,9 @@ export default {
 				class: ["s-button-spin"]
 			}) : "",
 			props.icon ? h(SIcon, {
-				class: ["s-button-icon"]
+				class: ["s-button-icon"],
+				icon: props.icon,
+				size: 28
 			}) : "",
 			h(Text, {
 				class: ["s-button-text"]

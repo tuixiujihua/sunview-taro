@@ -1,6 +1,8 @@
 @import "./iconfont.scss";
 
 .s-icon {
-	display: inline-block;
 	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
 }

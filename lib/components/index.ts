@@ -4,6 +4,7 @@ import SButton from './button'
 import SSpin from './spin'
 import SFab from './fab'
 import SForm from './form'
+import SInput from './input'
 
 export {
 	SIcon,
@@ -11,5 +12,6 @@ export {
 	SButton,
 	SSpin,
 	SFab,
-	SForm
+	SForm,
+	SInput
 }

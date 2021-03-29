@@ -103,6 +103,7 @@ $spacing-v-xl: 15px * $hd !default;
 $icon-size-sm: 18px * $hd !default;
 $icon-size-md: 22px * $hd !default;
 $icon-size-lg: 36px * $hd !default;
+$icon-fab: 24px * $hd !default;
 
 /* z-index */
 $zindex-divider: 100 !default;
@@ -120,7 +121,6 @@ $zindex-picker: 1010 !default;
 $zindex-curtain: 1080 !default;
 $zindex-message: 1090 !default;
 $zindex-toast: 1090 !default;
-
 
 
 /* 组件变量 */

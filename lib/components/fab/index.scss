@@ -1,3 +1,5 @@
+@import "@/styles/variable.scss";
+
 .s-fab {
 	display: inline-flex;
 	justify-content: center;
@@ -10,6 +12,10 @@
 	.s-button {
 		.s-button-icon {
 			margin: unset;
+			width: $icon-fab !important;
+			height: $icon-fab !important;
+			line-height: $icon-fab !important;
+			font-size: $icon-fab !important;
 		}
 	}
 }

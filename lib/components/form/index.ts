@@ -1,5 +1,5 @@
 import { Form } from "@tarojs/components"
-import { h } from "@vue/runtime-core"
+import { h, mergeProps } from "@vue/runtime-core"
 
 export default {
 	props: {
@@ -7,7 +7,7 @@ export default {
 		onSubmit: Function,
 		onReset: Function,
 	},
-	setup(props, { slots }) {
+	setup(props, { attrs, slots }) {
 		let onSubmit = () => {
 			if (typeof props.onSubmit === 'function') {
 				props.onSubmit(arguments);
@@ -18,11 +18,11 @@ export default {
 				props.onReset(arguments);
 			}
 		}
-		return h(Form, {
+		return () => h(Form, mergeProps({
 			class: ["s-form"],
 			reportSubmit: props.reportSubmit,
 			onSubmit: onSubmit.bind(this),
 			onReset: onReset.bind(this)
-		}, { default: slots.default?.() })
+		}, attrs), { default: () => slots.default?.() })
 	}
 }
