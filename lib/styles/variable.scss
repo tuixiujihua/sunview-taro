@@ -2,16 +2,17 @@
 
 $hd: 2;
 
-/* The Color of O2Team Brand */
-$color-primary: #6190E8 !default;
-$color-primary-light: #78A4F4 !default;
-$color-primary-dark: #346FC2 !default;
 
 /* Color */
+$color-primary: #2d8cf0 !default;
 $color-success: #13CE66 !default;
-$color-error: #FF4949 !default;
 $color-warning: #FFC82C !default;
-$color-info: #78A4FA !default;
+$color-danger: #FF4949 !default;
+
+
+/* The Extra Color */
+$color-primary-light: light($color-primary, 20%) !default;
+$color-primary-dark: dark($color-primary, 20%) !default;
 
 /* Color Palette */
 $color-black-0: #000 !default;
@@ -48,15 +49,15 @@ $color-link-disabled: #BFBFBF !default;
 $color-bg: #FFF !default;
 $color-bg-base: #FAFBFC !default;
 $color-bg-light: #ECF5FD !default;
-$color-bg-lighter: tint($color-bg-light, 50%) !default;
+$color-bg-lighter: light($color-bg-light, 50%) !default;
 $color-bg-grey: #F7F7F7 !default;
 
 /* 边框颜色 */
 $color-border-base: #C5D9E8 !default;
-$color-border-split: tint($color-border-base, 20%) !default; // 分割线
-$color-border-light: tint($color-border-base, 30%) !default;
-$color-border-lighter: tint($color-border-base, 50%) !default;
-$color-border-lightest: tint($color-border-base, 80%) !default;
+$color-border-split: light($color-border-base, 20%) !default; // 分割线
+$color-border-light: light($color-border-base, 30%) !default;
+$color-border-lighter: light($color-border-base, 50%) !default;
+$color-border-lightest: light($color-border-base, 80%) !default;
 $color-border-grey: #CCC !default;
 
 /* 图标颜色 */
@@ -119,3 +120,7 @@ $zindex-picker: 1010 !default;
 $zindex-curtain: 1080 !default;
 $zindex-message: 1090 !default;
 $zindex-toast: 1090 !default;
+
+
+
+/* 组件变量 */

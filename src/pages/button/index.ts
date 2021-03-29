@@ -4,12 +4,62 @@ import { h } from '@vue/runtime-core'
 import './index.scss'
 export default {
 	setup() {
+		let handleClick = (e) => {
+			console.log("Clicked !", e);
+		}
 		return () => h(View, { class: 'page-button' }, [
-			h(SButton, { type: "default", formType: true }, () => "默认按钮"),
-			h(SButton, { type: "primary" }, () => "主要按钮"),
-			h(SButton, { type: "success" }, () => "成功按钮"),
-			h(SButton, { type: "warning" }, () => "警告按钮"),
-			h(SButton, { type: "danger" }, () => "危险按钮"),
+			h(SButton, { onClick: handleClick, type: "default" }, () => "默认按钮"),
+			h(SButton, { onClick: handleClick, type: "primary" }, () => "主要按钮"),
+			h(SButton, { onClick: handleClick, type: "success" }, () => "成功按钮"),
+			h(SButton, { onClick: handleClick, type: "warning" }, () => "警告按钮"),
+			h(SButton, { onClick: handleClick, type: "danger" }, () => "危险按钮"),
+			
+			h(SButton, { onClick: handleClick, type: "default", disabled: true }, () => "默认禁用按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", disabled: true }, () => "主要禁用按钮"),
+			h(SButton, { onClick: handleClick, type: "success", disabled: true }, () => "成功禁用按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", disabled: true }, () => "警告禁用按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", disabled: true }, () => "危险禁用按钮"),
+
+			h(SButton, { onClick: handleClick, type: "default", plain: true }, () => "空默认按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", plain: true }, () => "空主要按钮"),
+			h(SButton, { onClick: handleClick, type: "success", plain: true }, () => "空成功按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", plain: true }, () => "空警告按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", plain: true }, () => "空危险按钮"),
+
+
+			h(SButton, { onClick: handleClick, type: "default", size: "small" }, () => "小默认按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", size: "small" }, () => "小主要按钮"),
+			h(SButton, { onClick: handleClick, type: "success", size: "small" }, () => "小成功按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", size: "small" }, () => "小警告按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", size: "small" }, () => "小危险按钮"),
+
+
+			h(SButton, { onClick: handleClick, type: "default", size: "large" }, () => "大默认按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", size: "large" }, () => "大主要按钮"),
+			h(SButton, { onClick: handleClick, type: "success", size: "large" }, () => "大成功按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", size: "large" }, () => "大警告按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", size: "large" }, () => "大危险按钮"),
+
+
+			h(SButton, { onClick: handleClick, type: "default", circle: true }, () => "默认圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", circle: true }, () => "主要圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "success", circle: true }, () => "成功圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", circle: true }, () => "警告圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", circle: true }, () => "危险圆形按钮"),
+
+
+			h(SButton, { onClick: handleClick, type: "default", circle: true, size: "small" }, () => "小默认圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", circle: true, size: "small" }, () => "小主要圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "success", circle: true, size: "small" }, () => "小成功圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", circle: true, size: "small" }, () => "小警告圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", circle: true, size: "small" }, () => "小危险圆形按钮"),
+
+
+			h(SButton, { onClick: handleClick, type: "default", circle: true, size: "large" }, () => "大默认圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", circle: true, size: "large" }, () => "大主要圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "success", circle: true, size: "large" }, () => "大成功圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", circle: true, size: "large" }, () => "大警告圆形按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", circle: true, size: "large" }, () => "大危险圆形按钮"),
 		])
 	}
 }
