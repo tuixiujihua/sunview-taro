@@ -13,7 +13,7 @@ export default {
 			h(SButton, { onClick: handleClick, type: "success" }, () => "成功按钮"),
 			h(SButton, { onClick: handleClick, type: "warning" }, () => "警告按钮"),
 			h(SButton, { onClick: handleClick, type: "danger" }, () => "危险按钮"),
-			
+
 			h(SButton, { onClick: handleClick, type: "default", disabled: true }, () => "默认禁用按钮"),
 			h(SButton, { onClick: handleClick, type: "primary", disabled: true }, () => "主要禁用按钮"),
 			h(SButton, { onClick: handleClick, type: "success", disabled: true }, () => "成功禁用按钮"),

@@ -27,6 +27,10 @@ export default {
 					"large",
 				].includes(val),
 		},
+		icon: {
+			type: String,
+			default: "plus",
+		},
 		plain: {
 			type: Boolean,
 			default: false
@@ -37,7 +41,7 @@ export default {
 		},
 		loading: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 		circle: {
 			type: Boolean,

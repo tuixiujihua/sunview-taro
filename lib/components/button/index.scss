@@ -6,7 +6,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 30rpx;
 	color: $color-text-base;
 	font-size: $font-size-base;
 	border: 1px solid transparent;
@@ -26,9 +25,17 @@
 
 	.s-button-spin {
 		margin-right: $spacing-h-lg;
+		display: inline-flex;
 	}
 
-	.s-button-text {}
+	.s-button-icon {
+		margin-right: $spacing-h-lg;
+		display: inline-flex;
+	}
+
+	.s-button-text {
+		display: inline-flex;
+	}
 
 	&.s-button-type-default {
 		background: transparent;
@@ -213,7 +220,7 @@
 		height: 72rpx;
 
 		&.s-button-circle {
-			min-width: 72rpx;
+			// min-width: 72rpx;
 			border-radius: 72rpx;
 		}
 	}
@@ -222,7 +229,7 @@
 		height: 60rpx;
 
 		&.s-button-circle {
-			min-width: 60rpx;
+			// min-width: 60rpx;
 			border-radius: 60rpx;
 		}
 	}
@@ -231,7 +238,7 @@
 		height: 96rpx;
 
 		&.s-button-circle {
-			min-width: 96rpx;
+			// min-width: 96rpx;
 			border-radius: 96rpx;
 		}
 	}
