@@ -39,6 +39,12 @@
         {
           "name": "浮动按钮",
           "pathName": "pages/fab/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "表单",
+          "pathName": "pages/form/index",
           "scene": null
         }
       ]
