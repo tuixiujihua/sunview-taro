@@ -5,6 +5,8 @@ import SSpin from './spin'
 import SFab from './fab'
 import SForm from './form'
 import SInput from './input'
+import SSelect from './select'
+import SMultiSelect from './multi-select'
 
 export {
 	SIcon,
@@ -13,5 +15,7 @@ export {
 	SSpin,
 	SFab,
 	SForm,
-	SInput
+	SInput,
+	SSelect,
+	SMultiSelect
 }

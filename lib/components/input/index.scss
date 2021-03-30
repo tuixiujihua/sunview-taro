@@ -50,10 +50,16 @@
 
 	.s-input-icon {
 		margin-right: $spacing-h-sm;
+		display: flex;
+		align-items: center;
+		height: 100%;
 	}
 
 	.s-input-title {
 		margin-right: $spacing-h-sm;
+		display: flex;
+		align-items: center;
+		height: 100%;
 	}
 
 	.s-input-input {
@@ -62,11 +68,24 @@
 		height: 100%;
 	}
 
+	.s-input-placeholder {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		color: $color-text-placeholder;
+	}
+
 	.s-input-clear {
 		margin-left: $spacing-h-sm;
+		display: flex;
+		align-items: center;
+		height: 100%;
 	}
 
 	.s-input-extra {
 		margin-left: $spacing-h-sm;
+		display: flex;
+		align-items: center;
+		height: 100%;
 	}
 }

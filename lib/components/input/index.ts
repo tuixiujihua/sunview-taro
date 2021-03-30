@@ -113,8 +113,6 @@ export default {
 			if (props.disabled) return;
 			emit("update:value", "");
 		}
-
-
 		return () => h(View, {
 			class: ["s-input",
 				`s-input-size-${props.size}`,
@@ -134,20 +132,22 @@ export default {
 			h(Text, {
 				class: "s-input-title"
 			}, props.title),
-			h(Input, mergeProps({
+
+			slots.default ? slots.default() : h(Input, mergeProps({
 				class: "s-input-input",
 				value: props.value,
 				disabled: (props.disabled || props.readonly),
 				onInput: handleInput,
 				onFocus: handleFocus,
-				onBlur: handleBlur
-			}), attrs),
+				onBlur: handleBlur,
+			}, attrs)),
 			props.value.length > 0 && props.allowClear && !props.disabled ? h(SIcon, {
 				class: "s-input-clear",
 				icon: "close-circle",
 				size: 24,
 				onTap: handleClear
 			}) : "",
+
 			slots.extra ? h(View, {
 				class: "s-input-extra"
 			}, slots.extra?.()) : ''
