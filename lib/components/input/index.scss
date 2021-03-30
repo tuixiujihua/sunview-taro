@@ -19,10 +19,12 @@
 
 	&.s-input-disabled {
 		background: $color-bg-grey;
+		color: $color-text-disabled;
 	}
 
 	&.s-input-size-default {
 		height: 72rpx;
+
 		&.s-input-circle {
 			border-radius: 72rpx;
 		}
@@ -30,6 +32,7 @@
 
 	&.s-input-size-small {
 		height: 60rpx;
+
 		&.s-input-circle {
 			// min-width: 60rpx;
 			border-radius: 60rpx;
@@ -38,6 +41,7 @@
 
 	&.s-input-size-large {
 		height: 96rpx;
+
 		&.s-input-circle {
 			// min-width: 96rpx;
 			border-radius: 96rpx;
@@ -54,12 +58,12 @@
 
 	.s-input-input {
 		text-align: right;
-		flex:1;
+		flex: 1;
 		height: 100%;
 	}
 
 	.s-input-clear {
-		margin-left: $spacing-h-sm;		
+		margin-left: $spacing-h-sm;
 	}
 
 	.s-input-extra {

@@ -24,6 +24,10 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		readonly: {
+			type: Boolean,
+			default: false
+		},
 		loading: {
 			type: Boolean,
 			default: false
@@ -34,7 +38,7 @@ export default {
 		},
 		allowClear: {
 			type: Boolean,
-			default: true
+			default: false
 		},
 
 		onClick: Function,
@@ -76,6 +80,21 @@ export default {
 			return props.type == "password" ? true : false;
 		});
 
+		let handleFocus = (e) => {
+			if (typeof props.onFocus === 'function') {
+				props.onFocus();
+			}
+			console.log(e);
+			isFocus.value = true;
+		}
+
+		let handleBlur = (e) => {
+			if (typeof props.onFocus === 'function') {
+				props.onBlur();
+			}
+			isFocus.value = false;
+		}
+
 		let handleClick = (e) => {
 			if (typeof props.onClick === 'function') {
 				props.onClick(e);
@@ -95,20 +114,6 @@ export default {
 			emit("update:value", "");
 		}
 
-		let handleFocus = (e) => {
-			if (typeof props.onFocus === 'function') {
-				props.onFocus();
-			}
-			isFocus.value = true;
-		}
-
-		let handleBlur = (e) => {
-			if (typeof props.onFocus === 'function') {
-				props.onBlur();
-			}
-			isFocus.value = false;
-		}
-
 
 		return () => h(View, {
 			class: ["s-input",
@@ -116,6 +121,7 @@ export default {
 				props.circle ? 's-input-circle' : '',
 				props.plain ? 's-input-plain' : '',
 				props.disabled ? 's-input-disabled' : '',
+				props.readonly ? 's-input-readonly' : '',
 				isFocus.value ? 's-input-focus' : ''
 			],
 			onTap: handleClick
@@ -131,7 +137,7 @@ export default {
 			h(Input, mergeProps({
 				class: "s-input-input",
 				value: props.value,
-				disabled: props.disabled,
+				disabled: (props.disabled || props.readonly),
 				onInput: handleInput,
 				onFocus: handleFocus,
 				onBlur: handleBlur
