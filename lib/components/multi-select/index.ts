@@ -32,6 +32,11 @@ export default {
 			type: String,
 			default: "请选择"
 		},
+
+		level: {
+			type: Number,
+			default: 1
+		}
 	},
 	setup(props, { attrs, emit }) {
 
@@ -47,58 +52,65 @@ export default {
 			return computedTitleIndex.value == -1 ? props.placeholder : props.data[computedTitleIndex.value][props.dataValue];
 		});
 
-		let computedValue = computed(() => {
-			return props.data.findIndex((value, key) => {
-				return value[props.dataKey] == props.value
-			});
-		});
 
-		let computedData = computed(() => {
-			let level = 0;
-			let computedData = [];
-
-			let getIndex = (searchValue, array) => {
-				console.log(array);
-				let index = array.findIndex((value, key) => {
-					return value[props.dataKey] == searchValue
-				});
-				if (index == -1) {
-					if (array.children) {
-						return getIndex(searchValue, array.children);
-					} else {
-						return index;
+		let computedLevel = computed(() => {
+			let maxLevel = 0;
+			let handleChildren = (data, currentLevel) => {
+				if (data.children) {
+					maxLevel = currentLevel++ > maxLevel ? currentLevel : maxLevel;
+					for (let i in data.children) {
+						handleChildren(data.children[i], currentLevel);
 					}
-				} else {
-					return index;
 				}
 			}
+			handleChildren({ children: props.data }, 1);
+			console.log("max", maxLevel);
+			return maxLevel;
+		});
 
-			let ret = getIndex(115, props.data);
+		let computedValue = computed(() => {
+			let computedValue = Array.apply(null, { length: computedLevel.value });
+			
+			let findKey = (data, search) => {
+				let index= data.findIndex((value, key) => {
+					return value[props.dataKey] == props.value
+				});
+				if (index == -1) {
+					for(let i in data) {
+						findKz
+					}
+				}
+				return index == -1 ? findKey() : 
+			}
 
-			console.log("RET", ret);
+			let index = props.data.findIndex((value, key)=> {
+			})
+			if (index == -1) {
+
+			}
+			console.log(index, props.data[index], props.value);
+
+			console.log("computedValue", computedValue);
+			return computedValue;
+		});
 
 
-			// console.log("comccccc", props.value);
-			// props.data.map((value, key) => {
+		let computedData = computed(() => {
 
-			// 	if (value.children) {
-
-			// 	}
-			// })
-
-
-			// let mapper = (data) => {
-			// 	data.map((value, key) => {
-
-			// 	})
-			// }
-			// mapper(props.data); 
-
-			// return [props.data, props.data, props.data, props.data];
 		})
+
+		let levelData = computed(() => {
+			let levelData: Array<any> = [];
+			for (let i = 0; i < props.level; i++) {
+				levelData.push(props.data);
+			}
+			console.log(levelData);
+			return levelData;
+		});
 
 		let handleColumnChange = (e) => {
 			console.log(e);
+			emit("update:level", props.level + 1);
 		};
 
 		let handleChange = (e) => {
@@ -111,7 +123,6 @@ export default {
 				range: computedData.value,
 				rangeKey: props.dataValue,
 				value: computedValue.value,
-				value: [],
 				onChange: handleChange,
 				onColumnchange: handleColumnChange,
 				onColumnChange: handleColumnChange
