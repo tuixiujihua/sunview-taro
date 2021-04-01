@@ -53,60 +53,69 @@ export default {
 		});
 
 
-		let computedLevel = computed(() => {
-			let maxLevel = 0;
-			let handleChildren = (data, currentLevel) => {
-				if (data.children) {
-					maxLevel = currentLevel++ > maxLevel ? currentLevel : maxLevel;
-					for (let i in data.children) {
-						handleChildren(data.children[i], currentLevel);
+		// let computedLevel = computed(() => {
+		// 	let maxLevel = 0;
+		// 	let recurser = (data, currentLevel) => {
+		// 		if (data.children) {
+		// 			maxLevel = currentLevel++ > maxLevel ? currentLevel : maxLevel;
+		// 			for (let i in data.children) {
+		// 				recurser(data.children[i], currentLevel);
+		// 			}
+		// 		}
+		// 	}
+		// 	recurser({ children: props.data }, 1);
+		// 	console.log("max", maxLevel);
+		// 	return maxLevel;
+		// });
+		// console.log("max", computedLevel.value);
+
+		let inital = computed(() => {
+			interface Result {
+				deep: Number;
+				position: Array<Number>;
+				title: Array<String>;
+			}
+			let result: Result = {
+				deep: 0,
+				position: [],
+				title: []
+			};
+			let recurser = (data, indexPrefix: Array<Number> = [], titlePrefix: Array<any> = []) => {
+				for (let i in data) {
+					if (indexPrefix.length + 1 > result.deep) result.deep = indexPrefix.length + 1;
+					if (data[i][props.dataKey] == props.value) {
+						result.title = titlePrefix.concat(data[i][props.dataValue]);
+						result.position = indexPrefix.concat(parseInt(i));
+					} else if (data[i].children) {
+						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
 					}
 				}
 			}
-			handleChildren({ children: props.data }, 1);
-			console.log("max", maxLevel);
-			return maxLevel;
+			recurser(props.data);
+			return result;
 		});
+		console.log(inital.value);
+
+
 
 		let computedValue = computed(() => {
-			let computedValue = Array.apply(null, { length: computedLevel.value });
-			
-			let findKey = (data, search) => {
-				let index= data.findIndex((value, key) => {
-					return value[props.dataKey] == props.value
-				});
-				if (index == -1) {
-					for(let i in data) {
-						findKz
+			let recurser = (data, prefix: Array<Number> = []) => {
+				for (let i in data) {
+					if (data[i][props.dataKey] == props.value) {
+						return prefix.concat(parseInt(i));
+					} else if (data[i].children) {
+						return recurser(data[i].children, prefix.concat(parseInt(i)))
 					}
 				}
-				return index == -1 ? findKey() : 
 			}
-
-			let index = props.data.findIndex((value, key)=> {
-			})
-			if (index == -1) {
-
-			}
-			console.log(index, props.data[index], props.value);
-
-			console.log("computedValue", computedValue);
-			return computedValue;
-		});
+			return recurser(props.data) || null;
+		})
+		// console.log("value", computedValue.value);
 
 
 		let computedData = computed(() => {
 
 		})
-
-		let levelData = computed(() => {
-			let levelData: Array<any> = [];
-			for (let i = 0; i < props.level; i++) {
-				levelData.push(props.data);
-			}
-			console.log(levelData);
-			return levelData;
-		});
 
 		let handleColumnChange = (e) => {
 			console.log(e);
