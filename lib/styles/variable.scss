@@ -70,6 +70,7 @@ $border-radius-lg: 6px * $hd !default;
 $border-radius-circle: 50% !default;
 
 /* 透明度 */
+$opacity: 0.3 !default; // 通用透明度, Modal等组件的MASK层使用
 $opacity-active: 0.6 !default; // Button 等组件点击态额透明度
 $opacity-disabled: 0.3 !default; // Button 等组件禁用态的透明度
 

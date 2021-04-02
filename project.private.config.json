@@ -45,6 +45,12 @@
         {
           "name": "表单",
           "pathName": "pages/form/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "模态框",
+          "pathName": "pages/modal/index",
           "scene": null
         }
       ]

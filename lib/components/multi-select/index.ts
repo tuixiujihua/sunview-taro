@@ -1,5 +1,5 @@
 import { Picker, View } from "@tarojs/components"
-import { computed, ref, h, mergeProps } from "@vue/runtime-core"
+import { computed, h, mergeProps, reactive } from "@vue/runtime-core"
 import { SInput } from "@/components"
 
 export default {
@@ -32,15 +32,44 @@ export default {
 			type: String,
 			default: "请选择"
 		},
-
-		level: {
-			type: Number,
-			default: 1
-		}
 	},
 	setup(props, { attrs, emit }) {
 
-		let current = ref([]);
+		interface Inital {
+			deep: Number;
+			position: Array<any>;
+			title: Array<String>;
+		}
+		let inital: Inital = {
+			deep: 0,
+			position: [],
+			title: []
+		};
+		let createInital = () => {
+			let recurser = (data, indexPrefix: Array<Number> = [], titlePrefix: Array<any> = []) => {
+				for (let i in data) {
+					if (indexPrefix.length + 1 > inital.deep) inital.deep = indexPrefix.length + 1;
+
+					if (data[i].children) {
+						if (data[i][props.dataKey] == props.value) {
+							inital.title = titlePrefix.concat(data[i][props.dataValue]);
+							inital.position = indexPrefix.concat(parseInt(i));
+						}
+						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
+					}
+				}
+			}
+			recurser(props.data);
+			console.log(inital)
+			return inital;
+		}
+		createInital();
+
+		let rangeData = reactive(Array.apply(null, { length: inital.deep }));
+		rangeData.map((value, key) => {
+			rangeData[key] = key == 0 ? props.data.slice(0) : rangeData[key - 1][inital.position[key - 1]]?.children?.slice(0) || [];
+		})
+
 
 		let computedTitleIndex = computed(() => {
 			return props.data.findIndex((value, key) => {
@@ -48,93 +77,36 @@ export default {
 			});
 		});
 
-		let computedTitle = computed(() => {
-			return computedTitleIndex.value == -1 ? props.placeholder : props.data[computedTitleIndex.value][props.dataValue];
-		});
-
-
-		// let computedLevel = computed(() => {
-		// 	let maxLevel = 0;
-		// 	let recurser = (data, currentLevel) => {
-		// 		if (data.children) {
-		// 			maxLevel = currentLevel++ > maxLevel ? currentLevel : maxLevel;
-		// 			for (let i in data.children) {
-		// 				recurser(data.children[i], currentLevel);
-		// 			}
-		// 		}
-		// 	}
-		// 	recurser({ children: props.data }, 1);
-		// 	console.log("max", maxLevel);
-		// 	return maxLevel;
+		// let computedValue = computed(() => {
+		// 	let newValue: Array<any> = [];
+		// 	inital.position.map((v,k) => {
+		// 		newValue[k] = v;
+		// 	})
+		// 	return newValue
 		// });
-		// console.log("max", computedLevel.value);
-
-		let inital = computed(() => {
-			interface Result {
-				deep: Number;
-				position: Array<Number>;
-				title: Array<String>;
-			}
-			let result: Result = {
-				deep: 0,
-				position: [],
-				title: []
-			};
-			let recurser = (data, indexPrefix: Array<Number> = [], titlePrefix: Array<any> = []) => {
-				for (let i in data) {
-					if (indexPrefix.length + 1 > result.deep) result.deep = indexPrefix.length + 1;
-					if (data[i][props.dataKey] == props.value) {
-						result.title = titlePrefix.concat(data[i][props.dataValue]);
-						result.position = indexPrefix.concat(parseInt(i));
-					} else if (data[i].children) {
-						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
-					}
-				}
-			}
-			recurser(props.data);
-			return result;
-		});
-		console.log(inital.value);
-
-
-
-		let computedValue = computed(() => {
-			let recurser = (data, prefix: Array<Number> = []) => {
-				for (let i in data) {
-					if (data[i][props.dataKey] == props.value) {
-						return prefix.concat(parseInt(i));
-					} else if (data[i].children) {
-						return recurser(data[i].children, prefix.concat(parseInt(i)))
-					}
-				}
-			}
-			return recurser(props.data) || null;
-		})
-		// console.log("value", computedValue.value);
-
-
-		let computedData = computed(() => {
-
-		})
-
-		let handleColumnChange = (e) => {
-			console.log(e);
-			emit("update:level", props.level + 1);
-		};
 
 		let handleChange = (e) => {
-			console.log(e);
 			emit("update:value", props.data[parseInt(e.detail.value)][props.dataKey]);
 		};
 
+
+		let handleColumnChange = (e) => {
+			console.log(e);
+			let newRange = rangeData.splice(0, rangeData.length);
+			newRange[1] = [];
+			inital.position[1] = 1;
+			rangeData = newRange;
+		}
+
 		let getPickerProps = () => {
 			return {
-				range: computedData.value,
+				range: rangeData,
 				rangeKey: props.dataValue,
-				value: computedValue.value,
+				// value: inital.position,
+				value: [],
 				onChange: handleChange,
 				onColumnchange: handleColumnChange,
-				onColumnChange: handleColumnChange
+				// onColumnChange: handleColumnChange
 			};
 		}
 
@@ -142,13 +114,13 @@ export default {
 			disabled: props.disabled
 		}, attrs), {
 			default: () => {
-				return h(props.disabled ? View : Picker, {
+				return h(props.disabled ? View : 'picker', {
 					mode: 'multiSelector',
-					class: [computedTitleIndex.value != -1 ? "s-input-value" : "s-input-placeholder"],
+					class: [inital.title.length > 0 ? "s-input-value" : "s-input-placeholder"],
 					...getPickerProps(),
 				}, {
 					default: () => {
-						return computedTitle.value;
+						return inital.title.length > 0 ? inital.title.join(" / ") : props.placeholder;
 					}
 				})
 			}

@@ -1,0 +1,122 @@
+@import "@/styles/variable.scss";
+
+
+.s-modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 30rpx;
+	z-index: 1000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&.s-modal-position-top {
+		align-items: flex-start;
+	}
+
+	&.s-modal-position-bottom {
+		align-items: flex-end;
+	}
+
+	&.s-modal-position-left {
+		justify-content: flex-start;
+	}
+
+	&.s-modal-position-right {
+		justify-content: flex-end;
+	}
+
+	.s-modal-inner {
+		background: $color-white;
+		border-radius: 20rpx;
+		z-index: 1000;
+		padding: 30rpx;
+
+		&.s-modal-fill-x {
+			width: calc(100vw - 30rpx * 2 - 30rpx * 2);
+		}
+
+		&.s-modal-fill-y {
+			height: calc(100vh - 30rpx * 2 - 30rpx * 2);
+		}
+
+		.s-modal-inner-title {
+			font-size: 32rpx;
+			color: $color-black-0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 30rpx;
+		}
+
+		.s-modal-inner-content {
+
+		}
+	}
+
+	.s-modal-mask {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 999;
+		background: $color-black-0;
+		opacity: $opacity;
+	}
+
+	// &.fade-in {
+	// 	opacity: 1;
+	// 	animation: fade-in;
+	// 	animation-duration: .3s;
+	// 	visibility: visible;
+	// }
+
+	// &.fade-out {
+	// 	opacity: 0;
+	// 	animation: fade-out;
+	// 	animation-duration: 1s;
+
+	// }
+
+	// @keyframes fade-in {
+	// 	0% {
+	// 		opacity: 0;
+	// 	}
+
+	// 	/*初始状态 透明度为0*/
+	// 	40% {
+	// 		opacity: 0;
+	// 	}
+
+	// 	/*过渡状态 透明度为0*/
+	// 	100% {
+	// 		opacity: 1;
+	// 	}
+
+	// 	/*结束状态 透明度为1*/
+	// }
+
+	// @keyframes fade-out {
+	// 	0% {
+	// 		opacity: 1;
+	// 	}
+
+	// 	/*初始状态 透明度为0*/
+	// 	40% {
+	// 		opacity: 1;
+	// 	}
+
+	// 	/*过渡状态 透明度为0*/
+	// 	100% {
+	// 		opacity: 0;
+	// 		visibility: hidden;
+
+	// 	}
+
+	// 	/*结束状态 透明度为1*/
+	// }
+}

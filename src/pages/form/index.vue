@@ -39,7 +39,7 @@
 					{ id: 75, name: "猪" },
 				],
 
-				selectMultiValue: 21230,
+				selectMultiValue: 21,
 
 				selectMultiValues: [
 					{ id: 20, name: "0-A" },
