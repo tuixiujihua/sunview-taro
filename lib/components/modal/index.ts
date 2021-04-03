@@ -112,7 +112,7 @@ export default {
 					props.onCancel();
 				})
 			};
-			emit("update:value", false);
+			handleClose();
 		}
 
 		let handleConfirm = () => {
@@ -121,7 +121,7 @@ export default {
 					props.onConfirm();
 				})
 			}
-			emit("update:value", false);
+			handleClose();
 		}
 
 

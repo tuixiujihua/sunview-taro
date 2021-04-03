@@ -134,7 +134,7 @@ export default {
 			}, props.title),
 
 			slots.default ? slots.default() : h(Input, mergeProps({
-				class: "s-input-input",
+				class: "s-input-content",
 				value: props.value,
 				disabled: (props.disabled || props.readonly),
 				onInput: handleInput,

@@ -7,7 +7,6 @@ import SModal from './modal'
 import SForm from './form'
 import SInput from './input'
 import SSelect from './select'
-import SMultiSelect from './multi-select'
 
 export {
 	SIcon,
@@ -19,5 +18,4 @@ export {
 	SForm,
 	SInput,
 	SSelect,
-	SMultiSelect
 }

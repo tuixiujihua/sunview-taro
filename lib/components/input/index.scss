@@ -62,7 +62,7 @@
 		height: 100%;
 	}
 
-	.s-input-input {
+	.s-input-content {
 		text-align: right;
 		flex: 1;
 		height: 100%;
@@ -70,7 +70,7 @@
 
 	.s-input-placeholder {
 		display: flex;
-		align-items: center;
+		flex: 1;
 		height: 100%;
 		color: $color-text-placeholder;
 	}

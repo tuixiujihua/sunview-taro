@@ -1,6 +1,9 @@
-import { Picker, View } from "@tarojs/components"
-import { computed, h, mergeProps } from "@vue/runtime-core"
-import { SInput } from "@/components"
+import { Picker, PickerView, PickerViewColumn, View } from "@tarojs/components"
+import { computed, ComputedRef, h, mergeProps, Ref, ref, reactive } from "@vue/runtime-core"
+import { SInput, SModal } from "@/components"
+
+import './index.scss'
+import { nextTick } from "@tarojs/taro"
 
 export default {
 	props: {
@@ -35,49 +38,130 @@ export default {
 	},
 	setup(props, { attrs, emit }) {
 
-		let computedTitleIndex = computed(() => {
-			return props.data.findIndex((value, key) => {
-				return value[props.dataKey] == props.value
-			});
-		});
-
-		let computedTitle = computed(() => {
-			return computedTitleIndex.value == -1 ? props.placeholder : props.data[computedTitleIndex.value][props.dataValue];
-		});
-
-		let computedValue = computed(() => {
-			return props.data.findIndex((value, key) => {
-				return value[props.dataKey] == props.value
-			});
-		});
-
-		let handleChange = (e) => {
-			emit("update:value", props.data[parseInt(e.detail.value)][props.dataKey]);
+		let getInital = () => {
+			let inital: {
+				deep: Number;
+				position: Ref;
+				title: Ref;
+				range: ComputedRef
+			} = {
+				deep: 0,
+				position: ref([]),
+				title: ref([]),
+				range: computed(() => {
+					let rangeData = Array.apply(null, { length: inital.deep });
+					rangeData.map((value, key) => {
+						rangeData[key] = key == 0 ? props.data.slice(0) : rangeData[key - 1][inital.position.value[key - 1]]?.children?.slice(0) || [];
+					})
+					return rangeData;
+				})
+			};
+			let recurser = (data, indexPrefix: Array<Number> = [], titlePrefix: Array<any> = []) => {
+				for (let i in data) {
+					if (indexPrefix.length + 1 > inital.deep) inital.deep = indexPrefix.length + 1;
+					if (data[i][props.dataKey] == props.value) {
+						inital.title.value = titlePrefix.concat(data[i][props.dataValue]);
+						inital.position.value = indexPrefix.concat(parseInt(i));
+					}
+					if (data[i].children) {
+						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
+					}
+				}
+			}
+			recurser(props.data);
+			return inital;
 		};
 
-		let getPickerProps = () => {
-			return {
-				range: props.data,
-				rangeKey: props.dataValue,
-				value: computedValue.value,
-				onChange: handleChange
-			};
+		let inital = getInital();
+
+		let opened = ref(false);
+
+		let handleOpen = (e) => {
+			inital = getInital();
+			opened.value = true;
 		}
 
-		return () => h(SInput, mergeProps({
-			disabled: props.disabled
-		}, attrs), {
-			default: () => {
-				return h(props.disabled ? View : Picker, {
-					mode: 'selector',
-					class: [computedTitleIndex.value != -1 ? "s-input-value" : "s-input-placeholder"],
-					...getPickerProps(),
+		let handleClose = (e) => {
+		}
+
+		let handleChange = (e) => {
+			let reset = false;
+			for (let i in e.detail.value) {
+				if (reset) {
+					inital.position.value[i] = 0;
+				} else if (e.detail.value[i] != inital.position.value[i]) {
+					inital.position.value[i] = e.detail.value[i];
+					reset = true;
+				}
+			}
+		}
+
+		let handleSelect = (e) => {
+			let position = inital.position.value.slice(0);
+			let validPosition: Array<any> = [];
+			let validTitle: Array<any> = [];
+			for (let i in position) {
+				console.log(inital.range.value[i]);
+				if (inital.range.value[i]?.length == 0) {
+					break;
+				}
+				validPosition.push(position[i]);
+				validTitle.push(inital.range.value[i][position[i]][props.dataValue])
+			}
+			let result = {
+				value: inital.range.value[validPosition.length - 1][validPosition[validPosition.length - 1]][props.dataKey],
+				raw: validPosition,
+				rawTitle: validTitle
+			};
+			emit('select', result);
+
+			inital.title.value = result.rawTitle;
+		}
+
+		return () => [
+			h(SInput, mergeProps({
+				disabled: props.disabled
+			}, attrs), [
+				h(View, {
+					class: [inital.title.value.length > 0 ? "s-input-content" : "s-input-placeholder"],
+					onTap: handleOpen
 				}, {
 					default: () => {
-						return computedTitle.value;
+						return inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder;
 					}
-				})
-			}
-		})
+				}),
+				h(SModal, {
+					value: opened.value,
+					'onUpdate:value': (e) => opened.value = e,
+					position: 'bottom',
+					noWhiteSpace: true,
+					showCancel: true,
+					showConfirm: true,
+					onClose: handleClose,
+					onConfirm: handleSelect
+				}, h(PickerView, {
+					style: {
+						height: '30vh'
+					},
+					indicatorStyle: 'height: 40px',
+					value: inital.position.value,
+					onChange: handleChange
+				}, {
+					default: () => {
+						return Array.apply(null, { length: inital.deep }).map((value, key) => {
+							return h(PickerViewColumn, {}, {
+								default: () => {
+									return inital.range.value[key].map((rangeValue, rangeKey) => {
+										return h(View, {
+											class: 's-multi-select-picker-column-item'
+										}, rangeValue[props.dataValue])
+									})
+								}
+							});
+						})
+					}
+				}))
+			])
+		]
 	}
 }
