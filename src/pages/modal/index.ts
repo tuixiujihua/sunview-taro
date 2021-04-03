@@ -5,18 +5,10 @@ import './index.scss'
 export default {
 	setup() {
 
-		let showModal = ref(false);
+		let showModal = ref(true);
 
 		let openModal = () => {
 			showModal.value = true;
-		}
-
-		let closeModal = () => {
-			showModal.value = false;
-		}
-
-		let handleUpdate = () => {
-			showModal.value = false;
 		}
 
 		return () => [
@@ -25,10 +17,19 @@ export default {
 					onTap: openModal
 				}, { default: () => "打开Modal" })
 			]),
-			showModal.value ? h(SModal, {
+			h(SModal, {
+				// 'v-model:value': showModal.value
 				value: showModal.value,
-				'onUpdate:value': handleUpdate
-			}) : ''
+				'onUpdate:value': (e) => showModal.value = e,
+				title: "这是一个Modal",
+				useFooter: true,
+				showConfirm: true,
+				showCancel: true,
+			}, {
+				default: () => {
+					return h(View, {}, "嘿嘿")
+				}
+			})
 
 		]
 	}

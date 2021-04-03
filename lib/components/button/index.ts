@@ -29,7 +29,7 @@ export default {
 		},
 		icon: {
 			type: String,
-			default: "plus",
+			default: "",
 		},
 		plain: {
 			type: Boolean,
@@ -44,6 +44,10 @@ export default {
 			default: false
 		},
 		circle: {
+			type: Boolean,
+			default: false
+		},
+		noBorder: {
 			type: Boolean,
 			default: false
 		},
@@ -67,7 +71,8 @@ export default {
 				`s-button-size-${props.size}`,
 				props.circle ? 's-button-circle' : '',
 				props.plain ? 's-button-plain' : '',
-				props.disabled ? 's-button-disabled' : ''
+				props.disabled ? 's-button-disabled' : '',
+				props.noBorder ? 's-button-no-border' : ''
 			],
 			onTap: handleClick
 		}, attrs), [

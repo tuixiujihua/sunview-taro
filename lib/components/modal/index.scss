@@ -29,31 +29,92 @@
 		justify-content: flex-end;
 	}
 
+	&.s-modal-no-white-space {
+		padding: 0;
+
+		.s-modal-inner {
+			&.s-modal-fill-x {
+				width: 100vw;
+			}
+
+			&.s-modal-fill-y {
+				height: 100vh;
+			}
+		}
+	}
+
+	&.s-modal-circle {
+		.s-modal-inner {
+			border-radius: 20rpx;
+		}
+	}
+
 	.s-modal-inner {
 		background: $color-white;
-		border-radius: 20rpx;
-		z-index: 1000;
-		padding: 30rpx;
+		z-index: #{$zindex-modal + 1};
+		overflow: hidden;
 
 		&.s-modal-fill-x {
-			width: calc(100vw - 30rpx * 2 - 30rpx * 2);
+			width: calc(100vw - #{$spacing-v-xl} * 2);
 		}
 
 		&.s-modal-fill-y {
-			height: calc(100vh - 30rpx * 2 - 30rpx * 2);
+			height: calc(100vh - #{$spacing-h-xl} * 2);
+		}
+
+		.s-modal-inner-action {
+			display: flex;
+			justify-content: space-between;
+			margin: #{$spacing-h-lg} #{$spacing-v-lg};
+
+			.s-modal-inner-action-close {
+				padding: $margin-xxs;
+				color: light($color-text-base, 55%) !important;
+				background: $color-bg-grey;
+				border-radius: 50%;
+			}
+
+			.s-modal-inner-action-cancel {
+				color: $color-text-disabled;
+				margin-left: $spacing-v-lg;
+			}
+
+			.s-modal-inner-action-confirm {
+				color: $color-success;
+				margin-right: $spacing-v-lg;
+			}
+
+		}
+
+		.s-modal-inner-footer-action {
+			display: flex;
+			justify-content: space-between;
+			// margin: #{$spacing-h-lg} #{$spacing-v-lg};
+
+			.s-modal-inner-footer-action-cancel-wrapper {
+				// margin-left: $spacing-v-lg;
+				width: 50%;
+				flex: 1;
+			}
+
+			.s-modal-inner-footer-action-confirm-wrapper {
+				// margin-right: $spacing-v-lg;
+				width: 50%;
+				flex: 1;
+			}
 		}
 
 		.s-modal-inner-title {
-			font-size: 32rpx;
+			font-size: $font-size-lg;
 			color: $color-black-0;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin-bottom: 30rpx;
+			margin: $spacing-h-xl 0;
 		}
 
 		.s-modal-inner-content {
-
+			margin: calc(#{$spacing-h-lg} * 2) calc(#{$spacing-v-lg} * 2);
 		}
 	}
 
@@ -63,7 +124,7 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		z-index: 999;
+		z-index: $zindex-modal;
 		background: $color-black-0;
 		opacity: $opacity;
 	}

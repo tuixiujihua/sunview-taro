@@ -23,6 +23,10 @@
 		opacity: $opacity-disabled;
 	}
 
+	&.s-button-no-border {
+		border: none !important;
+	}
+
 	.s-button-spin {
 		margin-right: $spacing-h-lg;
 		display: inline-flex;
@@ -37,8 +41,9 @@
 		display: inline-flex;
 	}
 
+
 	&.s-button-type-default {
-		background: transparent;
+		background: $color-bg-grey;
 		border-color: $color-border-base;
 
 		&:active {

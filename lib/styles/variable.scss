@@ -48,9 +48,14 @@ $color-link-disabled: #BFBFBF !default;
 /* 背景色 */
 $color-bg: #FFF !default;
 $color-bg-base: #FAFBFC !default;
-$color-bg-light: #ECF5FD !default;
-$color-bg-lighter: light($color-bg-light, 50%) !default;
 $color-bg-grey: #F7F7F7 !default;
+
+// $color-bg-light: #ECF5FD !default;
+// $color-bg-lighter: light($color-bg-light, 50%) !default;
+$color-bg-light: light($color-bg-grey, 25%) !default;
+$color-bg-lighter: light($color-bg-grey, 50%) !default;
+$color-bg-dark: dark($color-bg-grey, 15%) !default;
+$color-bg-darker: dark($color-bg-grey, 30%) !default;
 
 /* 边框颜色 */
 $color-border-base: #C5D9E8 !default;
@@ -123,5 +128,12 @@ $zindex-curtain: 1080 !default;
 $zindex-message: 1090 !default;
 $zindex-toast: 1090 !default;
 
-
+$margin-xxs: 3px * $hd !default;
+$margin-xs: 5px * $hd !default;
+$margin-sm: 8px * $hd !default;
+$margin: 10px * $hd !default;
+$margin-lg: 15px * $hd !default;
+$margin-xl: 20px * $hd !default;
+$margin-xxl: 25px * $hd !default;
 /* 组件变量 */
+// $modal-
