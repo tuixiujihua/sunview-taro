@@ -1,9 +1,8 @@
-import { Picker, PickerView, PickerViewColumn, View } from "@tarojs/components"
-import { computed, ComputedRef, h, mergeProps, Ref, ref, reactive } from "@vue/runtime-core"
+import { PickerView, PickerViewColumn, View } from "@tarojs/components"
+import { computed, ComputedRef, h, mergeProps, Ref, ref } from "@vue/runtime-core"
 import { SInput, SModal } from "@/components"
 
 import './index.scss'
-import { nextTick } from "@tarojs/taro"
 
 export default {
 	props: {
@@ -94,6 +93,7 @@ export default {
 					reset = true;
 				}
 			}
+			emit('change', inital.position.value);
 		}
 
 		let handleSelect = (e) => {
@@ -153,7 +153,7 @@ export default {
 								default: () => {
 									return inital.range.value[key].map((rangeValue, rangeKey) => {
 										return h(View, {
-											class: 's-multi-select-picker-column-item'
+											class: 's-select-picker-column-item'
 										}, rangeValue[props.dataValue])
 									})
 								}

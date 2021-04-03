@@ -7,6 +7,7 @@ import SModal from './modal'
 import SForm from './form'
 import SInput from './input'
 import SSelect from './select'
+import SDatetimeSelect from './datetime-select'
 
 export {
 	SIcon,
@@ -18,4 +19,5 @@ export {
 	SForm,
 	SInput,
 	SSelect,
+	SDatetimeSelect
 }

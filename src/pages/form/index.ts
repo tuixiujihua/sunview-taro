@@ -1,4 +1,4 @@
-import { SButton, SInput, SSelect } from '@/components'
+import { SButton, SDatetimeSelect, SInput, SSelect } from '@/components'
 import { View } from '@tarojs/components'
 import { h, ref } from '@vue/runtime-core'
 import './index.scss'
@@ -50,6 +50,8 @@ export default {
 			{ id: 22, name: "0-C" },
 		]
 
+		let select_3_value = ref(null);
+
 		return () => h(View, { class: 'page-form' }, [
 			h("view", {}, value.value),
 
@@ -73,18 +75,25 @@ export default {
 			}),
 
 			h(SSelect, {
-				title: '请选择',
+				title: '请选择单选',
 				value: select_1_value.value,
 				onSelect: (e) => select_1_value.value = e.value,
 				data: select_1_values
 			}),
 
 			h(SSelect, {
-				title: '请选择（联动）',
+				title: '请选择联动',
 				value: select_2_value.value,
 				onSelect: (e) => select_2_value.value = e.value,
 				data: select_2_values
 			}),
+
+			h(SDatetimeSelect, {
+				title: '请选择日期时间',
+				start: "2005-02-03 11:22:33",
+				end: "2022-03-04 22:33:44",
+				value: select_3_value.value
+			})
 
 
 		])
