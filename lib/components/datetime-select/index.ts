@@ -40,67 +40,73 @@ export default {
 	},
 	setup(props, { attrs, emit }) {
 
-		let current = new Date();
+		let current = ref(new Date());
 
-		let defaultStart = new Date(`${current.getFullYear() - 3}-01-01 00:00:00`);
+		let defaultStart = ref(new Date(`${current.value.getFullYear() - 3}-01-01 00:00:00`));
 
-		let defaultEnd = new Date(`${current.getFullYear() + 3}-12-31 23:59:59`);
+		let defaultEnd = ref(new Date(`${current.value.getFullYear() + 3}-12-31 23:59:59`));
 
 		let computedValue = computed(() => {
-			switch (props.type) {
-				case 'date':
-					return new Date(props.value || current);
-					break;
+			return new Date(props.value || current.value);
+			// switch (props.type) {
+			// 	case 'date':
+			// 		return new Date(props.value || current.value);
+			// 		break;
 
-				case 'time':
-					return new Date(props.value ? `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.value}` : current)
-					break;
+			// 	case 'time':
+			// 		// return new Date(props.value ? `${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.value}` : current.value)
+			// 		return new Date(props.value ? `${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.value}` : current.value)
+			// 		break;
 
-				case 'datetime':
-					return new Date(props.value || current);
-					break;
+			// 	case 'datetime':
+			// 		return new Date(props.value || current.value);
+			// 		break;
 
-				default:
-					return current;
-			}
+			// 	default:
+			// 		return current.value;
+			// }
 		})
 
 		let computedStart = computed(() => {
-			switch (props.type) {
-				case 'date':
-					return new Date(props.start || defaultStart);
-					break;
+			return new Date(props.start || defaultStart.value);
+			// switch (props.type) {
+			// 	case 'date':
+			// 		return new Date(props.start || defaultStart.value);
+			// 		break;
 
-				case 'time':
-					return new Date(`${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.start || '00:00:00'}`)
-					break;
+			// 	case 'time':
+			// 		// return new Date(`${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.start || '00:00:00'}`)
+			// 		return new Date(`${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.start || '00:00:00'}`)
+			// 		break;
 
-				case 'datetime':
-					return new Date(props.start || defaultStart);
-					break;
+			// 	case 'datetime':
+			// 		return new Date(props.start || defaultStart.value);
+			// 		break;
 
-				default:
-					return current;
-			}
+			// 	default:
+			// 		return current.value;
+			// }
 		})
 
 		let computedEnd = computed(() => {
-			switch (props.type) {
-				case 'date':
-					return new Date(props.end || defaultEnd);
-					break;
+			return new Date(props.end || defaultEnd.value);
+			// switch (props.type) {
+			// 	case 'date':
+			// 		return new Date(props.end || defaultEnd.value);
+			// 		break;
 
-				case 'time':
-					return new Date(`${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.end || '23:59:59'}`)
-					break;
+			// 	case 'time':
+			// 		// return new Date(`${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.end || '23:59:59'}`)
+			// 		return new Date(`${current.value.getFullYear()}-${current.value.getMonth() + 1}-${current.value.getDate()} ${props.end || '23:59:59'}`)
+			// 		break;
 
-				case 'datetime':
-					return new Date(props.end || defaultEnd);
-					break;
+			// 	case 'datetime':
+			// 		return new Date(props.end || defaultEnd.value);
+			// 		break;
 
-				default:
-					return current;
-			}
+			// 	default:
+			// 		return current.value;
+			// }
 		})
 
 		let computedValueArgs = computed(() => {
@@ -133,11 +139,32 @@ export default {
 			return [year, month, date, hour, min, sec]
 		})
 
+		let computedValueTitle = computed(() => {
+			let computedValueTitle = {};
+			console.log(computedValue.value);
+			console.log(computedValueArgs.value);
+
+			for (let i in computedValueArgs.value) {
+				computedValueTitle[i] = computedValueArgs.value[i];
+				computedValueTitle[i] = prefixZero(computedValueTitle[i], computedValueTitle[i] > 1000 ? 4 : 2);
+			}
+			switch (props.type) {
+				case 'date':
+					return `${computedValueTitle[0]}-${computedValueTitle[1]}-${computedValueTitle[2]}`;
+					break;
+				case 'time':
+					return `${computedValueTitle[3]}:${computedValueTitle[4]}:${computedValueTitle[5]}`;
+					break;
+				case 'datetime':
+					return `${computedValueTitle[0]}-${computedValueTitle[1]}-${computedValueTitle[2]} ${computedValueTitle[3]}:${computedValueTitle[4]}:${computedValueTitle[5]}`;
+			};
+		})
 		////////////////////////////////////////////////////////////////////////////////////////
 
 
 		let range: Ref = ref([[], [], [], [], [], []]);
 		let valueIndex: Ref = ref([0, 0, 0, 0, 0, 0]);
+
 		let computedRange: ComputedRef = computed(() => {
 			switch (props.type) {
 				case 'date':
@@ -162,6 +189,24 @@ export default {
 					return [valueIndex.value[0], valueIndex.value[1], valueIndex.value[2], valueIndex.value[3], valueIndex.value[4], valueIndex.value[5]]
 			};
 		})
+
+		// let computedValueIndexTitle: ComputedRef = computed(() => {
+		// 	let computedValueIndexTitle = {};
+		// 	for (let i in range.value) {
+		// 		computedValueIndexTitle[i] = range.value[i][valueIndex.value[i]];
+		// 		computedValueIndexTitle[i] = prefixZero(computedValueIndexTitle[i], computedValueIndexTitle[i] > 1000 ? 4 : 2);
+		// 	}
+		// 	switch (props.type) {
+		// 		case 'date':
+		// 			return [computedValueIndexTitle[0], computedValueIndexTitle[1], computedValueIndexTitle[2]];
+		// 			break;
+		// 		case 'time':
+		// 			return [computedValueIndexTitle[3], computedValueIndexTitle[4], computedValueIndexTitle[5]];
+		// 			break;
+		// 		case 'datetime':
+		// 			return [computedValueIndexTitle[0], computedValueIndexTitle[1], computedValueIndexTitle[2], computedValueIndexTitle[3], computedValueIndexTitle[4], computedValueIndexTitle[5]]
+		// 	};
+		// })
 
 		let opened = ref(false);
 
@@ -291,6 +336,7 @@ export default {
 		}
 
 		let handleOpen = () => {
+			current.value = new Date();
 			for (let i in rangeMap) {
 				rangeMap[i]();
 				setValueIndex(i);
@@ -326,7 +372,7 @@ export default {
 				result[i] = range.value[i][valueIndex.value[i]];
 				result[i] = prefixZero(result[i], result[i] > 1000 ? 4 : 2);
 			}
-			let finalResult = new Date(result[0], result[1], result[2], result[3], result[4], result[5]);
+			let finalResult = new Date(result[0], result[1] - 1, result[2], result[3], result[4], result[5]);
 			emit("select", {
 				value: finalResult,
 				raw: valueIndex.value,
@@ -344,7 +390,7 @@ export default {
 					onTap: handleOpen
 				}, {
 					default: () => {
-						return props.value || props.placeholder;
+						return props.value ? computedValueTitle.value : props.placeholder;
 					}
 				}),
 				h(SModal, {
