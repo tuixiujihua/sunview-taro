@@ -1,32 +1,34 @@
-import { Picker, PickerView, PickerViewColumn, View } from "@tarojs/components"
-import { computed, ComputedRef, h, mergeProps, Ref, ref, reactive } from "@vue/runtime-core"
+import { PickerView, PickerViewColumn, View } from "@tarojs/components"
+import { computed, h, mergeProps, ref, reactive, Ref, ComputedRef } from "@vue/runtime-core"
 import { SInput, SModal } from "@/components"
 
 import './index.scss'
-import { nextTick } from "@tarojs/taro"
+import { prefixZero } from '@/utils'
 
 export default {
 	props: {
 		value: {
+			type: String,
 			default: "",
 			required: true
 		},
-		data: {
-			type: Array,
-			default() {
-				return [];
-			}
-		},
-		dataKey: {
+		type: {
 			type: String,
-			default: 'id'
+			default: 'date',
+			validator: (val) => [
+				"date",
+				"time",
+				"datetime"
+			].includes(val)
 		},
-		dataValue: {
+		start: {
 			type: String,
-			default: 'name'
+			default: ""
 		},
-
-		// 下面两个是样式控制
+		end: {
+			type: String,
+			default: ""
+		},
 		disabled: {
 			type: Boolean,
 			default: false
@@ -38,85 +40,300 @@ export default {
 	},
 	setup(props, { attrs, emit }) {
 
-		let getInital = () => {
-			let inital: {
-				deep: Number;
-				position: Ref;
-				title: Ref;
-				range: ComputedRef
-			} = {
-				deep: 0,
-				position: ref([]),
-				title: ref([]),
-				range: computed(() => {
-					let rangeData = Array.apply(null, { length: inital.deep });
-					rangeData.map((value, key) => {
-						rangeData[key] = key == 0 ? props.data.slice(0) : rangeData[key - 1][inital.position.value[key - 1]]?.children?.slice(0) || [];
-					})
-					return rangeData;
-				})
-			};
-			let recurser = (data, indexPrefix: Array<Number> = [], titlePrefix: Array<any> = []) => {
-				for (let i in data) {
-					if (indexPrefix.length + 1 > inital.deep) inital.deep = indexPrefix.length + 1;
-					if (data[i][props.dataKey] == props.value) {
-						inital.title.value = titlePrefix.concat(data[i][props.dataValue]);
-						inital.position.value = indexPrefix.concat(parseInt(i));
-					}
-					if (data[i].children) {
-						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
-					}
-				}
-			}
-			recurser(props.data);
-			return inital;
-		};
+		let current = new Date();
 
-		let inital = getInital();
+		let defaultStart = new Date(`${current.getFullYear() - 3}-01-01 00:00:00`);
+
+		let defaultEnd = new Date(`${current.getFullYear() + 3}-12-31 23:59:59`);
+
+		let computedValue = computed(() => {
+			switch (props.type) {
+				case 'date':
+					return new Date(props.value || current);
+					break;
+
+				case 'time':
+					return new Date(props.value ? `${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.value}` : current)
+					break;
+
+				case 'datetime':
+					return new Date(props.value || current);
+					break;
+
+				default:
+					return current;
+			}
+		})
+
+		let computedStart = computed(() => {
+			switch (props.type) {
+				case 'date':
+					return new Date(props.start || defaultStart);
+					break;
+
+				case 'time':
+					return new Date(`${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.start || '00:00:00'}`)
+					break;
+
+				case 'datetime':
+					return new Date(props.start || defaultStart);
+					break;
+
+				default:
+					return current;
+			}
+		})
+
+		let computedEnd = computed(() => {
+			switch (props.type) {
+				case 'date':
+					return new Date(props.end || defaultEnd);
+					break;
+
+				case 'time':
+					return new Date(`${current.getFullYear()}-${current.getMonth() + 1}-${current.getDate()} ${props.end || '23:59:59'}`)
+					break;
+
+				case 'datetime':
+					return new Date(props.end || defaultEnd);
+					break;
+
+				default:
+					return current;
+			}
+		})
+
+		let computedValueArgs = computed(() => {
+			let year = computedValue.value.getFullYear();
+			let month = computedValue.value.getMonth() + 1;
+			let date = computedValue.value.getDate();
+			let hour = computedValue.value.getHours();
+			let min = computedValue.value.getMinutes();
+			let sec = computedValue.value.getSeconds();
+			return [year, month, date, hour, min, sec]
+		})
+
+		let computedStartArgs = computed(() => {
+			let year = computedStart.value.getFullYear();
+			let month = computedStart.value.getMonth() + 1;
+			let date = computedStart.value.getDate();
+			let hour = computedStart.value.getHours();
+			let min = computedStart.value.getMinutes();
+			let sec = computedStart.value.getSeconds();
+			return [year, month, date, hour, min, sec]
+		})
+
+		let computedEndArgs = computed(() => {
+			let year = computedEnd.value.getFullYear();
+			let month = computedEnd.value.getMonth() + 1;
+			let date = computedEnd.value.getDate();
+			let hour = computedEnd.value.getHours();
+			let min = computedEnd.value.getMinutes();
+			let sec = computedEnd.value.getSeconds();
+			return [year, month, date, hour, min, sec]
+		})
+
+		////////////////////////////////////////////////////////////////////////////////////////
+
+
+		let range: Ref = ref([[], [], [], [], [], []]);
+		let valueIndex: Ref = ref([0, 0, 0, 0, 0, 0]);
+		let computedRange: ComputedRef = computed(() => {
+			switch (props.type) {
+				case 'date':
+					return [range.value[0], range.value[1], range.value[2]];
+					break;
+				case 'time':
+					return [range.value[3], range.value[4], range.value[5]];
+					break;
+				case 'datetime':
+					return [range.value[0], range.value[1], range.value[2], range.value[3], range.value[4], range.value[5]]
+			};
+		})
+		let computedValueIndex: ComputedRef = computed(() => {
+			switch (props.type) {
+				case 'date':
+					return [valueIndex.value[0], valueIndex.value[1], valueIndex.value[2]];
+					break;
+				case 'time':
+					return [valueIndex.value[3], valueIndex.value[4], valueIndex.value[5]];
+					break;
+				case 'datetime':
+					return [valueIndex.value[0], valueIndex.value[1], valueIndex.value[2], valueIndex.value[3], valueIndex.value[4], valueIndex.value[5]]
+			};
+		})
 
 		let opened = ref(false);
 
-		let handleOpen = (e) => {
-			inital = getInital();
+		let createSeqArray = (start, end) => {
+			let seqArray: Array<any> = [];
+			for (let i = start; i <= end; i++) {
+				seqArray.push(i);
+			}
+			return seqArray;
+		}
+		let findIndex = (array, search, defaultValue = 0) => {
+			let index = array.findIndex((v, k) => v == search);
+			return index == -1 ? defaultValue : index;
+		}
+
+		let getMonthDayCount = (year, month) => {
+			return (new Date(year, month, 0)).getDate();
+		}
+
+		let setYearRange = () => {
+			console.log("开始刷新年份区间");
+			range.value[0] = createSeqArray(computedStartArgs.value[0], computedEndArgs.value[0])
+		}
+
+		let setMonthRange = () => {
+			console.log("开始刷新月份区间")
+			if (range.value[0][valueIndex.value[0]] == computedStartArgs.value[0]) {
+				range.value[1] = createSeqArray(computedStartArgs.value[1], 12);
+			} else if (range.value[0][valueIndex.value[0]] == computedEndArgs.value[0]) {
+				range.value[1] = createSeqArray(1, computedEndArgs.value[1]);
+			} else {
+				range.value[1] = createSeqArray(1, 12);
+			}
+		}
+
+		let setDateRange = () => {
+			console.log("开始刷新日期区间")
+			if (
+				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1]
+			) {
+				range.value[2] = createSeqArray(computedStartArgs.value[2], getMonthDayCount(range.value[0][valueIndex.value[0]], range.value[1][valueIndex.value[1]]))
+			} else if (
+				range.value[0][valueIndex.value[0]] == computedEndArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedEndArgs.value[1]
+			) {
+				range.value[2] = createSeqArray(1, computedEndArgs.value[2])
+			} else {
+				range.value[2] = createSeqArray(1, getMonthDayCount(range.value[0][valueIndex.value[0]], range.value[1][valueIndex.value[1]]));
+			}
+		}
+
+		let setHourRange = () => {
+			console.log("开始刷新小时区间")
+			if (
+				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedStartArgs.value[2]
+			) {
+				range.value[3] = createSeqArray(computedStartArgs.value[3], 23)
+			} else if (
+				range.value[0][valueIndex.value[0]] == computedEndArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedEndArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedEndArgs.value[2]
+			) {
+				range.value[3] = createSeqArray(0, computedEndArgs.value[3])
+			} else {
+				range.value[3] = createSeqArray(0, 23);
+			}
+		}
+
+		let setMinRange = () => {
+			console.log("开始刷新分钟区间")
+			if (
+				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedStartArgs.value[2] &&
+				range.value[3][valueIndex.value[3]] == computedStartArgs.value[3]
+			) {
+				range.value[4] = createSeqArray(computedStartArgs.value[4], 59)
+			} else if (
+				range.value[0][valueIndex.value[0]] == computedEndArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedEndArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedEndArgs.value[2] &&
+				range.value[3][valueIndex.value[3]] == computedEndArgs.value[3]
+			) {
+				range.value[4] = createSeqArray(0, computedEndArgs.value[4])
+			} else {
+				range.value[4] = createSeqArray(0, 59);
+			}
+		}
+		let setSecRange = () => {
+			console.log("开始刷新秒数区间")
+			if (
+				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedStartArgs.value[2] &&
+				range.value[3][valueIndex.value[3]] == computedStartArgs.value[3] &&
+				range.value[4][valueIndex.value[4]] == computedStartArgs.value[4]
+			) {
+				range.value[5] = createSeqArray(computedStartArgs.value[5], 59)
+			} else if (
+				range.value[0][valueIndex.value[0]] == computedEndArgs.value[0] &&
+				range.value[1][valueIndex.value[1]] == computedEndArgs.value[1] &&
+				range.value[2][valueIndex.value[2]] == computedEndArgs.value[2] &&
+				range.value[3][valueIndex.value[3]] == computedEndArgs.value[3] &&
+				range.value[4][valueIndex.value[4]] == computedEndArgs.value[4]
+			) {
+				range.value[5] = createSeqArray(0, computedEndArgs.value[5])
+			} else {
+				range.value[5] = createSeqArray(0, 59);
+			}
+		}
+
+		let setValueIndex = (index, defaultValue?) => {
+			let value = defaultValue || computedValueArgs.value[index];
+			valueIndex.value[index] = findIndex(range.value[index], value);
+		}
+
+		let rangeMap = {
+			0: () => setYearRange(),
+			1: () => setMonthRange(),
+			2: () => setDateRange(),
+			3: () => setHourRange(),
+			4: () => setMinRange(),
+			5: () => setSecRange(),
+		}
+
+		let handleOpen = () => {
+			for (let i in rangeMap) {
+				rangeMap[i]();
+				setValueIndex(i);
+			}
 			opened.value = true;
 		}
+		let handleClose = () => {
 
-		let handleClose = (e) => {
 		}
-
-		let handleChange = (e) => {
-			let reset = false;
-			for (let i in e.detail.value) {
-				if (reset) {
-					inital.position.value[i] = 0;
-				} else if (e.detail.value[i] != inital.position.value[i]) {
-					inital.position.value[i] = e.detail.value[i];
-					reset = true;
-				}
-			}
-			emit('change', inital.position.value);
-		}
-
-		let handleSelect = (e) => {
-			let position = inital.position.value.slice(0);
-			let validPosition: Array<any> = [];
-			let validTitle: Array<any> = [];
-			for (let i in position) {
-				console.log(inital.range.value[i]);
-				if (inital.range.value[i]?.length == 0) {
+		let handleChange = e => {
+			// 找出修改了第几列
+			let diff = 0;
+			let offset = props.type == 'time' ? 3 : 0;
+			for (let i = 0; i < e.detail.value.length; i++) {
+				if (valueIndex.value[i + offset] != e.detail.value[i]) {
+					diff = i;
 					break;
 				}
-				validPosition.push(position[i]);
-				validTitle.push(inital.range.value[i][position[i]][props.dataValue])
 			}
-			let result = {
-				value: inital.range.value[validPosition.length - 1][validPosition[validPosition.length - 1]][props.dataKey],
-				raw: validPosition,
-				rawTitle: validTitle
-			};
-			emit('select', result);
+			// 把刚才找到的那一列改掉
+			valueIndex.value[diff + offset] = e.detail.value[diff];
+			// 把刚才找到的那一列的后面选择的区间都重置，已经选择的值也都清空
+			for (let i = (diff + offset + 1); i < valueIndex.value.length; i++) {
+				// console.log(i);
+				rangeMap[i]();
+				valueIndex.value[i] = 0;
+			}
+			emit("change", valueIndex.value);
+		}
 
-			inital.title.value = result.rawTitle;
+		let handleSelect = () => {
+			let result = {};
+			for (let i in range.value) {
+				result[i] = range.value[i][valueIndex.value[i]];
+				result[i] = prefixZero(result[i], result[i] > 1000 ? 4 : 2);
+			}
+			let finalResult = new Date(result[0], result[1], result[2], result[3], result[4], result[5]);
+			emit("select", {
+				value: finalResult,
+				raw: valueIndex.value,
+				rawTitle: result
+			});
+			emit("update:value", finalResult)
 		}
 
 		return () => [
@@ -124,11 +341,11 @@ export default {
 				disabled: props.disabled
 			}, attrs), [
 				h(View, {
-					class: [inital.title.value.length > 0 ? "s-input-content" : "s-input-placeholder"],
+					class: [props.value ? "s-input-content" : "s-input-placeholder"],
 					onTap: handleOpen
 				}, {
 					default: () => {
-						return inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder;
+						return props.value || props.placeholder;
 					}
 				}),
 				h(SModal, {
@@ -145,23 +362,23 @@ export default {
 						height: '30vh'
 					},
 					indicatorStyle: 'height: 40px',
-					value: inital.position.value,
+					value: computedValueIndex.value,
 					onChange: handleChange
 				}, {
 					default: () => {
-						return Array.apply(null, { length: inital.deep }).map((value, key) => {
+						return Array.apply(null, { length: computedRange.value.length }).map((value, key) => {
 							return h(PickerViewColumn, {}, {
 								default: () => {
-									return inital.range.value[key].map((rangeValue, rangeKey) => {
+									return computedRange.value[key].map((rangeValue) => {
 										return h(View, {
 											class: 's-datetime-select-picker-column-item'
-										}, rangeValue[props.dataValue])
+										}, prefixZero(rangeValue, rangeValue > 1000 ? 4 : 2))
 									})
 								}
 							});
 						})
 					}
-				}))
+				})),
 			])
 		]
 	}

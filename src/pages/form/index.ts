@@ -50,29 +50,29 @@ export default {
 			{ id: 22, name: "0-C" },
 		]
 
-		let select_3_value = ref(null);
+		let select_3_value = ref(undefined);
 
 		return () => h(View, { class: 'page-form' }, [
-			h("view", {}, value.value),
+			// h("view", {}, value.value),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", }),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", }),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", size: "small" }),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", size: "small" }),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", size: "large" }),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", size: "large" }),
 
-			h(SInput, { title: "标题", placeholder: "just a placeholder" }),
-			h(SInput, { title: "标题", circle: true, placeholder: "just a placeholder" }),
-			h(SInput, { title: "标题", placeholder: "just a placeholder" }),
-			h(SInput, { title: "标题", circle: true, disabled: true, placeholder: "just a placeholder" }),
+			// h(SInput, { title: "标题", placeholder: "just a placeholder" }),
+			// h(SInput, { title: "标题", circle: true, placeholder: "just a placeholder" }),
+			// h(SInput, { title: "标题", placeholder: "just a placeholder" }),
+			// h(SInput, { title: "标题", circle: true, disabled: true, placeholder: "just a placeholder" }),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true }),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true }),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }),
 
-			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }, {
-				extra: () => h("view", { class: "text" }, h(SButton, { size: 'small', type: 'primary' }, 'Extra Button'))
-			}),
+			// h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }, {
+			// 	extra: () => h("view", { class: "text" }, h(SButton, { size: 'small', type: 'primary' }, 'Extra Button'))
+			// }),
 
 			h(SSelect, {
 				title: '请选择单选',
@@ -89,11 +89,28 @@ export default {
 			}),
 
 			h(SDatetimeSelect, {
+				title: '请选择日期',
+				type: 'date',
+				start: "2015-02-03",
+				end: "2022-03-04",
+				value: select_3_value.value
+			}),
+
+			h(SDatetimeSelect, {
+				title: '请选择时间',
+				type: 'time',
+				start: "11:22:33",
+				end: "22:33:44",
+				value: select_3_value.value
+			}),
+
+			h(SDatetimeSelect, {
 				title: '请选择日期时间',
-				start: "2005-02-03 11:22:33",
+				type: 'datetime',
+				start: "2015-02-03 11:22:33",
 				end: "2022-03-04 22:33:44",
 				value: select_3_value.value
-			})
+			}),
 
 
 		])

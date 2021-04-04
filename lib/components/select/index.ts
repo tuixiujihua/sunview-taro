@@ -113,8 +113,8 @@ export default {
 				raw: validPosition,
 				rawTitle: validTitle
 			};
+			emit('update:value', result.value);
 			emit('select', result);
-
 			inital.title.value = result.rawTitle;
 		}
 
