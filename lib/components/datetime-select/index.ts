@@ -182,12 +182,12 @@ export default {
 		}
 
 		let setYearRange = () => {
-			console.log("开始刷新年份区间");
+			// console.log("开始刷新年份区间");
 			range.value[0] = createSeqArray(computedStartArgs.value[0], computedEndArgs.value[0])
 		}
 
 		let setMonthRange = () => {
-			console.log("开始刷新月份区间")
+			// console.log("开始刷新月份区间")
 			if (range.value[0][valueIndex.value[0]] == computedStartArgs.value[0]) {
 				range.value[1] = createSeqArray(computedStartArgs.value[1], 12);
 			} else if (range.value[0][valueIndex.value[0]] == computedEndArgs.value[0]) {
@@ -198,7 +198,7 @@ export default {
 		}
 
 		let setDateRange = () => {
-			console.log("开始刷新日期区间")
+			// console.log("开始刷新日期区间")
 			if (
 				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
 				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1]
@@ -215,7 +215,7 @@ export default {
 		}
 
 		let setHourRange = () => {
-			console.log("开始刷新小时区间")
+			// console.log("开始刷新小时区间")
 			if (
 				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
 				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
@@ -234,7 +234,7 @@ export default {
 		}
 
 		let setMinRange = () => {
-			console.log("开始刷新分钟区间")
+			// console.log("开始刷新分钟区间")
 			if (
 				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
 				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
@@ -254,7 +254,7 @@ export default {
 			}
 		}
 		let setSecRange = () => {
-			console.log("开始刷新秒数区间")
+			// console.log("开始刷新秒数区间")
 			if (
 				range.value[0][valueIndex.value[0]] == computedStartArgs.value[0] &&
 				range.value[1][valueIndex.value[1]] == computedStartArgs.value[1] &&
@@ -314,7 +314,6 @@ export default {
 			valueIndex.value[diff + offset] = e.detail.value[diff];
 			// 把刚才找到的那一列的后面选择的区间都重置，已经选择的值也都清空
 			for (let i = (diff + offset + 1); i < valueIndex.value.length; i++) {
-				// console.log(i);
 				rangeMap[i]();
 				valueIndex.value[i] = 0;
 			}
