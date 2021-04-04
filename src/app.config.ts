@@ -8,6 +8,8 @@ export default {
 		"pages/fab/index",
 		"pages/modal/index",
 		"pages/form/index",
+		"pages/panel/index",
+		"pages/grid/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

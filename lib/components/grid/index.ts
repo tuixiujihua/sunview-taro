@@ -1,0 +1,25 @@
+import { View } from "@tarojs/components"
+import { h, mergeProps, provide } from "@vue/runtime-core"
+import { SPanel } from ".."
+
+import './index.scss'
+
+export default {
+	props: {
+		column: {
+			type: [Number, String],
+			default: 2,
+		},
+	},
+	setup(props, { attrs, slots }) {
+
+		provide("grid", props.column);
+
+		return () => h(View, {
+			class: ["s-grid"],
+		}, h(SPanel, mergeProps({}, attrs), {
+			title: slots.title?.(),
+			default: slots.default?.()
+		}))
+	}
+}

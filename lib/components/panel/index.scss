@@ -1,0 +1,69 @@
+@import "@/styles/variable.scss";
+
+.s-panel {
+	margin: $margin;
+	border-radius: $border-radius;
+	background: $color-white;
+	overflow: hidden;
+
+	&.s-panel-type-default {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: #{$margin-xxs} solid light($color-border-base, 0);
+			}
+		}
+	}
+
+	&.s-panel-type-primary {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: #{$margin-xxs} solid light($color-primary, 0);
+			}
+		}
+	}
+
+	&.s-panel-type-success {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: #{$margin-xxs} solid light($color-success, 0);
+			}
+		}
+	}
+
+	&.s-panel-type-warning {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: #{$margin-xxs} solid light($color-warning, 0);
+			}
+		}
+	}
+
+	&.s-panel-type-danger {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: #{$margin-xxs} solid light($color-danger, 0);
+			}
+		}
+	}
+
+	.s-panel-title-wrapper {
+		// padding: $margin 0 0;
+		padding: $margin 0 $margin-xxs;
+		// padding: $margin 0;
+		margin: 0 $margin-lg;
+		font-size: $font-size-base;
+		// border-bottom: #{$margin-xxs / 3} solid $color-border-grey;
+		color: $color-black-0;
+
+		.s-panel-title {
+			line-height: 1em;
+			border-left: #{$margin-xxs} solid light($color-border-base, 0);
+			padding-left: $margin-sm;
+		}
+	}
+
+	.s-panel-content {
+		padding: $margin $margin-lg;
+		font-size: $font-size-base;
+	}
+}

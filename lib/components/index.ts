@@ -8,6 +8,9 @@ import SForm from './form'
 import SInput from './input'
 import SSelect from './select'
 import SDatetimeSelect from './datetime-select'
+import SPanel from './panel'
+import SGrid from './grid'
+import SGridItem from './grid-item'
 
 export {
 	SIcon,
@@ -19,5 +22,8 @@ export {
 	SForm,
 	SInput,
 	SSelect,
-	SDatetimeSelect
+	SDatetimeSelect,
+	SPanel,
+	SGrid,
+	SGridItem
 }
