@@ -144,7 +144,7 @@ export default {
 				if (e.touches.length > 1) {
 					return;
 				}
-				console.log(res);
+				// console.log(res);
 				let key = res[0].findIndex((value, key, array) => {
 					return (
 						value.top <= e.changedTouches[0].clientY &&

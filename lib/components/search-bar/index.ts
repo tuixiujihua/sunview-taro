@@ -19,6 +19,7 @@ export default {
 			class: ["s-search-bar-input"],
 			value: props.value,
 			allowClear: true,
+			placeholder: "搜索",
 			"onUpdate:value": e => emit("update:value", e)
 		}))
 	}

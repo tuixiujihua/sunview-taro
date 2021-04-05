@@ -101,7 +101,7 @@ export default {
 			let validPosition: Array<any> = [];
 			let validTitle: Array<any> = [];
 			for (let i in position) {
-				console.log(inital.range.value[i]);
+				// console.log(inital.range.value[i]);
 				if (inital.range.value[i]?.length == 0) {
 					break;
 				}

@@ -68,7 +68,7 @@ export default {
 
 	},
 	setup(props, { attrs, slots, emit }) {
-console.log(props.allowClear);
+		// console.log(props.allowClear);
 		let isFocus = ref(false);
 
 
@@ -84,7 +84,7 @@ console.log(props.allowClear);
 			if (typeof props.onFocus === 'function') {
 				props.onFocus();
 			}
-			console.log(e);
+			// console.log(e);
 			isFocus.value = true;
 		}
 
@@ -104,13 +104,13 @@ console.log(props.allowClear);
 		}
 
 		let handleInput = (e) => {
-			console.log(e.detail.value);
+			// console.log(e.detail.value);
 			emit("update:value", e.detail.value);
 
 		}
 
 		let handleClear = (e) => {
-			console.log("click clear");
+			// console.log("click clear");
 			if (props.disabled) return;
 			emit("update:value", "");
 		}

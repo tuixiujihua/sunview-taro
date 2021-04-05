@@ -14,6 +14,7 @@ import SGridItem from './grid-item'
 import SDot from './dot'
 import SIndexes from './indexes'
 import SSearchBar from './search-bar'
+import STab from './tab'
 
 export {
 	SIcon,
@@ -31,5 +32,6 @@ export {
 	SGridItem,
 	SDot,
 	SIndexes,
-	SSearchBar
+	SSearchBar,
+	STab
 }

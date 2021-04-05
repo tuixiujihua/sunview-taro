@@ -12,6 +12,7 @@ export default {
 		"pages/grid/index",
 		"pages/dot/index",
 		"pages/indexes/index",
+		"pages/tab/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

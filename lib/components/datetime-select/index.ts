@@ -141,8 +141,8 @@ export default {
 
 		let computedValueTitle = computed(() => {
 			let computedValueTitle = {};
-			console.log(computedValue.value);
-			console.log(computedValueArgs.value);
+			// console.log(computedValue.value);
+			// console.log(computedValueArgs.value);
 
 			for (let i in computedValueArgs.value) {
 				computedValueTitle[i] = computedValueArgs.value[i];
