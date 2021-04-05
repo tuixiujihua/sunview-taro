@@ -1,5 +1,27 @@
 @import "@/styles/variable.scss";
 
 .s-tab {
-
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-y: hidden;
+	overflow-x: scroll;
+	white-space: nowrap;
+	padding: 0 $margin;
+	background: $color-white;
+	box-sizing: border-box;
+	.s-tab-item {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		// background: red;
+		// border: 1px solid #ccc;
+		line-height: 2em;
+		margin: $margin;
+		font-size: $font-size-base;
+		&.s-tab-item-current {
+			border-bottom: $margin-xxs solid $color-primary;
+			// border-image: linear-gradient($color-primary 70%, $color-success) 10 0;
+		}
+	}
 }

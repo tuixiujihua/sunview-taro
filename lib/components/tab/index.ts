@@ -1,40 +1,38 @@
-import { View } from "@tarojs/components"
+import { ScrollView, View } from "@tarojs/components"
 import { h, mergeProps } from "@vue/runtime-core"
 
 import './index.scss'
 
 export default {
 	props: {
-		// icon: {
-		// 	type: String,
-		// 	default: "plus",
-		// },
-		// size: {
-		// 	type: String,
-		// 	default: "large",
-		// 	validator: (val) =>
-		// 		[
-		// 			"default",
-		// 			"small",
-		// 			"large"
-		// 		].includes(val),
-		// },
-		// type: {
-		// 	type: String,
-		// 	default: "primary",
-		// 	validator: (val) =>
-		// 		[
-		// 			"default",
-		// 			"primary",
-		// 			"success",
-		// 			"warning",
-		// 			"danger"
-		// 		].includes(val),
-		// }
+		list: {
+			type: Array,
+			default: () => {
+				return []
+			}
+		},
+		current: {
+			type: [String, Number],
+			default: ""
+		}
 	},
-	setup(props, { attrs }) {
-		return () => h(View, mergeProps({
+	setup(props, { attrs, emit }) {
+
+		let handleTap = (e) => {
+			emit("update:current", e);
+			emit("change", e);
+		}
+
+		return () => h(ScrollView, mergeProps({
 			class: ["s-tab"],
-		}, attrs), h(""))
+			scrollX: true
+		}, attrs), {
+			default: () => props.list.map((value, key) => {
+				return h(View, {
+					class: ["s-tab-item", props.current == value.key ? 's-tab-item-current' : ''],
+					onTap: e => handleTap(value.key)
+				}, value.name)
+			})
+		})
 	}
 }
