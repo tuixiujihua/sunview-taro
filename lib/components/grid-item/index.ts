@@ -34,8 +34,7 @@ export default {
 	},
 	setup(props, { attrs, slots }) {
 
-		let grid: any = inject("grid");
-		console.log(grid);
+		let grid: any = inject("grid") || 4;
 
 		return () => h(View, mergeProps({
 			class: ["s-grid-item"],

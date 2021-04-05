@@ -1,10 +1,10 @@
 {
 	"name": "sunview-taro",
-	"version": "0.0.2",
+	"version": "0.0.5",
 	"description": "SunView UI for Taro in Vue 3.0",
 	"author": "tuixiujihua",
 	"license": "GPL-3.0-or-later",
-	"main": "src/index.ts",
+	"main": "lib/components/index.ts",
 	"templateInfo": {
 		"name": "default",
 		"typescript": true,

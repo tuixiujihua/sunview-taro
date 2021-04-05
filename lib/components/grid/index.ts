@@ -1,6 +1,6 @@
 import { View } from "@tarojs/components"
 import { h, mergeProps, provide } from "@vue/runtime-core"
-import { SPanel } from ".."
+import { SPanel } from "../"
 
 import './index.scss'
 
@@ -8,7 +8,7 @@ export default {
 	props: {
 		column: {
 			type: [Number, String],
-			default: 2,
+			default: 4,
 		},
 	},
 	setup(props, { attrs, slots }) {

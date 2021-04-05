@@ -1,4 +1,4 @@
-@import "@/styles/variable.scss";
+@import '../../styles/variable.scss';
 
 .s-panel {
 	margin: $margin;
@@ -42,6 +42,16 @@
 		.s-panel-title-wrapper {
 			.s-panel-title {
 				border-left: #{$margin-xxs} solid light($color-danger, 0);
+			}
+		}
+	}
+
+
+	&.s-panel-type-none {
+		.s-panel-title-wrapper {
+			.s-panel-title {
+				border-left: unset;
+				padding-left: unset;
 			}
 		}
 	}

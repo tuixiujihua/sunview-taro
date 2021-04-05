@@ -1,6 +1,6 @@
 import { View } from "@tarojs/components"
 import { h, mergeProps } from "@vue/runtime-core"
-import { SButton } from "@/components"
+import { SButton } from "../"
 import './index.scss'
 
 export default {

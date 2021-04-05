@@ -1,6 +1,6 @@
 import { View, Text, Input } from "@tarojs/components"
 import { computed, h, mergeProps, ref } from "@vue/runtime-core"
-import { SIcon, SInput } from '@/components'
+import { SIcon } from '../'
 import './index.scss'
 
 export default {

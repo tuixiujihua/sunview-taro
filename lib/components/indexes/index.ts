@@ -1,6 +1,6 @@
-import { SSearchBar } from '@/components'
+import { SSearchBar } from '../'
 import { ScrollView, View } from "@tarojs/components"
-import { h, mergeProps, ref, computed, watch, nextTick } from "@vue/runtime-core"
+import { h, mergeProps, ref, computed, nextTick } from "@vue/runtime-core"
 import Taro from '@tarojs/taro'
 import pinyinMatch from 'pinyin-match'
 import './index.scss'

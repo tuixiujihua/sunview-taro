@@ -1,5 +1,5 @@
 import { Button, Text } from '@tarojs/components';
-import { SIcon, SSpin } from '@/components'
+import { SIcon, SSpin } from '../'
 import { h, mergeProps } from '@vue/runtime-core';
 import './index.scss';
 

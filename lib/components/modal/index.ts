@@ -1,7 +1,7 @@
 import { View, Text } from "@tarojs/components"
 import { nextTick } from "@tarojs/taro";
 import { computed, h, mergeProps } from "@vue/runtime-core"
-import { SButton, SIcon } from "..";
+import { SButton, SIcon } from "../";
 
 import './index.scss'
 

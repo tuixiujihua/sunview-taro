@@ -1,6 +1,6 @@
 import { PickerView, PickerViewColumn, View } from "@tarojs/components"
 import { computed, ComputedRef, h, mergeProps, Ref, ref } from "@vue/runtime-core"
-import { SInput, SModal } from "@/components"
+import { SInput, SModal } from "../"
 
 import './index.scss'
 

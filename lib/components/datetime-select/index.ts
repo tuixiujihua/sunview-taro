@@ -1,9 +1,9 @@
 import { PickerView, PickerViewColumn, View } from "@tarojs/components"
 import { computed, h, mergeProps, ref, reactive, Ref, ComputedRef } from "@vue/runtime-core"
-import { SInput, SModal } from "@/components"
+import { SInput, SModal } from "../"
 
 import './index.scss'
-import { prefixZero } from '@/utils'
+import { prefixZero } from '../../utils'
 
 export default {
 	props: {

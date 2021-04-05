@@ -1,4 +1,4 @@
-import { SInput } from '@/components'
+import { SInput } from '../'
 import { View } from "@tarojs/components"
 import { h, mergeProps } from "@vue/runtime-core"
 
