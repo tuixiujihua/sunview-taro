@@ -13,6 +13,10 @@ export default {
 		"pages/dot/index",
 		"pages/indexes/index",
 		"pages/tab/index",
+		"pages/tag/index",
+		"pages/toast/index",
+		"pages/message/index",
+		"pages/heading/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

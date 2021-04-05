@@ -15,6 +15,10 @@ import SDot from './dot'
 import SIndexes from './indexes'
 import SSearchBar from './search-bar'
 import STab from './tab'
+import STag from './tag'
+import SToast from './toast'
+import SMessage from './message'
+import SHeading from './heading'
 
 export {
 	SIcon,
@@ -33,5 +37,9 @@ export {
 	SDot,
 	SIndexes,
 	SSearchBar,
-	STab
+	STab,
+	STag,
+	SToast,
+	SMessage,
+	SHeading
 }

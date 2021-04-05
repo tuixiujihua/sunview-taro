@@ -1,0 +1,97 @@
+@import '../../styles/variable.scss';
+
+.s-tag {
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	color: $color-text-base;
+	font-size: $font-size-base;
+	border: 1px solid transparent;
+	border-radius: 0;
+	box-sizing: border-box;
+	padding: $margin-xxs $margin-sm;
+
+	&.s-tag-type-default {
+		background: $color-bg-base;
+		border-color: $color-border-base;
+
+		&.s-tag-plain {
+			background: transparent;
+		}
+	}
+
+
+	&.s-tag-type-primary {
+		background: linear-gradient(to left bottom, light($color-primary, 20%) 5%, $color-primary);
+		border-color: $color-primary;
+		color: #fff;
+
+		&.s-tag-plain {
+			background: transparent;
+			color: $color-primary;
+		}
+	}
+
+	&.s-tag-type-success {
+		background: linear-gradient(to left bottom, light($color-success, 20%) 5%, $color-success);
+		border-color: $color-success;
+		color: #fff;
+
+		&.s-tag-plain {
+			background: transparent;
+			color: $color-success;
+		}
+	}
+
+	&.s-tag-type-warning {
+		background: linear-gradient(to left bottom, light($color-warning, 20%) 5%, $color-warning);
+		border-color: $color-warning;
+		color: #fff;
+
+		&.s-tag-plain {
+			background: transparent;
+			color: $color-warning;
+		}
+	}
+
+	&.s-tag-type-danger {
+		background: linear-gradient(to left bottom, light($color-danger, 20%) 5%, $color-danger);
+		border-color: $color-danger;
+		color: #fff;
+
+		&.s-tag-plain {
+			background: transparent;
+			color: $color-danger;
+		}
+	}
+
+	&.s-tag-size-default {
+		padding: $margin-xxs $margin-sm;
+
+		&.s-tag-circle {
+			border-radius: $margin-lg;
+		}
+	}
+
+
+	&.s-tag-size-small {
+		padding: #{$margin-xs / 2} #{$margin / 2};
+		font-size: $font-size-sm;
+
+		&.s-tag-circle {
+			border-radius: $margin;
+		}
+	}
+
+
+	&.s-tag-size-mini {
+		padding: #{$margin-xs / 4} #{$margin/2};
+		font-size: $font-size-sm;
+
+		&.s-tag-circle {
+			border-radius: $margin-sm;
+		}
+	}
+
+}

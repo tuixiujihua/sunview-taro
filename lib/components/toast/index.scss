@@ -1,0 +1,27 @@
+@import '../../styles/variable.scss';
+
+.s-toast {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.s-toast-inner {
+		background: $color-black-0;
+		opacity: $opacity-active;
+		color: #fff;
+		font-size: $font-size-sm;
+		padding: $margin-sm $margin-xl;
+		border-radius: $margin-xs;
+		.s-toast-icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0 0 $margin;
+		}
+	}
+}

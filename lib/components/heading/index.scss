@@ -1,0 +1,47 @@
+@import '../../styles/variable.scss';
+
+.s-heading {
+	line-height: 2em;
+
+	&.s-heading-level-1 {
+		font-size: $font-size-base;
+	}
+
+	&.s-heading-level-2 {
+		font-size: $font-size-lg;
+	}
+
+	&.s-heading-level-3 {
+		font-size: $font-size-xl;
+	}
+
+	&.s-heading-level-4 {
+		font-size: $font-size-xxl;
+	}
+
+	&.s-heading-level-5 {
+		font-size: #{$font-size-sm * 2};
+	}
+
+	&.s-heading-level-6 {
+		font-size: #{$font-size-base * 2};
+
+	}
+
+	&.s-heading-level-6 {
+		font-size: #{$font-size-base * 2};
+
+	}
+
+	&.s-heading-level-7 {
+		font-size: #{$font-size-lg * 2};
+	}
+
+	&.s-heading-level-8 {
+		font-size: #{$font-size-xl * 2};
+	}
+
+	&.s-heading-level-9 {
+		font-size: #{$font-size-xxl * 2};
+	}
+}
