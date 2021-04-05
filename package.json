@@ -1,7 +1,10 @@
 {
 	"name": "sunview-taro",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "SunView UI for Taro in Vue 3.0",
+	"author": "tuixiujihua",
+	"license": "GPL-3.0-or-later",
+	"main": "src/index.ts",
 	"templateInfo": {
 		"name": "default",
 		"typescript": true,
@@ -32,7 +35,6 @@
 		"Android >= 4.1",
 		"ios >= 8"
 	],
-	"author": "tuixiujihua",
 	"dependencies": {
 		"@babel/runtime": "^7.7.7",
 		"@tarojs/components": "3.2.0",
