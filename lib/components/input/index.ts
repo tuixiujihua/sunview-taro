@@ -68,7 +68,7 @@ export default {
 
 	},
 	setup(props, { attrs, slots, emit }) {
-
+console.log(props.allowClear);
 		let isFocus = ref(false);
 
 
@@ -110,6 +110,7 @@ export default {
 		}
 
 		let handleClear = (e) => {
+			console.log("click clear");
 			if (props.disabled) return;
 			emit("update:value", "");
 		}
@@ -144,7 +145,7 @@ export default {
 			props.value.length > 0 && props.allowClear && !props.disabled ? h(SIcon, {
 				class: "s-input-clear",
 				icon: "close-circle",
-				size: 24,
+				size: 28,
 				onTap: handleClear
 			}) : "",
 

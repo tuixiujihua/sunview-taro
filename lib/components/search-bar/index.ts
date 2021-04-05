@@ -1,0 +1,25 @@
+import { SInput } from '@/components'
+import { View } from "@tarojs/components"
+import { h, mergeProps } from "@vue/runtime-core"
+
+import './index.scss'
+
+export default {
+	props: {
+		value: {
+			type: String,
+			default: "",
+			required: true
+		}
+	},
+	setup(props, { attrs, emit }) {
+		return () => h(View, mergeProps({
+			class: ["s-search-bar"],
+		}, attrs), h(SInput, {
+			class: ["s-search-bar-input"],
+			value: props.value,
+			allowClear: true,
+			"onUpdate:value": e => emit("update:value", e)
+		}))
+	}
+}

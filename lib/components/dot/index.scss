@@ -1,0 +1,35 @@
+@import "@/styles/variable.scss";
+
+.s-dot {
+	border-radius: $border-radius-circle;
+	background: $color-grey-2;
+	width: $margin-sm;
+	height: $margin-sm;
+
+	&.s-dot-type-primary {
+		background: $color-primary;
+	}
+
+	&.s-dot-type-success {
+		background: $color-success;
+	}
+
+	&.s-dot-type-warning {
+		background: $color-warning;
+	}
+
+	&.s-dot-type-danger {
+		background: $color-danger;
+	}
+
+	&.s-dot-size-small {
+		width: $margin-xs;
+		height: $margin-xs;
+	}
+
+	&.s-dot-size-large {
+		width: $margin;
+		height: $margin;
+	}
+
+}

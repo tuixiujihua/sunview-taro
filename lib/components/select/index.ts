@@ -132,7 +132,7 @@ export default {
 				}),
 				h(SModal, {
 					value: opened.value,
-					'onUpdate:value': (e) => opened.value = e,
+					'update:value': (e) => opened.value = e,
 					position: 'bottom',
 					noWhiteSpace: true,
 					showCancel: true,

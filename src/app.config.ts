@@ -10,6 +10,8 @@ export default {
 		"pages/form/index",
 		"pages/panel/index",
 		"pages/grid/index",
+		"pages/dot/index",
+		"pages/indexes/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

@@ -11,6 +11,9 @@ import SDatetimeSelect from './datetime-select'
 import SPanel from './panel'
 import SGrid from './grid'
 import SGridItem from './grid-item'
+import SDot from './dot'
+import SIndexes from './indexes'
+import SSearchBar from './search-bar'
 
 export {
 	SIcon,
@@ -25,5 +28,8 @@ export {
 	SDatetimeSelect,
 	SPanel,
 	SGrid,
-	SGridItem
+	SGridItem,
+	SDot,
+	SIndexes,
+	SSearchBar
 }

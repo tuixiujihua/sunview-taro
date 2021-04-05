@@ -1,0 +1,64 @@
+@import "@/styles/variable.scss";
+
+.s-indexes {
+	background: $color-bg-grey;
+	.s-indexes-fixed-top {
+		height: 100rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.s-indexes-list-wrapper {
+		height: calc(100vh - 100rpx);
+		// background: red;
+		// color: #fff;
+	}
+
+	.s-indexes-list-wrapper {
+		width: 100vw;
+
+		.s-indexes-list-header {
+			padding: $margin-xs $margin;
+			color: $color-text-base;
+			font-size: $font-size-sm;
+		}
+
+		.s-indexes-list-content {
+			background: $color-white;
+
+			.s-indexes-list-item {
+				padding: $margin-lg $margin;
+				// border-bottom: 1rpx solid $color-border-base;
+			}
+		}
+	}
+
+	.s-indexes-alphabet-wrapper {
+		position: fixed;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		top: 100rpx;
+		right: 20rpx;
+		bottom: 100rpx;
+		min-width: 50rpx;
+
+		.s-indexes-alphabet-list {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			align-items: center;
+			font-size: 24rpx;
+			padding: 20rpx 10rpx;
+			background: $color-bg-base;
+			border-radius: 20rpx;
+			color: $color-primary;
+
+			.s-indexes-alphabet-item {
+				height: 40rpx;
+			}
+		}
+	}
+}
