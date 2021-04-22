@@ -141,6 +141,7 @@ export default {
 				onInput: handleInput,
 				onFocus: handleFocus,
 				onBlur: handleBlur,
+				type: props.type
 			}, attrs)),
 			props.value.length > 0 && props.allowClear && !props.disabled ? h(SIcon, {
 				class: "s-input-clear",
