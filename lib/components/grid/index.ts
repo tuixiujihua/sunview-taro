@@ -18,8 +18,7 @@ export default {
 		return () => h(View, {
 			class: ["s-grid"],
 		}, h(SPanel, mergeProps({}, attrs), {
-			title: slots.title?.(),
-			default: slots.default?.()
+			default: () => slots.default?.()
 		}))
 	}
 }

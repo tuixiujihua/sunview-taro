@@ -9,14 +9,16 @@ export default {
 			h(SGrid, {
 				title: "4格宫格",
 				column: 4
-			}, Array.apply(null, { length: 12 }).map((v, k) => {
-				return h(SGridItem, {}, "Hi")
-			})),
+			}, {
+				default: () => Array.apply(null, { length: 12 }).map((v, k) => {
+					return h(SGridItem, {}, { default: () => "adf" })
+				})
+			}),
 			h(SGrid, {
 				title: "8格宫格",
 				column: 8
 			}, Array.apply(null, { length: 12 }).map((v, k) => {
-				return h(SGridItem, {}, "Hi")
+				return h(SGridItem, {}, { default: () => "Hi" })
 			}))
 		])
 	}

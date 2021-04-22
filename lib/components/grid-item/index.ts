@@ -5,32 +5,7 @@ import './index.scss'
 
 export default {
 	props: {
-		// icon: {
-		// 	type: String,
-		// 	default: "plus",
-		// },
-		// size: {
-		// 	type: String,
-		// 	default: "large",
-		// 	validator: (val) =>
-		// 		[
-		// 			"default",
-		// 			"small",
-		// 			"large"
-		// 		].includes(val),
-		// },
-		// type: {
-		// 	type: String,
-		// 	default: "primary",
-		// 	validator: (val) =>
-		// 		[
-		// 			"default",
-		// 			"primary",
-		// 			"success",
-		// 			"warning",
-		// 			"danger"
-		// 		].includes(val),
-		// }
+
 	},
 	setup(props, { attrs, slots }) {
 
