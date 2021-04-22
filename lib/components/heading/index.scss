@@ -1,47 +1,129 @@
 @import '../../styles/variable.scss';
 
 .s-heading {
-	line-height: 2em;
+	line-height: 1em;
+
+	&.s-heading-border-line {
+		border-left-style: solid;
+		border-left-width: 6rpx;
+		border-left-color: $color-border-grey;
+
+		&.s-heading-border-line-primary {
+			border-left-color: $color-primary;
+		}
+
+		&.s-heading-border-line-success {
+			border-left-color: $color-success;
+		}
+
+		&.s-heading-border-line-warning {
+			border-left-color: $color-warning;
+		}
+
+		&.s-heading-border-line-danger {
+			border-left-color: $color-danger;
+		}
+	}
 
 	&.s-heading-level-1 {
 		font-size: $font-size-base;
+
+		&.s-heading-border-line {
+			padding-left: 10rpx;
+		}
 	}
 
 	&.s-heading-level-2 {
 		font-size: $font-size-lg;
+
+		&.s-heading-border-line {
+			padding-left: 12rpx;
+		}
 	}
 
 	&.s-heading-level-3 {
 		font-size: $font-size-xl;
+
+		&.s-heading-border-line {
+			padding-left: 14rpx;
+		}
 	}
 
 	&.s-heading-level-4 {
 		font-size: $font-size-xxl;
+
+		&.s-heading-border-line {
+			padding-left: 16rpx;
+		}
 	}
 
 	&.s-heading-level-5 {
 		font-size: #{$font-size-sm * 2};
+
+		&.s-heading-border-line {
+			padding-left: 18rpx;
+			border-left-width: 8rpx;
+		}
 	}
 
 	&.s-heading-level-6 {
 		font-size: #{$font-size-base * 2};
 
+		&.s-heading-border-line {
+			padding-left: 20rpx;
+			border-left-width: 8rpx;
+		}
 	}
 
 	&.s-heading-level-6 {
 		font-size: #{$font-size-base * 2};
 
+		&.s-heading-border-line {
+			padding-left: 22rpx;
+			border-left-width: 8rpx;
+		}
 	}
 
 	&.s-heading-level-7 {
 		font-size: #{$font-size-lg * 2};
+
+		&.s-heading-border-line {
+			padding-left: 24rpx;
+			border-left-width: 8rpx;
+		}
 	}
 
 	&.s-heading-level-8 {
 		font-size: #{$font-size-xl * 2};
+
+		&.s-heading-border-line {
+			padding-left: 26rpx;
+			border-left-width: 10rpx;
+		}
 	}
 
 	&.s-heading-level-9 {
 		font-size: #{$font-size-xxl * 2};
+
+		&.s-heading-border-line {
+			padding-left: 28rpx;
+			border-left-width: 12rpx;
+		}
+	}
+
+	.s-heading-context {
+		color: $color-text-base;
+		&.s-heading-context-primary {
+			color: $color-primary;
+		}
+		&.s-heading-context-success {
+			color: $color-success;
+		}
+		&.s-heading-context-warning {
+			color: $color-warning;
+		}
+		&.s-heading-context-danger {
+			color: $color-danger;
+		}
 	}
 }
