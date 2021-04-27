@@ -19,6 +19,7 @@ import STag from './tag'
 import SToast from './toast'
 import SMessage from './message'
 import SHeading from './heading'
+import SAffix from './affix'
 
 export {
 	SIcon,
@@ -41,5 +42,6 @@ export {
 	STag,
 	SToast,
 	SMessage,
-	SHeading
+	SHeading,
+	SAffix
 }

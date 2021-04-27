@@ -17,6 +17,7 @@ export default {
 		"pages/toast/index",
 		"pages/message/index",
 		"pages/heading/index",
+		"pages/affix/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',
