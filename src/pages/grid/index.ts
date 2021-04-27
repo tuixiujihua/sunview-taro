@@ -17,9 +17,11 @@ export default {
 			h(SGrid, {
 				title: "8格宫格",
 				column: 8
-			}, Array.apply(null, { length: 12 }).map((v, k) => {
-				return h(SGridItem, {}, { default: () => "Hi" })
-			}))
+			}, {
+				default: () => Array.apply(null, { length: 12 }).map((v, k) => {
+					return h(SGridItem, {}, { default: () => "adf" })
+				})
+			}),
 		])
 	}
 }
