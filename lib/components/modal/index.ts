@@ -32,7 +32,7 @@ export default {
 			default: "取消"
 		},
 		noWhiteSpace: {
-			type: String,
+			type: Boolean,
 			default: false
 		},
 		useFooter: {
@@ -152,10 +152,10 @@ export default {
 					class: ['s-modal-inner-footer-action']
 				}, [
 					props.showCancel ? h(View, { class: ["s-modal-inner-footer-action-cancel-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: 'default', size: 'large', noBorder: true, onTap: handleCancel }, props.cancelText)
+						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: 'default', size: 'large', noBorder: true, onTap: handleCancel }, { default: () => props.cancelText })
 					]) : undefined,
 					props.showConfirm ? h(View, { class: ["s-modal-inner-footer-action-confirm-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: "success", size: 'large', noBorder: true, onTap: handleConfirm }, props.confirmText)
+						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: "success", size: 'large', noBorder: true, onTap: handleConfirm }, { default: () => props.confirmText })
 					]) : undefined
 				]) : undefined
 			]),
