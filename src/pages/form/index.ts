@@ -52,7 +52,7 @@ export default {
 
 		let select_3_value = ref(new Date());
 		let select_4_value = ref(new Date());
-		let select_5_value = ref(null);
+		let select_5_value = ref(new Date());
 
 		return () => h(View, { class: 'page-form' }, [
 			h("view", {}, value.value),
@@ -73,7 +73,7 @@ export default {
 			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }),
 
 			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", circle: true, disabled: true }, {
-				extra: () => h("view", { class: "text" }, h(SButton, { size: 'small', type: 'primary' }, 'Extra Button'))
+				extra: () => h("view", { class: "text" }, h(SButton, { size: 'small', type: 'primary' }, { default: () => 'Extra Button' }))
 			}),
 
 			h(SSelect, {
