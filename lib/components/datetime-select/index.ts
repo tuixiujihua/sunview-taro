@@ -1,5 +1,5 @@
 import { PickerView, PickerViewColumn, View } from "@tarojs/components"
-import { computed, h, mergeProps, ref, reactive, Ref, ComputedRef } from "@vue/runtime-core"
+import { computed, h, mergeProps, ref, Ref, ComputedRef } from "@vue/runtime-core"
 import { SInput, SModal } from "../"
 
 import './index.scss'
@@ -8,7 +8,7 @@ import { prefixZero } from '../../utils'
 export default {
 	props: {
 		value: {
-			type: String,
+			type: [String, Date],
 			default: "",
 			required: true
 		},
@@ -22,11 +22,11 @@ export default {
 			].includes(val)
 		},
 		start: {
-			type: String,
+			type: [String, Date],
 			default: ""
 		},
 		end: {
-			type: String,
+			type: [String, Date],
 			default: ""
 		},
 		disabled: {
@@ -384,47 +384,51 @@ export default {
 		return () => [
 			h(SInput, mergeProps({
 				disabled: props.disabled
-			}, attrs), [
-				h(View, {
-					class: [props.value ? "s-input-content" : "s-input-placeholder"],
-					onTap: handleOpen
-				}, {
-					default: () => {
-						return props.value ? computedValueTitle.value : props.placeholder;
-					}
-				}),
-				h(SModal, {
-					value: opened.value,
-					'onUpdate:value': (e) => opened.value = e,
-					position: 'bottom',
-					noWhiteSpace: true,
-					showCancel: true,
-					showConfirm: true,
-					onClose: handleClose,
-					onConfirm: handleSelect
-				}, h(PickerView, {
-					style: {
-						height: '30vh'
-					},
-					indicatorStyle: 'height: 40px',
-					value: computedValueIndex.value,
-					onChange: handleChange
-				}, {
-					default: () => {
-						return Array.apply(null, { length: computedRange.value.length }).map((value, key) => {
-							return h(PickerViewColumn, {}, {
-								default: () => {
-									return computedRange.value[key].map((rangeValue) => {
-										return h(View, {
-											class: 's-datetime-select-picker-column-item'
-										}, prefixZero(rangeValue, rangeValue > 1000 ? 4 : 2))
-									})
-								}
-							});
+			}, attrs), {
+				default: () => [
+					h(View, {
+						class: [props.value ? "s-input-content" : "s-input-placeholder"],
+						onTap: handleOpen
+					}, {
+						default: () => {
+							return props.value ? computedValueTitle.value : props.placeholder;
+						}
+					}),
+					h(SModal, {
+						value: opened.value,
+						'onUpdate:value': (e) => opened.value = e,
+						position: 'bottom',
+						noWhiteSpace: true,
+						showCancel: true,
+						showConfirm: true,
+						onClose: handleClose,
+						onConfirm: handleSelect
+					}, {
+						default: () => h(PickerView, {
+							style: {
+								height: '30vh'
+							},
+							indicatorStyle: 'height: 40px',
+							value: computedValueIndex.value,
+							onChange: handleChange
+						}, {
+							default: () => {
+								return Array.apply(null, { length: computedRange.value.length }).map((value, key) => {
+									return h(PickerViewColumn, {}, {
+										default: () => {
+											return computedRange.value[key].map((rangeValue) => {
+												return h(View, {
+													class: 's-datetime-select-picker-column-item'
+												}, prefixZero(rangeValue, rangeValue > 1000 ? 4 : 2))
+											})
+										}
+									});
+								})
+							}
 						})
-					}
-				})),
-			])
+					}),
+				]
+			})
 		]
 	}
 }
