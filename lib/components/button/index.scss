@@ -3,7 +3,7 @@
 .s-button {
 	/* RESET */
 	position: relative;
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
 	color: $color-text-base;
@@ -12,6 +12,10 @@
 	border-radius: 0;
 	outline: none;
 	box-sizing: border-box;
+
+	&.s-button-full {
+		display: flex;
+	}
 
 	/* RESET AFTER */
 	&::after {
@@ -224,6 +228,10 @@
 	&.s-button-size-default {
 		height: 72rpx;
 
+		&.s-button-round {
+			border-radius: 12rpx;
+		}
+
 		&.s-button-circle {
 			// min-width: 72rpx;
 			border-radius: 72rpx;
@@ -233,6 +241,10 @@
 	&.s-button-size-small {
 		height: 60rpx;
 
+		&.s-button-round {
+			border-radius: 12rpx;
+		}
+
 		&.s-button-circle {
 			// min-width: 60rpx;
 			border-radius: 60rpx;
@@ -241,6 +253,10 @@
 
 	&.s-button-size-large {
 		height: 96rpx;
+
+		&.s-button-round {
+			border-radius: 12rpx;
+		}
 
 		&.s-button-circle {
 			// min-width: 96rpx;

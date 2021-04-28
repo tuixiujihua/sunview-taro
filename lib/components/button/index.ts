@@ -43,11 +43,21 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		// 这个属性控制小圆角
+		round: {
+			type: Boolean,
+			default: false
+		},
+		//这个属性控制大圆角（半圆边）
 		circle: {
 			type: Boolean,
 			default: false
 		},
 		noBorder: {
+			type: Boolean,
+			default: false
+		},
+		full: {
 			type: Boolean,
 			default: false
 		},
@@ -69,10 +79,12 @@ export default {
 				"s-button",
 				`s-button-type-${props.type}`,
 				`s-button-size-${props.size}`,
+				props.round ? 's-button-round' : '',
 				props.circle ? 's-button-circle' : '',
 				props.plain ? 's-button-plain' : '',
 				props.disabled ? 's-button-disabled' : '',
-				props.noBorder ? 's-button-no-border' : ''
+				props.noBorder ? 's-button-no-border' : '',
+				props.full ? 's-button-full' : ''
 			],
 			onTap: handleClick
 		}, attrs), [

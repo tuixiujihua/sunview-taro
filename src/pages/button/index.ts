@@ -8,11 +8,23 @@ export default {
 			console.log("Clicked !", e);
 		}
 		return () => h(View, { class: 'page-button' }, [
+			h(SButton, { onClick: handleClick, type: "default", full: true }, () => "默认长按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", full: true }, () => "主要长按钮"),
+			h(SButton, { onClick: handleClick, type: "success", full: true }, () => "成功长按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", full: true }, () => "警告长按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", full: true }, () => "危险长按钮"),
+
 			h(SButton, { onClick: handleClick, type: "default" }, () => "默认按钮"),
 			h(SButton, { onClick: handleClick, type: "primary" }, () => "主要按钮"),
 			h(SButton, { onClick: handleClick, type: "success" }, () => "成功按钮"),
 			h(SButton, { onClick: handleClick, type: "warning" }, () => "警告按钮"),
 			h(SButton, { onClick: handleClick, type: "danger" }, () => "危险按钮"),
+
+			h(SButton, { onClick: handleClick, type: "default", round: true }, () => "默认圆角按钮"),
+			h(SButton, { onClick: handleClick, type: "primary", round: true }, () => "主要圆角按钮"),
+			h(SButton, { onClick: handleClick, type: "success", round: true }, () => "成功圆角按钮"),
+			h(SButton, { onClick: handleClick, type: "warning", round: true }, () => "警告圆角按钮"),
+			h(SButton, { onClick: handleClick, type: "danger", round: true }, () => "危险圆角按钮"),
 
 			h(SButton, { onClick: handleClick, type: "default", disabled: true }, () => "默认禁用按钮"),
 			h(SButton, { onClick: handleClick, type: "primary", disabled: true }, () => "主要禁用按钮"),
