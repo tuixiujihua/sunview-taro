@@ -121,47 +121,51 @@ export default {
 		return () => [
 			h(SInput, mergeProps({
 				disabled: props.disabled
-			}, attrs), [
-				h(View, {
-					class: [inital.title.value.length > 0 ? "s-input-content" : "s-input-placeholder"],
-					onTap: handleOpen
-				}, {
-					default: () => {
-						return inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder;
-					}
-				}),
-				h(SModal, {
-					value: opened.value,
-					'update:value': (e) => opened.value = e,
-					position: 'bottom',
-					noWhiteSpace: true,
-					showCancel: true,
-					showConfirm: true,
-					onClose: handleClose,
-					onConfirm: handleSelect
-				}, h(PickerView, {
-					style: {
-						height: '30vh'
-					},
-					indicatorStyle: 'height: 40px',
-					value: inital.position.value,
-					onChange: handleChange
-				}, {
-					default: () => {
-						return Array.apply(null, { length: inital.deep }).map((value, key) => {
-							return h(PickerViewColumn, {}, {
-								default: () => {
-									return inital.range.value[key].map((rangeValue, rangeKey) => {
-										return h(View, {
-											class: 's-select-picker-column-item'
-										}, rangeValue[props.dataValue])
-									})
-								}
-							});
+			}, attrs), {
+				default: () => [
+					h(View, {
+						class: [inital.title.value.length > 0 ? "s-input-content" : "s-input-placeholder"],
+						onTap: handleOpen
+					}, {
+						default: () => {
+							return inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder;
+						}
+					}),
+					h(SModal, {
+						value: opened.value,
+						'onUpdate:value': (e) => opened.value = e,
+						position: 'bottom',
+						noWhiteSpace: true,
+						showCancel: true,
+						showConfirm: true,
+						onClose: handleClose,
+						onConfirm: handleSelect
+					}, {
+						default: () => h(PickerView, {
+							style: {
+								height: '30vh'
+							},
+							indicatorStyle: 'height: 40px',
+							value: inital.position.value,
+							onChange: handleChange
+						}, {
+							default: () => {
+								return Array.apply(null, { length: inital.deep }).map((value, key) => {
+									return h(PickerViewColumn, {}, {
+										default: () => {
+											return inital.range.value[key].map((rangeValue, rangeKey) => {
+												return h(View, {
+													class: 's-select-picker-column-item'
+												}, rangeValue[props.dataValue])
+											})
+										}
+									});
+								})
+							}
 						})
-					}
-				}))
-			])
+					})
+				]
+			})
 		]
 	}
 }
