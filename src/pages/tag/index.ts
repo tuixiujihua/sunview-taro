@@ -11,6 +11,8 @@ export default {
 
 		let plain = [true, false];
 
+		let round = [true, false];
+
 		let circle = [true, false];
 
 		return () => h(View, { class: 'page-tag' }, {
@@ -19,7 +21,9 @@ export default {
 					return size.map((sv, sk) => {
 						return plain.map((pv, pk) => {
 							return circle.map((cv, ck) => {
-								return h(STag, { type: tv, size: sv, plain: pv, circle: cv, title: "标签" });
+								return round.map((rv,rk) => {
+									return h(STag, { type: tv, size: sv, plain: pv, round: rv, circle: cv, title: "标签" });
+								})
 							})
 						})
 					})
