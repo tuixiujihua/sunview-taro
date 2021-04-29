@@ -50,7 +50,7 @@ export default {
 				"s-tag",
 				`s-tag-type-${props.type}`,
 				`s-tag-size-${props.size}`,
-				props.circle ? 's-tag-round' : '',
+				props.round ? 's-tag-round' : '',
 				props.circle ? 's-tag-circle' : '',
 				props.plain ? 's-tag-plain' : ''],
 		}, attrs), {
