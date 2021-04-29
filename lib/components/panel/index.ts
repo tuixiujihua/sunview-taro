@@ -22,10 +22,18 @@ export default {
 					"none"
 				].includes(val),
 		},
+		round: {
+			type: Boolean,
+			default: false
+		},
+		noWhiteSpace: {
+			type: Boolean,
+			default: false
+		}
 	},
 	setup(props, { attrs, slots }) {
 		return () => h(View, mergeProps({
-			class: ["s-panel", `s-panel-type-${props.type}`],
+			class: ["s-panel", `s-panel-type-${props.type}`, props.round ? 's-panel-round' : '', props.noWhiteSpace ? 's-panel-no-white-space' : ''],
 		}, attrs), [
 			slots.title || props.title ? h(View, {
 				class: ["s-panel-title-wrapper"]

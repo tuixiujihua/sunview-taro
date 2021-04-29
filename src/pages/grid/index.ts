@@ -16,7 +16,9 @@ export default {
 			}),
 			h(SGrid, {
 				title: "8格宫格",
-				column: 8
+				column: 8,
+				round: true,
+				noWhiteSpace: true
 			}, {
 				default: () => Array.apply(null, { length: 12 }).map((v, k) => {
 					return h(SGridItem, {}, { default: () => "adf" })

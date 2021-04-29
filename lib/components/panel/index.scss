@@ -2,9 +2,16 @@
 
 .s-panel {
 	margin: $margin;
-	border-radius: $border-radius;
 	background: $color-white;
 	overflow: hidden;
+
+	&.s-panel-round {
+		border-radius: $border-radius;
+	}
+
+	&.s-panel-no-white-space {
+		margin: unset;
+	}
 
 	&.s-panel-type-default {
 		.s-panel-title-wrapper {
