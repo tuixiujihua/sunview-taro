@@ -56,6 +56,7 @@ export default {
 
 		return () => h(View, { class: 'page-form' }, [
 			h("view", {}, value.value),
+			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", titleWidth: "180", titleAlign: "center", contentAlign: "center", placeholder: "具有奇怪属性的SInput演示" }),
 
 			h(SInput, { value: value.value, 'onUpdate:value': (e) => value.value = e, title: "标题", }),
 

@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { View, Text, Input } from "@tarojs/components"
 import { computed, h, mergeProps, ref } from "@vue/runtime-core"
 import { SIcon } from '../'
@@ -5,7 +6,22 @@ import './index.scss'
 
 export default {
 	props: {
-		title: String,
+		title: {
+			type: String,
+			default: ""
+		},
+		titleWidth: {
+			type: [String, Number],
+			default: ""
+		},
+		titleAlign: {
+			type: [String, Number],
+			default: ""
+		},
+		contentAlign: {
+			type: [String, Number],
+			default: ""
+		},
 		size: {
 			type: String,
 			default: "default",
@@ -131,11 +147,18 @@ export default {
 				size: 28
 			}) : '',
 			h(Text, {
-				class: "s-input-title"
+				class: "s-input-title",
+				style: {
+					width: Taro.pxTransform(props.titleWidth),
+					textAlign: props.titleAlign
+				}
 			}, props.title),
 
 			slots.default ? slots.default() : h(Input, mergeProps({
 				class: "s-input-content",
+				style: {
+					textAlign: props.contentAlign
+				},
 				value: props.value,
 				disabled: (props.disabled || props.readonly),
 				onInput: handleInput,

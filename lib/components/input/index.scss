@@ -11,6 +11,7 @@
 	padding: 0 $spacing-h-lg;
 	font-size: $font-size-base;
 	line-height: $font-size-base;
+	overflow: hidden;
 
 	&.s-input-focus {
 		border-color: $color-primary;
@@ -49,16 +50,16 @@
 	}
 
 	.s-input-icon {
-		margin-right: $spacing-h-sm;
-		display: flex;
-		align-items: center;
+		margin-right: $spacing-h-lg;
+		// display: flex;
+		// align-items: center;
 		// height: 100%;
 	}
 
 	.s-input-title {
-		margin-right: $spacing-h-sm;
-		display: flex;
-		align-items: center;
+		margin-right: $spacing-h-lg;
+		// display: flex;
+		// align-items: center;
 		// height: 100%;
 	}
 
@@ -76,16 +77,17 @@
 	}
 
 	.s-input-clear {
-		margin-left: $spacing-h-sm;
-		display: flex;
-		align-items: center;
+		margin-left: $spacing-h-lg;
+		// display: flex;
+		// align-items: center;
 		// height: 100%;
 	}
 
 	.s-input-extra {
-		margin-left: $spacing-h-sm;
-		display: flex;
-		align-items: center;
+		margin-left: $spacing-h-lg;
+		margin-right: -$spacing-h-lg;
+		// display: flex;
+		// align-items: center;
 		// height: 100%;
 	}
 }
