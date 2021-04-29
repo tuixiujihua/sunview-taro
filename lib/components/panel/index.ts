@@ -18,7 +18,8 @@ export default {
 					"primary",
 					"success",
 					"warning",
-					"danger"
+					"danger",
+					"none"
 				].includes(val),
 		},
 	},
