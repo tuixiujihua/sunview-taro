@@ -5,7 +5,6 @@ export default {
 		"pages/color-icon/index",
 		"pages/button/index",
 		"pages/spin/index",
-		"pages/fab/index",
 		"pages/modal/index",
 		"pages/form/index",
 		"pages/panel/index",
