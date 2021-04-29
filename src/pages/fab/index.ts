@@ -8,7 +8,8 @@ export default {
 			console.log("Clicked !", e);
 		}
 		return () => h(View, { class: 'page-fab' }, h(SFab, {
-			icon: "pic-center"
+			icon: "pic-center",
+			onTap: (e) => handleClick(e)
 		}, {
 			default: () => "文字"
 		}))

@@ -33,11 +33,12 @@ export default {
 					"warning",
 					"danger"
 				].includes(val),
-		}
+		},
+		onTap: Function
 	},
 	setup(props, { attrs, slots }) {
 		return () => h(View, mergeProps({
 			class: ["s-fab", !slots.default?.() ? 's-fab-no-content' : ''],
-		}, attrs), h(SButton, { icon: props.icon, iconSize: props.iconSize, circle: true, size: props.size, type: props.type }, { default: () => slots.default?.() }))
+		}, attrs), h(SButton, { icon: props.icon, iconSize: props.iconSize, circle: true, size: props.size, type: props.type, onTap: (e) => props.onTap(e) }, { default: () => slots.default?.() }))
 	}
 }
