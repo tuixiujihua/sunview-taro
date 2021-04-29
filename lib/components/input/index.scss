@@ -6,7 +6,7 @@
 	color: $color-text-base;
 	display: flex;
 	justify-content: space-between;
-	align-items: baseline;
+	align-items: center;
 	box-sizing: border-box;
 	padding: 0 $spacing-h-lg;
 	font-size: $font-size-base;
@@ -52,26 +52,26 @@
 		margin-right: $spacing-h-sm;
 		display: flex;
 		align-items: center;
-		height: 100%;
+		// height: 100%;
 	}
 
 	.s-input-title {
 		margin-right: $spacing-h-sm;
 		display: flex;
 		align-items: center;
-		height: 100%;
+		// height: 100%;
 	}
 
 	.s-input-content {
 		text-align: right;
 		flex: 1;
-		height: 100%;
+		// height: 100%;
 	}
 
 	.s-input-placeholder {
 		text-align: right;
 		flex: 1;
-		height: 100%;
+		// height: 100%;
 		color: $color-text-placeholder;
 	}
 
@@ -79,13 +79,13 @@
 		margin-left: $spacing-h-sm;
 		display: flex;
 		align-items: center;
-		height: 100%;
+		// height: 100%;
 	}
 
 	.s-input-extra {
 		margin-left: $spacing-h-sm;
 		display: flex;
 		align-items: center;
-		height: 100%;
+		// height: 100%;
 	}
 }
