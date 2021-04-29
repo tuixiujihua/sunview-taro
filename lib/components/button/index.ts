@@ -1,4 +1,4 @@
-import { Button, Text } from '@tarojs/components';
+import { Button, View } from '@tarojs/components';
 import { SIcon, SSpin } from '../'
 import { h, mergeProps } from '@vue/runtime-core';
 import './index.scss';
@@ -30,6 +30,10 @@ export default {
 		icon: {
 			type: String,
 			default: "",
+		},
+		iconSize: {
+			type: Number,
+			default: 32
 		},
 		plain: {
 			type: Boolean,
@@ -94,9 +98,9 @@ export default {
 			props.icon ? h(SIcon, {
 				class: ["s-button-icon"],
 				icon: props.icon,
-				size: 28
+				size: props.iconSize
 			}) : "",
-			h(Text, {
+			h(View, {
 				class: ["s-button-text"]
 			}, slots.default?.())
 		])

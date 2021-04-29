@@ -9,16 +9,23 @@
 		0 12px 20px 0 rgba(0, 0, 0, 0.14),
 		0 2px 36px 0 rgba(0, 0, 0, 0.12);
 	
+		&.s-fab-no-content {
+			.s-button {
+				.s-button-icon {
+					margin: unset
+				}
+			}
+		}
 
 	.s-button {
-		width: 96rpx;
-		height: 96rpx;
+		// min-width: 96rpx;
+		// min-height: 96rpx;
 		.s-button-icon {
-			margin: unset;
-			width: $icon-fab !important;
-			height: $icon-fab !important;
-			line-height: $icon-fab !important;
-			font-size: $icon-fab !important;
+			// margin: unset;
+			// width: $icon-fab !important;
+			// height: $icon-fab !important;
+			// line-height: $icon-fab !important;
+			// font-size: $icon-fab !important;
 		}
 	}
 }

@@ -7,17 +7,20 @@ export default {
 	props: {
 		icon: {
 			type: String,
-			default: "plus",
+			default: "",
 		},
 		size: {
 			type: String,
-			default: "large",
+			default: "default",
 			validator: (val) =>
 				[
 					"default",
 					"small",
 					"large"
 				].includes(val),
+		},
+		iconSize: {
+			type: [String, Number],
 		},
 		type: {
 			type: String,
@@ -32,9 +35,9 @@ export default {
 				].includes(val),
 		}
 	},
-	setup(props, { attrs }) {
+	setup(props, { attrs, slots }) {
 		return () => h(View, mergeProps({
-			class: ["s-fab"],
-		}, attrs), h(SButton, { icon: props.icon, circle: true, size: props.size, type: props.type }))
+			class: ["s-fab", !slots.default?.() ? 's-fab-no-content' : ''],
+		}, attrs), h(SButton, { icon: props.icon, iconSize: props.iconSize, circle: true, size: props.size, type: props.type }, { default: () => slots.default?.() }))
 	}
 }

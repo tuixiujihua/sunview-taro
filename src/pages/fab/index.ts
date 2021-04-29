@@ -9,6 +9,8 @@ export default {
 		}
 		return () => h(View, { class: 'page-fab' }, h(SFab, {
 			icon: "pic-center"
+		}, {
+			default: () => "文字"
 		}))
 	}
 }
