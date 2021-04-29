@@ -1,3 +1,4 @@
+@import "../../styles/variable.scss";
 @import "./iconfont.scss";
 
 .s-icon {
@@ -5,4 +6,5 @@
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
+	color: $color-text-base;
 }

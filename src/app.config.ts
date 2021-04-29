@@ -17,6 +17,7 @@ export default {
 		"pages/message/index",
 		"pages/heading/index",
 		"pages/affix/index",
+		"pages/empty/index"
 	],
 	window: {
 		backgroundTextStyle: 'light',

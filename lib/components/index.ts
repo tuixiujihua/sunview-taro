@@ -19,6 +19,7 @@ import SToast from './toast'
 import SMessage from './message'
 import SHeading from './heading'
 import SAffix from './affix'
+import SEmpty from './empty'
 
 export {
 	SIcon,
@@ -41,5 +42,6 @@ export {
 	SToast,
 	SMessage,
 	SHeading,
-	SAffix
+	SAffix,
+	SEmpty
 }
