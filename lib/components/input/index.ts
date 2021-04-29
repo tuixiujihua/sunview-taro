@@ -154,7 +154,7 @@ export default {
 				}
 			}, props.title),
 
-			slots.default ? slots.default() : h(Input, mergeProps({
+			slots.content ? slots.content() : h(Input, mergeProps({
 				class: "s-input-content",
 				style: {
 					textAlign: props.contentAlign

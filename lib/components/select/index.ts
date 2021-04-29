@@ -34,6 +34,10 @@ export default {
 			type: String,
 			default: "请选择"
 		},
+		contentAlign: {
+			type: [String, Number],
+			default: ""
+		},
 	},
 	setup(props, { attrs, emit }) {
 
@@ -122,15 +126,14 @@ export default {
 			h(SInput, mergeProps({
 				disabled: props.disabled
 			}, attrs), {
-				default: () => [
+				content: () => [
 					h(View, {
 						class: [inital.title.value.length > 0 ? "s-input-content" : "s-input-placeholder"],
+						style: {
+							textAlign: props.contentAlign
+						},
 						onTap: handleOpen
-					}, {
-						default: () => {
-							return inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder;
-						}
-					}),
+					}, inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder),
 					h(SModal, {
 						value: opened.value,
 						'onUpdate:value': (e) => opened.value = e,
@@ -148,21 +151,13 @@ export default {
 							indicatorStyle: 'height: 40px',
 							value: inital.position.value,
 							onChange: handleChange
-						}, {
-							default: () => {
-								return Array.apply(null, { length: inital.deep }).map((value, key) => {
-									return h(PickerViewColumn, {}, {
-										default: () => {
-											return inital.range.value[key].map((rangeValue, rangeKey) => {
-												return h(View, {
-													class: 's-select-picker-column-item'
-												}, rangeValue[props.dataValue])
-											})
-										}
-									});
-								})
-							}
-						})
+						}, Array.apply(null, { length: inital.deep }).map((value, key) => {
+							return h(PickerViewColumn, {}, inital.range.value[key].map((rangeValue, rangeKey) => {
+								return h(View, {
+									class: 's-select-picker-column-item'
+								}, rangeValue[props.dataValue])
+							}));
+						}))
 					})
 				]
 			})

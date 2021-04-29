@@ -29,13 +29,13 @@ export default {
 			type: [String, Date],
 			default: ""
 		},
-		disabled: {
-			type: Boolean,
-			default: false
-		},
 		placeholder: {
 			type: String,
 			default: "请选择"
+		},
+		contentAlign: {
+			type: [String, Number],
+			default: ""
 		},
 	},
 	setup(props, { attrs, emit }) {
@@ -383,17 +383,15 @@ export default {
 
 		return () => [
 			h(SInput, mergeProps({
-				disabled: props.disabled
 			}, attrs), {
-				default: () => [
+				content: () => [
 					h(View, {
 						class: [props.value ? "s-input-content" : "s-input-placeholder"],
+						style: {
+							textAlign: props.contentAlign
+						},
 						onTap: handleOpen
-					}, {
-						default: () => {
-							return props.value ? computedValueTitle.value : props.placeholder;
-						}
-					}),
+					}, props.value ? computedValueTitle.value : props.placeholder),
 					h(SModal, {
 						value: opened.value,
 						'onUpdate:value': (e) => opened.value = e,
@@ -411,21 +409,13 @@ export default {
 							indicatorStyle: 'height: 40px',
 							value: computedValueIndex.value,
 							onChange: handleChange
-						}, {
-							default: () => {
-								return Array.apply(null, { length: computedRange.value.length }).map((value, key) => {
-									return h(PickerViewColumn, {}, {
-										default: () => {
-											return computedRange.value[key].map((rangeValue) => {
-												return h(View, {
-													class: 's-datetime-select-picker-column-item'
-												}, prefixZero(rangeValue, rangeValue > 1000 ? 4 : 2))
-											})
-										}
-									});
-								})
-							}
-						})
+						}, Array.apply(null, { length: computedRange.value.length }).map((value, key) => {
+							return h(PickerViewColumn, {}, computedRange.value[key].map((rangeValue) => {
+								return h(View, {
+									class: 's-datetime-select-picker-column-item'
+								}, prefixZero(rangeValue, rangeValue > 1000 ? 4 : 2))
+							}));
+						}))
 					}),
 				]
 			})

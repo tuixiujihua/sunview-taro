@@ -81,6 +81,7 @@ export default {
 				title: '请选择单选',
 				value: select_1_value.value,
 				onSelect: (e) => select_1_value.value = e.value,
+				contentAlign: 'center',
 				data: select_1_values
 			}),
 
@@ -116,6 +117,7 @@ export default {
 				// end: new Date((Math.floor(select_5_value.value.valueOf() / 1000) + 664 * 80000)*1000),
 				start: new Date("2017-02-03 22:33:44"),
 				value: select_5_value.value,
+				contentAlign: 'left',
 				"onUpdate:value": (e) => {select_5_value.value = e; console.log(e)}
 			}),
 
