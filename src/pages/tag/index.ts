@@ -28,26 +28,3 @@ export default {
 		})
 	}
 }
-
-
-// type.map((tv, tk) => {
-// 	size.map((sv, sk) => {
-// 		plain.map((pv, pk) => {
-// 			circle.map((cv, ck) => {
-// 				console.log("sdfasd");
-// 				return h(STag, { type: tv, size: sv, plain: pv, circle: cv }, "标签");
-// 			})
-// 		})
-// 	})
-// })
-
-// return type.map((tv, tk) => {
-// 	return () => size.map((sv, sk) => {
-// 		return () => plain.map((pv, pk) => {
-// 			return () => circle.map((cv, ck) => {
-// 				console.log("sdfasd");
-// 				return () => h(STag, { type: tv, size: sv, plain: pv, circle: cv }, "标签");
-// 			})
-// 		})
-// 	})
-// })
