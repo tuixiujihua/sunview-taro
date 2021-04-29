@@ -66,6 +66,10 @@
 		}
 	}
 
+	&.s-tag-round {
+		border-radius: 24rpx;
+	}
+
 	&.s-tag-size-default {
 		padding: $margin-xxs $margin-sm;
 

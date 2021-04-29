@@ -27,6 +27,10 @@ export default {
 					"mini",
 				].includes(val),
 		},
+		round: {
+			type: Boolean,
+			default: false
+		},
 		circle: {
 			type: Boolean,
 			default: false
@@ -46,6 +50,7 @@ export default {
 				"s-tag",
 				`s-tag-type-${props.type}`,
 				`s-tag-size-${props.size}`,
+				props.circle ? 's-tag-round' : '',
 				props.circle ? 's-tag-circle' : '',
 				props.plain ? 's-tag-plain' : ''],
 		}, attrs), {
