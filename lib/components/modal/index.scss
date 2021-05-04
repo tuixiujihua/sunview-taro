@@ -43,7 +43,13 @@
 		}
 	}
 
-	&.s-modal-circle {
+	&.s-modal-transparent {
+		.s-modal-inner {
+			background: transparent;
+		}
+	}
+
+	&.s-modal-round {
 		.s-modal-inner {
 			border-radius: $border-radius;
 		}

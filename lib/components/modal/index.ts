@@ -35,6 +35,10 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		transparent: {
+			type: Boolean,
+			default: false
+		},
 		useFooter: {
 			type: Boolean,
 			default: false,
@@ -59,7 +63,7 @@ export default {
 			type: Boolean,
 			default: true,
 		},
-		circle: {
+		round: {
 			type: Boolean,
 			default: true
 		},
@@ -124,9 +128,8 @@ export default {
 			handleClose();
 		}
 
-
 		return () => props.value ? h(View, mergeProps({
-			class: ['s-modal', ...computedPosition.value, props.noWhiteSpace ? 's-modal-no-white-space' : '', props.circle ? 's-modal-circle' : ''],
+			class: ['s-modal', ...computedPosition.value, props.noWhiteSpace ? 's-modal-no-white-space' : '', props.transparent ? 's-modal-transparent' : '', props.round ? 's-modal-round' : ''],
 		}, attrs), [
 			h(View, {
 				class: ['s-modal-inner', ...computedFill.value]
@@ -152,10 +155,10 @@ export default {
 					class: ['s-modal-inner-footer-action']
 				}, [
 					props.showCancel ? h(View, { class: ["s-modal-inner-footer-action-cancel-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: 'default', size: 'large', noBorder: true, onTap: handleCancel }, { default: () => props.cancelText })
+						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: 'default', size: 'large', noBorder: true, full: true, onTap: handleCancel }, { default: () => props.cancelText })
 					]) : undefined,
 					props.showConfirm ? h(View, { class: ["s-modal-inner-footer-action-confirm-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: "success", size: 'large', noBorder: true, onTap: handleConfirm }, { default: () => props.confirmText })
+						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: "success", size: 'large', noBorder: true, full: true, onTap: handleConfirm }, { default: () => props.confirmText })
 					]) : undefined
 				]) : undefined
 			]),

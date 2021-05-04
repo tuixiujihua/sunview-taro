@@ -14,7 +14,7 @@ export default {
 		return () => [
 			h(View, { class: 'page-modal' }, [
 				h(SButton, {
-					onTap: openModal
+					onTap: openModal,
 				}, { default: () => "打开Modal" })
 			]),
 			h(SModal, {
