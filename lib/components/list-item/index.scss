@@ -1,0 +1,58 @@
+@import '../../styles/variable.scss';
+
+.s-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0 $spacing-h-lg;
+	font-size: $font-size-base;
+	line-height: $font-size-base;
+	overflow: hidden;
+
+	&.s-list-item-round {
+		border-radius: 12rpx;
+	}
+
+	&.s-list-item-size-default {
+		height: 72rpx;
+
+		&.s-list-item-circle {
+			border-radius: 72rpx;
+		}
+	}
+
+	&.s-list-item-size-small {
+		height: 60rpx;
+
+		&.s-list-item-circle {
+			border-radius: 60rpx;
+		}
+	}
+
+	&.s-list-item-size-large {
+		height: 96rpx;
+
+		&.s-list-item-circle {
+			border-radius: 96rpx;
+		}
+	}
+
+	.s-list-item-icon {
+		margin-right: $spacing-h-lg;
+	}
+
+	.s-list-item-title {
+		margin-right: $spacing-h-lg;
+	}
+
+	.s-list-item-content {
+		text-align: right;
+		flex: 1;
+	}
+
+	.s-list-item-extra {
+		margin-left: $spacing-h-lg;
+		margin-right: -$spacing-h-lg;
+	}
+}

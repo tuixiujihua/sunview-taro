@@ -20,6 +20,8 @@ import SMessage from './message'
 import SHeading from './heading'
 import SAffix from './affix'
 import SEmpty from './empty'
+import SList from './list'
+import SListItem from './list-item'
 
 export {
 	SIcon,
@@ -43,5 +45,7 @@ export {
 	SMessage,
 	SHeading,
 	SAffix,
-	SEmpty
+	SEmpty,
+	SList,
+	SListItem
 }
