@@ -9,8 +9,18 @@
 		border-radius: $border-radius;
 	}
 
-	&.s-panel-no-white-space {
+	&.s-panel-no-margin {
 		margin: unset;
+	}
+
+	&.s-panel-no-padding {
+		.s-panel-content {
+			padding: unset;
+		}
+	}
+
+	&.s-panel-transparent {
+		background: transparent
 	}
 
 	&.s-panel-type-default {

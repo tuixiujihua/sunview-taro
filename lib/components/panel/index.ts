@@ -26,14 +26,22 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		noWhiteSpace: {
+		noMargin: {
+			type: Boolean,
+			default: false
+		},
+		noPadding: {
+			type: Boolean,
+			default: false
+		},
+		transparent: {
 			type: Boolean,
 			default: false
 		}
 	},
 	setup(props, { attrs, slots }) {
 		return () => h(View, mergeProps({
-			class: ["s-panel", `s-panel-type-${props.type}`, props.round ? 's-panel-round' : '', props.noWhiteSpace ? 's-panel-no-white-space' : ''],
+			class: ["s-panel", `s-panel-type-${props.type}`, props.round ? 's-panel-round' : '', props.noMargin ? 's-panel-no-margin' : '', props.noPadding ? 's-panel-no-padding' : '', props.transparent ? 's-panel-transparent' : ''],
 		}, attrs), [
 			slots.title || props.title ? h(View, {
 				class: ["s-panel-title-wrapper"]
