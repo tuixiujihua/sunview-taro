@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Input } from "@tarojs/components"
-import { computed, h, mergeProps, ref } from "@vue/runtime-core"
+import { computed, h, inject, mergeProps, ref } from "@vue/runtime-core"
 import { SIcon } from '../'
 import './index.scss'
 
@@ -45,6 +45,10 @@ export default {
 			default: false
 		},
 		loading: {
+			type: Boolean,
+			default: false
+		},
+		round: {
 			type: Boolean,
 			default: false
 		},
@@ -132,9 +136,10 @@ export default {
 		}
 		return () => h(View, {
 			class: ["s-input",
-				`s-input-size-${props.size}`,
-				props.circle ? 's-input-circle' : '',
-				props.plain ? 's-input-plain' : '',
+				`s-input-size-${inject("size") || props.size}`,
+				props.round || inject('round') ? 's-input-round' : '',
+				props.circle || inject('circle') ? 's-input-circle' : '',
+				props.plain || inject('plain') ? 's-input-plain' : '',
 				props.disabled ? 's-input-disabled' : '',
 				props.readonly ? 's-input-readonly' : '',
 				isFocus.value ? 's-input-focus' : ''
@@ -149,15 +154,15 @@ export default {
 			h(Text, {
 				class: "s-input-title",
 				style: {
-					width: Taro.pxTransform(props.titleWidth),
-					textAlign: props.titleAlign
+					width: Taro.pxTransform(props.titleWidth || inject("titleWidth")),
+					textAlign: props.titleAlign || inject("titleAlign")
 				}
 			}, props.title),
 
 			slots.content ? slots.content() : h(Input, mergeProps({
 				class: "s-input-content",
 				style: {
-					textAlign: props.contentAlign
+					textAlign: props.contentAlign || inject("contentAlign")
 				},
 				value: props.value,
 				disabled: (props.disabled || props.readonly),
