@@ -28,13 +28,13 @@ export default {
 					"large",
 				].includes(val),
 		},
-		round: {
+		itemCircle: {
 			type: Boolean,
 			default: false
 		},
-		circle: {
+		itemRound: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		loading: {
 			type: Boolean,
@@ -46,8 +46,8 @@ export default {
 		provide("titleAlign", props.Align);
 		provide("contentAlign", props.contentAlign);
 		provide("size", props.size);
-		provide("round", props.round);
-		provide("circle", props.circle);
+		provide("itemCircle", props.itemCircle);
+		provide("itemRound", props.itemRound);
 		provide("loading", props.loading);
 		
 		return () => h(View, {

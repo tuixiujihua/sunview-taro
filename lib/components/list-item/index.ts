@@ -8,11 +8,11 @@ import './index.scss'
 export default {
 	props: {
 		title: {
-			type: String,
+			type: [String, Number],
 			default: "",
 		},
 		content: {
-			type: String,
+			type: [String,Number],
 			defualt: ""
 		},
 		titleWidth: {
@@ -26,6 +26,14 @@ export default {
 		contentAlign: {
 			type: [String, Number],
 			default: ""
+		},
+		round: {
+			type: Boolean,
+			default: false
+		},
+		circle: {
+			type: Boolean,
+			default: false
 		},
 		size: {
 			type: String,
@@ -50,8 +58,8 @@ export default {
 		return () => h(View, mergeProps({
 			class: ["s-list-item",
 				`s-list-item-size-${inject("size") || props.size}`,
-				props.round || inject("round") ? 's-list-item-round' : '',
-				props.circle || inject("circle") ? 's-list-item-circle' : '',
+				props.round || inject("itemRound") ? 's-list-item-round' : '',
+				props.circle || inject("itemCircle") ? 's-list-item-circle' : '',
 			],
 		}, attrs), [
 			props.icon ? h(SIcon, {
