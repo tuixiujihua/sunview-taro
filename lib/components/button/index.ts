@@ -96,7 +96,7 @@ export default {
 				class: ["s-button-spin"]
 			}) : "",
 			props.icon ? h(SIcon, {
-				class: ["s-button-icon"],
+				class: ["s-button-icon", !slots.default?.() ? 's-button-icon-alone' : ''],
 				icon: props.icon,
 				size: props.iconSize
 			}) : "",

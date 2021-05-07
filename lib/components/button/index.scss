@@ -39,6 +39,9 @@
 	.s-button-icon {
 		margin-right: $spacing-h-md;
 		display: inline-flex;
+		&.s-button-icon-alone {
+			margin-right: unset;
+		}
 	}
 
 	.s-button-text {
