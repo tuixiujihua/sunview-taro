@@ -1,6 +1,8 @@
 import { Form } from "@tarojs/components"
 import { h, mergeProps, provide } from "@vue/runtime-core"
 
+import './index.scss'
+
 export default {
 	props: {
 		titleWidth: {

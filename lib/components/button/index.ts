@@ -39,6 +39,10 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		text: {
+			type: Boolean,
+			default: false
+		},
 		disabled: {
 			type: Boolean,
 			default: false
@@ -71,6 +75,7 @@ export default {
 	setup(props, { attrs, slots }) {
 
 		let handleClick = (e) => {
+			if (props.disabled) return;
 			if (typeof props.onClick === 'function') {
 				props.onClick(e);
 			} else if (typeof props.onTap === 'function') {
@@ -86,6 +91,7 @@ export default {
 				props.round ? 's-button-round' : '',
 				props.circle ? 's-button-circle' : '',
 				props.plain ? 's-button-plain' : '',
+				props.text ? 's-button-text' : '',
 				props.disabled ? 's-button-disabled' : '',
 				props.noBorder ? 's-button-no-border' : '',
 				props.full ? 's-button-full' : ''

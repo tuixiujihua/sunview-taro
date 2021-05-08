@@ -3,9 +3,17 @@
 .s-grid-item {
 	text-align: center;
 	margin: $margin 0;
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	font-size: $font-size-sm;
+
+	&.s-grid-item-no-margin {
+		margin: unset;
+	}
+
+	.s-button-full {
+		width: 100%;
+	}
 }

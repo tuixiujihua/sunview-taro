@@ -14,6 +14,18 @@ export default {
 			type: [String, Number],
 			default: 48,
 		},
+		type: {
+			type: String,
+			default: "default",
+			validator: (val) =>
+				[
+					"default",
+					"primary",
+					"success",
+					"warning",
+					"danger"
+				].includes(val),
+		},
 		color: {
 			type: String,
 			default: ""
@@ -21,7 +33,7 @@ export default {
 	},
 	setup(props, { attrs }) {
 		return () => h(View, mergeProps({
-			class: ["s-icon", "iconfont", `icon-${props.icon}`],
+			class: ["s-icon", "iconfont", `icon-${props.icon}`, `s-icon-type-${props.type}`],
 			style: {
 				width: Taro.pxTransform(props.size),
 				height: Taro.pxTransform(props.size),

@@ -39,12 +39,18 @@
 	.s-button-icon {
 		margin-right: $spacing-h-md;
 		display: inline-flex;
+
 		&.s-button-icon-alone {
 			margin-right: unset;
 		}
 	}
 
-	.s-button-text {
+	&.s-button-text {
+		border: unset !important;
+		background: unset !important;
+		padding: unset !important;
+		margin: unset !important;
+		height: unset !important;
 		display: inline-flex;
 	}
 
@@ -76,6 +82,10 @@
 			.s-spin-icon__ring {
 				border-top-color: $color-text-base;
 			}
+		}
+
+		&.s-button-text {
+			color: $color-text-base;
 		}
 
 		.s-spin-icon__ring {
@@ -114,6 +124,10 @@
 			}
 		}
 
+		&.s-button-text {
+			color: $color-primary;
+		}
+
 		.s-spin-icon__ring {
 			border-top-color: dark($color-primary, 30%);
 		}
@@ -148,6 +162,10 @@
 			.s-spin-icon__ring {
 				border-top-color: $color-success;
 			}
+		}
+
+		&.s-button-text {
+			color: $color-success;
 		}
 
 		.s-spin-icon__ring {
@@ -186,6 +204,10 @@
 			}
 		}
 
+		&.s-button-text {
+			color: $color-warning;
+		}
+
 		.s-spin-icon__ring {
 			border-top-color: dark($color-warning, 20%);
 		}
@@ -220,6 +242,10 @@
 			.s-spin-icon__ring {
 				border-top-color: $color-danger;
 			}
+		}
+
+		&.s-button-text {
+			color: $color-danger;
 		}
 
 		.s-spin-icon__ring {
