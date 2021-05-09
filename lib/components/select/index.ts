@@ -64,7 +64,7 @@ export default {
 					if (indexPrefix.length + 1 > inital.deep) inital.deep = indexPrefix.length + 1;
 					if (data[i][props.dataKey] == props.value) {
 						inital.title.value = titlePrefix.concat(data[i][props.dataValue]);
-						inital.position.value = indexPrefix.concat(parseInt(i));
+						inital.position.value = indexPrefix.concat(parseInt(i)) || [];
 					}
 					if (data[i].children) {
 						return recurser(data[i].children, indexPrefix.concat(parseInt(i)), titlePrefix.concat(data[i][props.dataValue]))
@@ -72,6 +72,11 @@ export default {
 				}
 			}
 			recurser(props.data);
+
+			// 下面这两行是用来修复最开始没有传值导致的异常（比如props.value的值初始时时null的情形）
+			// 因为数据会在handleChange以后发生改变，所以这里需要提前填充
+			if (inital.position.value.length == 0) inital.position.value = Array.apply(0, { length: inital.deep })
+			inital.position.value.map((v,k) => inital.position.value[k] = 0);
 			return inital;
 		};
 
@@ -84,7 +89,7 @@ export default {
 			opened.value = true;
 		}
 
-		let handleClose = (e) => {
+		let handleClose = () => {
 		}
 
 		let handleChange = (e) => {
@@ -100,18 +105,18 @@ export default {
 			emit('change', inital.position.value);
 		}
 
-		let handleSelect = (e) => {
+		let handleSelect = () => {
 			let position = inital.position.value.slice(0);
 			let validPosition: Array<any> = [];
 			let validTitle: Array<any> = [];
 			for (let i in position) {
-				// console.log(inital.range.value[i]);
 				if (inital.range.value[i]?.length == 0) {
 					break;
 				}
 				validPosition.push(position[i]);
 				validTitle.push(inital.range.value[i][position[i]][props.dataValue])
 			}
+
 			let result = {
 				value: inital.range.value[validPosition.length - 1][validPosition[validPosition.length - 1]][props.dataKey],
 				raw: validPosition,

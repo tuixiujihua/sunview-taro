@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Input } from "@tarojs/components"
+import { View, Text, Input, Textarea } from "@tarojs/components"
 import { computed, h, inject, mergeProps, ref } from "@vue/runtime-core"
 import { SIcon } from '../'
 import './index.scss'
@@ -83,6 +83,7 @@ export default {
 					"phone",
 					"idcard",
 					"digit",
+					"textarea"
 				].includes(val),
 		},
 
@@ -159,7 +160,7 @@ export default {
 				}
 			}, props.title),
 
-			slots.content ? slots.content() : h(Input, mergeProps({
+			slots.content ? slots.content() : h(props.type === 'textarea' ? Textarea : Input, mergeProps({
 				class: "s-input-content",
 				style: {
 					textAlign: props.contentAlign || inject("contentAlign")
