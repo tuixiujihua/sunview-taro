@@ -393,12 +393,11 @@ export default {
 						onTap: handleOpen
 					}, props.value ? computedValueTitle.value : props.placeholder),
 					h(SModal, {
-						value: opened.value,
-						'onUpdate:value': (e) => opened.value = e,
+						show: opened.value,
+						'onUpdate:show': (e) => opened.value = e,
 						position: 'bottom',
 						noWhiteSpace: true,
-						showCancel: true,
-						showConfirm: true,
+						useFooter: false,
 						onClose: handleClose,
 						onConfirm: handleSelect
 					}, {

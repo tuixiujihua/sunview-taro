@@ -7,9 +7,9 @@ import './index.scss'
 
 export default {
 	props: {
-		value: {
+		show: {
 			type: Boolean,
-			required: true
+			default: false
 		},
 		position: {
 			type: String,
@@ -22,6 +22,10 @@ export default {
 		title: {
 			type: String,
 			default: "",
+		},
+		content: {
+			type: String,
+			default: ""
 		},
 		confirmText: {
 			type: String,
@@ -41,15 +45,15 @@ export default {
 		},
 		useFooter: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		showConfirm: {
 			type: Boolean,
-			default: false,
+			default: true,
 		},
 		showCancel: {
 			type: Boolean,
-			default: false
+			default: true
 		},
 		showClose: {
 			type: Boolean,
@@ -103,54 +107,55 @@ export default {
 		let handleClose = (source?) => {
 			if (source == 'mask' && !props.maskClosable) return;
 			if (typeof props.onClose === 'function') {
-				nextTick(() => {
-					props.onClose();
-				})
+				// nextTick(() => {
+				props.onClose();
+				// })
 			}
-			emit("update:value", false);
+			emit("update:show", false);
+			emit("close")
 		}
 
 		let handleCancel = () => {
 			if (typeof props.onCancel === 'function') {
-				nextTick(() => {
-					props.onCancel();
-				})
+				// nextTick(() => {
+				props.onCancel();
+				// })
 			};
 			handleClose();
 		}
 
 		let handleConfirm = () => {
 			if (typeof props.onConfirm === 'function') {
-				nextTick(() => {
-					props.onConfirm();
-				})
+				// nextTick(() => {
+				props.onConfirm();
+				// })
 			}
 			handleClose();
 		}
 
-		return () => props.value ? h(View, mergeProps({
+		return () => props.show ? h(View, mergeProps({
 			class: ['s-modal', ...computedPosition.value, props.noWhiteSpace ? 's-modal-no-white-space' : '', props.transparent ? 's-modal-transparent' : '', props.round ? 's-modal-round' : ''],
 		}, attrs), [
 			h(View, {
 				class: ['s-modal-inner', ...computedFill.value]
 			}, [
-				!props.useFooter ? h(View, { class: ["s-modal-inner-action"] }, [
-					h(View, { class: ["s-modal-inner-action-cancel-wrapper"] }, [
+				h(View, { class: ["s-modal-inner-action"] }, [
+					!props.useFooter ? h(View, { class: ["s-modal-inner-action-cancel-wrapper"] }, [
 						props.showCancel ? h(Text, { class: ["s-modal-inner-action-cancel"], onTap: handleCancel }, props.cancelText) : undefined
-					]),
-					h(View, { class: ["s-modal-inner-action-confirm-wrapper"] }, [
+					]) : "",
+					!props.useFooter ? h(View, { class: ["s-modal-inner-action-confirm-wrapper"] }, [
 						props.showConfirm ? h(Text, { class: ["s-modal-inner-action-confirm"], onTap: handleConfirm }, props.confirmText) : undefined
-					]),
-					!props.showCancel && !props.showConfirm && props.showClose ? h(View, { class: ["s-modal-inner-action-close-wrapper"] }, [
+					]) : "",
+					!props.useFooter && !props.showCancel && !props.showConfirm && props.showClose ? h(View, { class: ["s-modal-inner-action-close-wrapper"] }, [
 						h(SIcon, { class: ['s-modal-inner-action-close'], icon: 'close', size: 32, onTap: handleClose })
 					]) : undefined
-				]) : undefined,
+				]),
 				props.title ? h(View, {
 					class: ['s-modal-inner-title']
 				}, { default: () => props.title }) : undefined,
 				h(View, {
 					class: ['s-modal-inner-content']
-				}, { default: () => slots.default?.() }),
+				}, { default: () => slots.default ? slots.default?.() : props.content }),
 				props.useFooter ? h(View, {
 					class: ['s-modal-inner-footer-action']
 				}, [

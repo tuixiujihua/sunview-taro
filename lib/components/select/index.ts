@@ -140,12 +140,11 @@ export default {
 						onTap: handleOpen
 					}, inital.title.value.length > 0 ? inital.title.value.join(" / ") : props.placeholder),
 					h(SModal, {
-						value: opened.value,
-						'onUpdate:value': (e) => opened.value = e,
+						show: opened.value,
+						'onUpdate:show': (e) => opened.value = e,
 						position: 'bottom',
 						noWhiteSpace: true,
-						showCancel: true,
-						showConfirm: true,
+						useFooter: false,
 						onClose: handleClose,
 						onConfirm: handleSelect
 					}, {
