@@ -75,8 +75,10 @@ export default {
 
 			// 下面这两行是用来修复最开始没有传值导致的异常（比如props.value的值初始时时null的情形）
 			// 因为数据会在handleChange以后发生改变，所以这里需要提前填充
-			if (inital.position.value.length == 0) inital.position.value = Array.apply(0, { length: inital.deep })
-			inital.position.value.map((v,k) => inital.position.value[k] = 0);
+			if (inital.position.value.length == 0) {
+				inital.position.value = Array.apply(0, { length: inital.deep })
+				inital.position.value.map((v, k) => inital.position.value[k] = 0);
+			}
 			return inital;
 		};
 
