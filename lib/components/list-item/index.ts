@@ -12,7 +12,7 @@ export default {
 			default: "",
 		},
 		content: {
-			type: [String,Number],
+			type: [String, Number],
 			defualt: ""
 		},
 		titleWidth: {
@@ -26,6 +26,10 @@ export default {
 		contentAlign: {
 			type: [String, Number],
 			default: ""
+		},
+		arrow: {
+			type: Boolean,
+			default: false
 		},
 		round: {
 			type: Boolean,
@@ -79,8 +83,11 @@ export default {
 				},
 			}, slots.content?.() || props.content),
 			slots.extra ? h(View, {
-				class: "s-list-item-extra"
-			}, slots.extra?.()) : ''
+				class: ["s-list-item-extra", !props.arrow ? 's-list-item-extra-no-arrow' : ''],
+			}, slots.extra?.()) : '',
+			props.arrow ? h(View, {
+				class: "s-list-item-arrow"
+			}, h(SIcon, { icon: 'right', size: 24 })) : ''
 		])
 	}
 }

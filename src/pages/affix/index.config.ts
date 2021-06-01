@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "示例",
+	navigationBarTitleText: "钉固",
 }

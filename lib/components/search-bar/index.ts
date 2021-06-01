@@ -1,4 +1,4 @@
-import { SInput } from '../'
+import { SForm, SInput } from '../'
 import { View } from "@tarojs/components"
 import { h, mergeProps } from "@vue/runtime-core"
 
@@ -15,12 +15,14 @@ export default {
 	setup(props, { attrs, emit }) {
 		return () => h(View, mergeProps({
 			class: ["s-search-bar"],
-		}, attrs), h(SInput, {
-			class: ["s-search-bar-input"],
-			value: props.value,
-			allowClear: true,
-			placeholder: "搜索",
-			"onUpdate:value": e => emit("update:value", e)
+		}, attrs), h(SForm, {}, {
+			default: () => h(SInput, {
+				class: ["s-search-bar-input"],
+				value: props.value,
+				allowClear: true,
+				placeholder: "搜索",
+				"onUpdate:value": e => emit("update:value", e)
+			})
 		}))
 	}
 }

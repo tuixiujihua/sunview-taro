@@ -1,0 +1,32 @@
+@import "../../../lib/styles/variable.scss";
+
+.page-index {
+	background: $color-bg-grey;
+	display: block;
+	min-height: 100vh;
+
+	.page-title {
+		height: 150rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: $color-text-title;
+	}
+
+	.title-wrapper {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.5em;
+		margin: 20rpx 0;
+
+		.title {}
+
+		.content {
+			font-size: 24rpx;
+			color: $color-text-secondary;
+		}
+	}
+	.extra-wrapper {
+		color: $color-text-secondary;
+	}
+}

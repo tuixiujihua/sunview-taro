@@ -15,7 +15,7 @@
 	}
 
 	&.s-list-item-size-default {
-		height: 72rpx;
+		min-height: 72rpx;
 
 		&.s-list-item-circle {
 			border-radius: 72rpx;
@@ -23,7 +23,7 @@
 	}
 
 	&.s-list-item-size-small {
-		height: 60rpx;
+		min-height: 60rpx;
 
 		&.s-list-item-circle {
 			border-radius: 60rpx;
@@ -31,7 +31,7 @@
 	}
 
 	&.s-list-item-size-large {
-		height: 96rpx;
+		min-height: 96rpx;
 
 		&.s-list-item-circle {
 			border-radius: 96rpx;
@@ -47,12 +47,22 @@
 	}
 
 	.s-list-item-content {
-		text-align: right;
+		margin-right: $spacing-h-lg;
 		flex: 1;
 	}
 
 	.s-list-item-extra {
+		margin-right: $spacing-h-lg;
+
+		&.s-list-item-extra-no-arrow {
+			margin-left: $spacing-h-lg;
+			margin-right: 0;
+		}
+	}
+
+	.s-list-item-arrow {
+		color: $color-text-secondary;
 		margin-left: $spacing-h-lg;
-		margin-right: -$spacing-h-lg;
+		margin-right: 0;
 	}
 }

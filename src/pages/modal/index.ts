@@ -5,7 +5,7 @@ import './index.scss'
 export default {
 	setup() {
 
-		let showModal = ref(true);
+		let showModal = ref(false);
 
 		let openModal = () => {
 			showModal.value = true;
@@ -19,8 +19,8 @@ export default {
 			]),
 			h(SModal, {
 				// 'v-model:value': showModal.value
-				value: showModal.value,
-				'onUpdate:value': (e) => showModal.value = e,
+				show: showModal.value,
+				'onUpdate:show': (e) => showModal.value = e,
 				title: "这是一个Modal",
 				useFooter: true,
 				showConfirm: true,
