@@ -10,12 +10,12 @@ export default {
 			default: ""
 		},
 		titleAlign: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		contentAlign: {
-			type: [String, Number],
-			default: ""
+			type: String,
+			default: "",
 		},
 		size: {
 			type: String,

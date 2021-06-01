@@ -1,7 +1,9 @@
-import { STab } from '@/components';
 import { View } from '@tarojs/components'
 import { h, reactive } from '@vue/runtime-core'
+
+import { SList, SListItem, SHeading, STab } from '@/components';
 import './index.scss'
+
 export default {
 	setup() {
 
@@ -21,10 +23,18 @@ export default {
 			tab.current = e;
 		}
 
-		return () => h(View, { class: 'page-tab' }, h(STab, {
-			list: tab.list,
-			current: tab.current,
-			onChange: handleChange
-		}))
+		return () => h(View, { class: ['page', 'page-tab'] }, [
+			h(SList, {}, {
+				default: () => h(SListItem, { inline: false }, {
+					title: () => h(SHeading, { level: 4 }, { default: () => "标签切换器" }),
+					content: () => "Tab"
+				})
+			}),
+			h(STab, {
+				list: tab.list,
+				current: tab.current,
+				onChange: handleChange
+			})
+		])
 	}
 }

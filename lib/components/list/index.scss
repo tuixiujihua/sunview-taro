@@ -1,5 +1,12 @@
 @import '../../styles/variable.scss';
 
 .s-list {
-
+    &.s-list-gutter-line {
+        .s-list-item {
+            border-bottom: 1px solid $color-border-base;
+            &:nth-last-child(1) {
+                border-bottom: unset;
+            }
+        }
+    }
 }

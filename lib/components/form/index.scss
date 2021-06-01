@@ -1,8 +1,6 @@
 @import '../../styles/variable.scss';
 
 .s-form {
-	display: block;
-	background-color: $color-bg;
 	.s-input {
 		margin-bottom: $spacing-h-lg;
 		&:last-child {

@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "空提示"
+	navigationBarTitleText: "空提示 Empty"
 }

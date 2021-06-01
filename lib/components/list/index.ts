@@ -11,11 +11,11 @@ export default {
 			default: ""
 		},
 		titleAlign: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		contentAlign: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		size: {
@@ -27,6 +27,10 @@ export default {
 					"small",
 					"large",
 				].includes(val),
+		},
+		gutterLine: {
+			type: Boolean,
+			default: true
 		},
 		itemCircle: {
 			type: Boolean,
@@ -49,9 +53,9 @@ export default {
 		provide("itemCircle", props.itemCircle);
 		provide("itemRound", props.itemRound);
 		provide("loading", props.loading);
-		
+
 		return () => h(View, {
-			class: ["s-list"],
+			class: ["s-list", props.gutterLine ? 's-list-gutter-line' : ''],
 		}, h(SPanel, mergeProps({}, attrs), {
 			default: () => slots.default?.()
 		}))

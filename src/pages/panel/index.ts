@@ -1,15 +1,25 @@
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
-import { SPanel } from '@/components'
+
+import { SList, SListItem, SHeading, SPanel } from '@/components'
 import './index.scss'
+
 export default {
 	setup() {
-		return () => h(View, { class: 'page-panel' }, [
-			h(Text, {
-				title: "我是标题"
-			}, "PANEL"),
 
+		let types = ["default", "primary", "success", "warning", "danger", "none"];
+		let noMargins = [false, true];
+		let noPaddings = [false, true];
+		let rounds = [false, true];
+		let transparents = [false, true];
 
+		return () => h(View, { class: ['page', 'page-panel'] }, [
+			h(SList, {}, {
+				default: () => h(SListItem, { inline: false }, {
+					title: () => h(SHeading, { level: 4 }, { default: () => "面板" }),
+					content: () => "Panel"
+				})
+			}),
 			h(SPanel, {
 				title: "我是标题"
 			}, {
@@ -21,32 +31,20 @@ export default {
 				default: () => "我是内容"
 			}),
 
+			transparents.map(
+				transparent => rounds.map(
+					round => noPaddings.map(
+						noPadding => noMargins.map(
+							noMargin => types.map(
+								type => h(SPanel, { transparent, round, noPadding, noMargin, type, title: `面板${noPadding ? ' - 无内边距' : ''}${noMargin ? ' - 无外边距' : ''}${round ? ' - 圆角' : ''}${transparent ? ' - 透明' : ''}` }, {
+									default: () => "面板内容"
+								})
+							)
+						)
+					)
+				)
+			)
 
-
-			h(SPanel, {
-				title: "我是标题",
-				type: "primary"
-			}, {
-				default: () => "我是内容"
-			}),
-			h(SPanel, {
-				title: "我是标题",
-				type: "success"
-			}, {
-				default: () => "我是内容"
-			}),
-			h(SPanel, {
-				title: "我是标题",
-				type: "warning"
-			}, {
-				default: () => "我是内容"
-			}),
-			h(SPanel, {
-				title: "我是标题",
-				type: "danger"
-			}, {
-				default: () => "我是内容"
-			})
 		])
 	}
 }

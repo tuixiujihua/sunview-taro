@@ -1,13 +1,19 @@
 import Taro from '@tarojs/taro'
-import { SHeading, SIcon, SList, SListItem } from '@/components'
 import { View, Text } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
-import './index.scss'
-export default {
-	setup() {
 
+import { SHeading, SIcon, SList, SListItem } from '@/components'
+import './index.scss'
+
+export default {
+	onShareAppMessage: (e) => {
+		console.log(e);
+	},
+
+	setup() {
 		let componentList = [
 			{ name: "钉固", slug: "Affix", path: "/pages/affix/index", icon: "" },
+			{ name: "条形码", slug: "BarCode", path: "/pages/barcode/index", icon: "" },
 			{ name: "按钮", slug: "Button", path: "/pages/button/index", icon: "" },
 			{ name: "彩色图标", slug: "Color Icon", path: "/pages/color-icon/index", icon: "" },
 			{ name: "提示点", slug: "Dot", path: "/pages/dot/index", icon: "" },
@@ -21,21 +27,21 @@ export default {
 			{ name: "消息", slug: "Message", path: "/pages/message/index", icon: "" },
 			{ name: "模态框", slug: "Modal", path: "/pages/modal/index", icon: "" },
 			{ name: "面板", slug: "Panel", path: "/pages/panel/index", icon: "" },
+			{ name: "二维码", slug: "QRCode", path: "/pages/qrcode/index", icon: "" },
 			{ name: "搜索条", slug: "Search Bar", path: "/pages/search-bar/index", icon: "" },
-			{ name: "加载提示器", slug: "Spin", path: "/pages/spin/index", icon: "" },
-			{ name: "Tab切换器", slug: "Tab", path: "/pages/tab/index", icon: "" },
+			{ name: "加载指示器", slug: "Spin", path: "/pages/spin/index", icon: "" },
+			{ name: "标签切换器", slug: "Tab", path: "/pages/tab/index", icon: "" },
 			{ name: "标签", slug: "Tag", path: "/pages/tag/index", icon: "" },
 			{ name: "轻提示", slug: "Toast", path: "/pages/toast/index", icon: "" },
-			{ name: "条码", slug: "BarCode", path: "/pages/barcode/index", icon: "" },
-			{ name: "二维码", slug: "QRCode", path: "/pages/qrcode/index", icon: "" },
 		]
 
 
 		return () => h(
-			View, { class: "page-index" }, [
-			h(SHeading, { level: 5, class: "page-title" }, {
-				default: () => "SUNVIEW-UI"
-			}),
+			View, { class: ['page', 'page-index'] }, [
+			h(View, { class: "page-header" }, [
+				h(SHeading, { level: 5, class: "title" }, { default: () => "太阳视图" }),
+				h(SHeading, { level: 3, class: "description" }, { default: () => "Sunview-UI" }),
+			]),
 			h(SList, { round: true, class: "list-wrapper" }, {
 				default: () => [
 					componentList.map((v, k) => {

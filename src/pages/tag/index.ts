@@ -1,34 +1,45 @@
-import { STag } from '@/components'
 import { View } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
+
+import { SList, SListItem, SHeading, STag, SPanel } from '@/components'
 import './index.scss'
+
 export default {
 	setup() {
 
-		let type = ['default', 'primary', 'success', 'warning', 'danger'];
+		let types = ['default', 'primary', 'success', 'warning', 'danger'];
 
-		let size = ['small', 'default', 'mini'];
+		let sizes = ['small', 'default', 'mini'];
 
-		let plain = [true, false];
+		let plains = [true, false];
 
-		let round = [true, false];
+		let rounds = [true, false];
 
-		let circle = [true, false];
+		let circles = [true, false];
 
-		return () => h(View, { class: 'page-tag' }, {
-			default: () => {
-				return type.map((tv, tk) => {
-					return size.map((sv, sk) => {
-						return plain.map((pv, pk) => {
-							return circle.map((cv, ck) => {
-								return round.map((rv,rk) => {
-									return h(STag, { type: tv, size: sv, plain: pv, round: rv, circle: cv, title: "标签" });
-								})
-							})
-						})
-					})
+		return () => h(View, { class: ['page', 'page-tag'] }, [
+			h(SList, {}, {
+				default: () => h(SListItem, { inline: false }, {
+					title: () => h(SHeading, { level: 4 }, { default: () => "标签" }),
+					content: () => "Tag"
 				})
-			}
-		})
+			}),
+			h(SList, {}, {
+				default: () => types.map(
+					type => sizes.map(
+						size => plains.map(
+							plain => circles.map(
+								circle => rounds.map(
+									round => h(SListItem, {}, {
+										content: () => h(STag, { type, size, plain, round, circle, title: "标签" })
+									})
+								)
+							)
+						)
+					)
+				)
+			})
+
+		])
 	}
 }

@@ -16,15 +16,15 @@ export default {
 			defualt: ""
 		},
 		titleWidth: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		titleAlign: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		contentAlign: {
-			type: [String, Number],
+			type: String,
 			default: ""
 		},
 		arrow: {
@@ -38,6 +38,10 @@ export default {
 		circle: {
 			type: Boolean,
 			default: false
+		},
+		inline: {
+			type: Boolean,
+			default: true
 		},
 		size: {
 			type: String,
@@ -59,6 +63,25 @@ export default {
 		},
 	},
 	setup(props, { attrs, slots }) {
+
+		let titleRender = () => h(View, {
+			class: "s-list-item-title", style: {
+				width: Taro.pxTransform(props.titleWidth || inject("titleWidth")),
+				textAlign: props.titleAlign || inject("titleAlign"),
+				display: 'flex',
+				justifyContent: { left: 'flex-start', center: 'center', right: 'flex-end' }[props.titleAlign || inject("titleAlign")]
+
+			}
+		}, slots.title?.() || props.title);
+
+		let contentRender = () => h(View, {
+			class: "s-list-item-content", style: {
+				textAlign: props.contentAlign || inject("contentAlign"),
+				display: 'flex',
+				justifyContent: { left: 'flex-start', center: 'center', right: 'flex-end' }[props.contentAlign || inject("contentAlign")]
+			},
+		}, slots.content?.() || props.content);
+
 		return () => h(View, mergeProps({
 			class: ["s-list-item",
 				`s-list-item-size-${inject("size") || props.size}`,
@@ -71,17 +94,14 @@ export default {
 				icon: props.icon,
 				size: 28
 			}) : '',
-			h(View, {
-				class: "s-list-item-title", style: {
-					width: Taro.pxTransform(props.titleWidth || inject("titleWidth")),
-					textAlign: props.titleAlign || inject("titleAlign")
-				}
-			}, slots.title?.() || props.title),
-			h(View, {
-				class: "s-list-item-content", style: {
-					textAlign: props.contentAlign || inject("contentAlign")
-				},
-			}, slots.content?.() || props.content),
+
+			props.inline ? [
+				titleRender(), contentRender()
+			] : h(View, { class: 's-list-item-main' }, [
+				titleRender(), contentRender()
+			]),
+
+
 			slots.extra ? h(View, {
 				class: ["s-list-item-extra", !props.arrow ? 's-list-item-extra-no-arrow' : ''],
 			}, slots.extra?.()) : '',

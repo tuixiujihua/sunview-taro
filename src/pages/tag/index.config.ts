@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "标签"
+	navigationBarTitleText: "标签 Tag"
 }

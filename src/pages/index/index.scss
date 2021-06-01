@@ -1,16 +1,19 @@
 @import "../../../lib/styles/variable.scss";
 
 .page-index {
-	background: $color-bg-grey;
-	display: block;
-	min-height: 100vh;
-
-	.page-title {
-		height: 150rpx;
+	.page-header {
+		height: 260rpx;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		color: $color-text-title;
+		.title {
+			margin-bottom: $spacing-h-md;
+		}
+		.description {
+			color: $color-text-secondary;
+		}
 	}
 
 	.title-wrapper {

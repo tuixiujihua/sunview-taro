@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "标题"
+	navigationBarTitleText: "标题 Heading"
 }

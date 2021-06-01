@@ -1,52 +1,41 @@
-import { SHeading } from '@/components'
 import { View } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
+
+import { SList, SListItem, SHeading } from '@/components'
 import './index.scss'
+
 export default {
 	setup() {
 
-		let level = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-		let children: Array<any> = [];
+		let levels = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		let types = ["default", "primary", "success", "warning", "danger"];
+		let lineTypes = types;
+		let lines = [true, false];
 
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value }, { default: () => "我是一个标题" }));
-		})
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true }, { default: () => "我是一个标题" }));
-		})
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, lineType: 'primary' }, { default: () => "我是一个标题" }));
-		})
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, lineType: 'success' }, { default: () => "我是一个标题" }));
-		})
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, lineType: 'warning' }, { default: () => "我是一个标题" }));
-		})
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, lineType: 'danger' }, { default: () => "我是一个标题" }));
-		})
 
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, type: "primary" }, { default: () => "我是一个标题" }));
-		})
+		return () => h(View, { class: ['page', 'page-heading'] }, {
+			default: () => [
+				h(SList, {}, {
+					default: () => h(SListItem, { inline: false }, {
+						title: () => h(SHeading, { level: 4 }, { default: () => "标题" }),
+						content: () => "Heading"
+					})
+				}),
+				h(SList, { noPadding: true, gutterLine: false }, {
+					default: () => lines.map((line, lineKey) => {
+						return types.map((type, typeKey) => {
+							return lineTypes.map((lineType, lineTypeKey) => {
+								return levels.map((level, levelKey) => {
+									return h(SListItem, {}, {
+										content: () => h(SHeading, { level, type, line, lineType }, { default: () => "我是一个标题" })
+									})
+								})
+							})
+						})
+					})
+				})
 
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, type: "success" }, { default: () => "我是一个标题" }));
-		})
-
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, type: "warning" }, { default: () => "我是一个标题" }));
-		})
-
-		level.map((value, key) => {
-			children.push(h(SHeading, { level: value, line: true, type: "danger" }, { default: () => "我是一个标题" }));
-		})
-
-		return () => h(View, { class: 'page-heading' }, {
-			default: () => children.map((value, key) => {
-				return value;
-			})
+			]
 		})
 	}
 }

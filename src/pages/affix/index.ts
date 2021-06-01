@@ -1,6 +1,7 @@
-import { SAffix, SButton, SHeading } from '@/components'
 import { View } from '@tarojs/components'
-import { h, ref, reactive } from '@vue/runtime-core'
+import { h, ref } from '@vue/runtime-core'
+
+import { SList, SListItem, SHeading, SPanel, SAffix, SButton, } from '@/components'
 import './index.scss'
 
 let offset = ref({});
@@ -9,40 +10,36 @@ export default {
 
 
 	onPageScroll(e) {
-		// 不生效
+		// 仅赋值做trigger，不实际使用
 		offset.value = e;
 	},
 
 	setup() {
-		// console.log(offset.value);
-		return () => h(View, { class: 'page-affix' }, [
-			Array.apply(null, { length: 50 }).map((v, k) => {
-				return h(SHeading, {}, { default: () => "占位文字" });
-			}),
-			h(SAffix, {
-				top: 100,
-				bottom: 200,
-				trigger: offset.value
-			}, { default: () => h(SButton, {}, { default: () => "TOP 100" }) }),
-			Array.apply(null, { length: 40 }).map((v, k) => {
-				return h(SHeading, {}, { default: () => "占位文字" });
-			}),
-			// h(SAffix, {
-			// 	bottom: 100,
-			// 	trigger: offset.value
-			// }, { default: () => h(SButton, {}, { default: () => "BOTTOM 100" }) }),
+		let words = '中国人的性情是总喜欢调和折中的，譬如你说，这屋子太暗，须在这里开一个窗，大家一定不允许的。但如果你主张拆掉屋顶他们就来调和，愿意开窗了。';
 
-			// Array.apply(null, { length: 20 }).map((v, k) => {
-			// 	return h(SHeading, {}, { default: () => "占位文字" });
-			// }),
-			// h(SAffix, {
-			// 	top: 200,
-			// 	bottom: 200,
-			// 	trigger: offset.value
-			// }, { default: () => h(SButton, {}, { default: () => "TOP&BOTTOM 200" }) }),
-			// Array.apply(null, { length: 10 }).map((v, k) => {
-			// 	return h(SHeading, {}, { default: () => "占位文字" });
-			// }),
+		return () => h(View, { class: ['page', 'page-affix'] }, [
+			h(SList, {}, {
+				default: () => h(SListItem, { inline: false }, {
+					title: () => h(SHeading, { level: 4 }, { default: () => "钉固" }),
+					content: () => "Affix"
+				})
+			}),
+			h(SPanel, {}, {
+				default: () => [
+					Array.apply(null, { length: 5 }).map((v, k) => {
+						return h(SHeading, { level: 2, class: "words" }, { default: () => words });
+					}),
+					h(SAffix, {
+						top: 100,
+						bottom: 200,
+						trigger: offset.value
+					}, { default: () => h(SButton, {}, { default: () => "Top 100 and Bottom 200" }) }),
+					Array.apply(null, { length: 10 }).map((v, k) => {
+						return h(SHeading, { level: 2, class: "words" }, { default: () => words });
+					}),
+				]
+			})
+
 		])
 	},
 	created() {

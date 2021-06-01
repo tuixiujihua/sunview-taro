@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "sunview-taro",
 	"description": "SunView UI for Taro in Vue 3.0",
-	"appid": "wxf7c6d0c7ec277560",
+	"appid": "wxdeed4447241ab73e",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,

@@ -156,14 +156,18 @@ export default {
 				class: "s-input-title",
 				style: {
 					width: Taro.pxTransform(props.titleWidth || inject("titleWidth")),
-					textAlign: props.titleAlign || inject("titleAlign")
+					textAlign: props.titleAlign || inject("titleAlign"),
+					display: 'flex',
+					justifyContent: { left: 'flex-start', center: 'center', right: 'flex-end' }[props.titleAlign || inject("titleAlign")]
 				}
 			}, props.title),
 
 			slots.content ? slots.content() : h(props.type === 'textarea' ? Textarea : Input, mergeProps({
 				class: "s-input-content",
 				style: {
-					textAlign: props.contentAlign || inject("contentAlign")
+					textAlign: props.contentAlign || inject("contentAlign"),
+					// display: 'flex',
+					// justifyContent: { left: 'flex-start', center: 'center', right: 'flex-end' }[props.contentAlign || inject("contentAlign")]
 				},
 				value: props.value,
 				disabled: (props.disabled || props.readonly),

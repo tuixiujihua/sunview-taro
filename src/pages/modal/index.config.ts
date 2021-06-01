@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "模态框"
+	navigationBarTitleText: "模态框 Modal"
 }

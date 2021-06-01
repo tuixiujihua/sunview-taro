@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "消息提示"
+	navigationBarTitleText: "消息提示 Message"
 }

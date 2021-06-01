@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: '首页'
+	navigationBarTitleText: '太阳视图 Sunview-UI'
 }

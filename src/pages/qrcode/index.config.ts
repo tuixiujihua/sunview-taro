@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "二维码"
+	navigationBarTitleText: "二维码 QRCode"
 }

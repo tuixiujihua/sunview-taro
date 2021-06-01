@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "加载指示器"
+	navigationBarTitleText: "加载指示器 Spin"
 }

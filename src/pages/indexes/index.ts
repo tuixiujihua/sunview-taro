@@ -1,9 +1,11 @@
-import { SIndexes } from '@/components'
 import { View } from '@tarojs/components'
 import { h } from '@vue/runtime-core'
-import Taro from '@tarojs/taro'
+
+import { SList, SListItem, SHeading, SIndexes } from '@/components'
 import './index.scss'
+
 import LIST from './list'
+
 export default {
 	setup() {
 
@@ -35,7 +37,7 @@ export default {
 			console.log("HANDLE SELECT, SELETED", e);
 		}
 
-		return () => h(View, { class: 'page-indexes' },
+		return () => h(View, { class: ['page', 'page-indexes'] }, [
 			h(SIndexes, {
 				list,
 				dataKey: "id",
@@ -46,6 +48,6 @@ export default {
 				itemRender,
 				onSelect: handleSelect,
 			})
-		)
+		])
 	}
 }

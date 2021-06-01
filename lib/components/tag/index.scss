@@ -12,10 +12,12 @@
 	padding: $margin-xxs $margin-sm;
 
 	&.s-tag-type-default {
-		background: $color-bg-base;
-		border-color: $color-border-base;
+		background: linear-gradient(to left bottom, light($color-text-base, 20%) 5%, $color-text-base);
+		color: #fff;
 
 		&.s-tag-plain {
+			color: $color-text-base;
+			border-color: $color-text-base;
 			background: transparent;
 		}
 	}
@@ -23,12 +25,12 @@
 
 	&.s-tag-type-primary {
 		background: linear-gradient(to left bottom, light($color-primary, 20%) 5%, $color-primary);
-		border-color: $color-primary;
 		color: #fff;
 
 		&.s-tag-plain {
-			background: transparent;
 			color: $color-primary;
+			border-color: $color-primary;
+			background: transparent;
 		}
 	}
 
@@ -38,8 +40,9 @@
 		color: #fff;
 
 		&.s-tag-plain {
-			background: transparent;
 			color: $color-success;
+			border-color: $color-success;
+			background: transparent;
 		}
 	}
 
@@ -49,8 +52,9 @@
 		color: #fff;
 
 		&.s-tag-plain {
-			background: transparent;
 			color: $color-warning;
+			border-color: $color-warning;
+			background: transparent;
 		}
 	}
 
@@ -60,8 +64,9 @@
 		color: #fff;
 
 		&.s-tag-plain {
-			background: transparent;
 			color: $color-danger;
+			border-color: $color-danger;
+			background: transparent;
 		}
 	}
 
@@ -90,10 +95,10 @@
 
 	&.s-tag-size-mini {
 		padding: #{$margin-xs / 4} #{$margin/2};
-		font-size: $font-size-sm;
+		font-size: $font-size-xs;
 
 		&.s-tag-circle {
-			border-radius: $margin-sm;
+			border-radius: $margin-xs;
 		}
 	}
 

@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "钉固",
+	navigationBarTitleText: "钉固 Affix",
 }

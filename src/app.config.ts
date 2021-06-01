@@ -21,6 +21,7 @@ export default {
 		"pages/list/index",
 		"pages/barcode/index",
 		"pages/qrcode/index",
+		"pages/search-bar/index"
 	],
 	window: {
 		backgroundTextStyle: 'light',

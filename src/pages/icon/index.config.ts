@@ -1,3 +1,3 @@
 export default {
-	navigationBarTitleText: "图标"
+	navigationBarTitleText: "图标 Icon"
 }
