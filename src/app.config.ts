@@ -18,7 +18,9 @@ export default {
 		"pages/heading/index",
 		"pages/affix/index",
 		"pages/empty/index",
-		"pages/list/index"
+		"pages/list/index",
+		"pages/barcode/index",
+		"pages/qrcode/index",
 	],
 	window: {
 		backgroundTextStyle: 'light',

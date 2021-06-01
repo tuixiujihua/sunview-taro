@@ -22,6 +22,8 @@ import SAffix from './affix'
 import SEmpty from './empty'
 import SList from './list'
 import SListItem from './list-item'
+import SQRCode from './qrcode'
+import SBarCode from './barcode'
 
 export {
 	SIcon,
@@ -47,5 +49,7 @@ export {
 	SAffix,
 	SEmpty,
 	SList,
-	SListItem
+	SListItem,
+	SQRCode,
+	SBarCode
 }

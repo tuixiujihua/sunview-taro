@@ -41,7 +41,8 @@
 		"@tarojs/runtime": "latest",
 		"@tarojs/taro": "latest",
 		"pinyin-match": "^1.2.1",
-		"vue": "^3.0.0"
+		"vue": "^3.0.0",
+		"qr.js": "^0.0.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.0",
