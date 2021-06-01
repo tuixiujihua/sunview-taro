@@ -79,7 +79,6 @@ export default {
 			qrcode.make();
 
 			let ctx = Taro.createCanvasContext(canvasId);
-			ctx.setFillStyle("#000")
 
 			let cells = qrcode.modules;
 			if (cells === null) return;
@@ -91,6 +90,10 @@ export default {
 			ctx.scale(scale, scale);
 
 			ctx.draw();
+
+			ctx.setFillStyle(props.backgroundColor)
+			ctx.fillRect(offset, offset, props.size - offset, props.size - offset)
+			ctx.setFillStyle(props.color)
 
 			for (let i in cells) {
 				for (let j in cells[i]) {
