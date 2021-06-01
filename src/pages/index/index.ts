@@ -40,7 +40,7 @@ export default {
 			View, { class: ['page', 'page-index'] }, [
 			h(View, { class: "page-header" }, [
 				h(SHeading, { level: 5, class: "title" }, { default: () => "太阳视图" }),
-				h(SHeading, { level: 3, class: "description" }, { default: () => "Sunview-UI" }),
+				h(SHeading, { level: 1, class: "description" }, { default: () => "Sunview-Taro" }),
 			]),
 			h(SList, { round: true, class: "list-wrapper" }, {
 				default: () => [
