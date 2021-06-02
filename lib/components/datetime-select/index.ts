@@ -396,7 +396,7 @@ export default {
 						show: opened.value,
 						'onUpdate:show': (e) => opened.value = e,
 						position: 'bottom',
-						noWhiteSpace: true,
+						noMargin: true,
 						useFooter: false,
 						onClose: handleClose,
 						onConfirm: handleSelect

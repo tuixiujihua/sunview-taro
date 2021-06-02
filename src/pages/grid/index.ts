@@ -25,7 +25,7 @@ export default {
 				title: "8格宫格",
 				column: 8,
 				round: true,
-				noWhiteSpace: true
+				noMargin: true
 			}, {
 				default: () => Array.apply(null, { length: 12 }).map((v, k) => {
 					return h(SGridItem, {}, {

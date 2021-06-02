@@ -7,7 +7,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: 30rpx;
+	margin: 30rpx;
 	z-index: 1000;
 	display: flex;
 	justify-content: center;
@@ -29,8 +29,8 @@
 		justify-content: flex-end;
 	}
 
-	&.s-modal-no-white-space {
-		padding: 0;
+	&.s-modal-no-margin {
+		margin: 0;
 
 		.s-modal-inner {
 			&.s-modal-fill-x {
@@ -41,6 +41,35 @@
 				height: 100vh;
 			}
 		}
+
+		&.s-modal-position-top {
+			.s-modal-inner {
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+			}
+		}
+
+		&.s-modal-position-bottom {
+			.s-modal-inner {
+				border-bottom-left-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+
+		&.s-modal-position-left {
+			.s-modal-inner {
+				border-top-left-radius: 0;
+				border-bottom-left-radius: 0;
+			}
+		}
+
+		&.s-modal-position-right {
+			.s-modal-inner {
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			}
+		}
+
 	}
 
 	&.s-modal-transparent {

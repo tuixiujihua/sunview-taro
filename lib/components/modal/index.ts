@@ -35,7 +35,7 @@ export default {
 			type: String,
 			default: "取消"
 		},
-		noWhiteSpace: {
+		noMargin: {
 			type: Boolean,
 			default: false
 		},
@@ -134,7 +134,7 @@ export default {
 		}
 
 		return () => props.show ? h(View, mergeProps({
-			class: ['s-modal', ...computedPosition.value, props.noWhiteSpace ? 's-modal-no-white-space' : '', props.transparent ? 's-modal-transparent' : '', props.round ? 's-modal-round' : ''],
+			class: ['s-modal', ...computedPosition.value, props.noMargin ? 's-modal-no-margin' : '', props.transparent ? 's-modal-transparent' : '', props.round ? 's-modal-round' : ''],
 		}, attrs), [
 			h(View, {
 				class: ['s-modal-inner', ...computedFill.value]
