@@ -5,5 +5,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	.s-qrcode-canvas {}
+
+	.s-qrcode-canvas {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
