@@ -110,13 +110,31 @@
 			}
 
 			.s-modal-inner-action-cancel {
-				color: $color-text-disabled;
 				margin-left: $spacing-v-lg;
 			}
 
 			.s-modal-inner-action-confirm {
-				color: $color-success;
 				margin-right: $spacing-v-lg;
+			}
+
+			.s-modal-inner-action-default {
+				color: $color-text-disabled;
+			}
+
+			.s-modal-inner-action-primary {
+				color: $color-primary;
+			}
+
+			.s-modal-inner-action-success {
+				color: $color-success;
+			}
+
+			.s-modal-inner-action-warning {
+				color: $color-warning;
+			}
+
+			.s-modal-inner-action-danger {
+				color: $color-danger;
 			}
 
 		}

@@ -80,6 +80,30 @@ export default {
 		onClose: {
 			type: Function,
 		},
+		cancelType: {
+			type: String,
+			default: "default",
+			validator: (val) =>
+				[
+					"default",
+					"primary",
+					"success",
+					"warning",
+					"danger"
+				].includes(val),
+		},
+		confirmType: {
+			type: String,
+			default: "primary",
+			validator: (val) =>
+				[
+					"default",
+					"primary",
+					"success",
+					"warning",
+					"danger"
+				].includes(val),
+		}
 	},
 	setup(props, { attrs, slots, emit }) {
 
@@ -141,10 +165,10 @@ export default {
 			}, [
 				h(View, { class: ["s-modal-inner-action"] }, [
 					!props.useFooter ? h(View, { class: ["s-modal-inner-action-cancel-wrapper"] }, [
-						props.showCancel ? h(Text, { class: ["s-modal-inner-action-cancel"], onTap: handleCancel }, props.cancelText) : undefined
+						props.showCancel ? h(Text, { class: ["s-modal-inner-action-cancel", `s-modal-inner-action-${props.cancelType}`], onTap: handleCancel }, props.cancelText) : undefined
 					]) : "",
 					!props.useFooter ? h(View, { class: ["s-modal-inner-action-confirm-wrapper"] }, [
-						props.showConfirm ? h(Text, { class: ["s-modal-inner-action-confirm"], onTap: handleConfirm }, props.confirmText) : undefined
+						props.showConfirm ? h(Text, { class: ["s-modal-inner-action-confirm", `s-modal-inner-action-${props.confirmType}`], onTap: handleConfirm }, props.confirmText) : undefined
 					]) : "",
 					!props.useFooter && !props.showCancel && !props.showConfirm && props.showClose ? h(View, { class: ["s-modal-inner-action-close-wrapper"] }, [
 						h(SIcon, { class: ['s-modal-inner-action-close'], icon: 'close', size: 32, onTap: handleClose })
@@ -160,10 +184,10 @@ export default {
 					class: ['s-modal-inner-footer-action']
 				}, [
 					props.showCancel ? h(View, { class: ["s-modal-inner-footer-action-cancel-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: 'default', size: 'large', noBorder: true, full: true, onTap: handleCancel }, { default: () => props.cancelText })
+						h(SButton, { class: ["s-modal-inner-footer-action-cancel"], type: props.cancelType, size: 'large', noBorder: true, full: true, onTap: handleCancel }, { default: () => props.cancelText })
 					]) : undefined,
 					props.showConfirm ? h(View, { class: ["s-modal-inner-footer-action-confirm-wrapper"] }, [
-						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: "success", size: 'large', noBorder: true, full: true, onTap: handleConfirm }, { default: () => props.confirmText })
+						h(SButton, { class: ["s-modal-inner-footer-action-confirm"], type: props.confirmType, size: 'large', noBorder: true, full: true, onTap: handleConfirm }, { default: () => props.confirmText })
 					]) : undefined
 				]) : undefined
 			]),
