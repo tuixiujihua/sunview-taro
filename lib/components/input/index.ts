@@ -68,7 +68,7 @@ export default {
 		onBlur: Function,
 
 		value: {
-			type: String,
+			type: [String, Number],
 			default: ""
 		},
 

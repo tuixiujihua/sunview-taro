@@ -39,7 +39,6 @@
 		height: 60rpx;
 
 		&.s-input-circle {
-			// min-width: 60rpx;
 			border-radius: 60rpx;
 		}
 	}
@@ -48,49 +47,46 @@
 		height: 96rpx;
 
 		&.s-input-circle {
-			// min-width: 96rpx;
 			border-radius: 96rpx;
 		}
 	}
 
 	.s-input-icon {
 		margin-right: $spacing-h-lg;
-		// display: flex;
-		// align-items: center;
-		// height: 100%;
 	}
 
 	.s-input-title {
 		margin-right: $spacing-h-lg;
-		// display: flex;
-		// align-items: center;
-		// height: 100%;
 	}
 
 	.s-input-content {
+		margin-right: $spacing-h-lg;
+
 		text-align: right;
 		flex: 1;
-		// height: 100%;
 	}
 
 	.s-input-placeholder {
+		margin-right: $spacing-h-lg;
+
 		text-align: right;
 		flex: 1;
-		// height: 100%;
 		color: $color-text-placeholder;
 	}
 
 	.s-input-clear {
-		margin-left: $spacing-h-lg;
-		// display: flex;
-		// align-items: center;
-		// height: 100%;
+		margin-right: $spacing-h-lg;
 	}
 
 	.s-input-extra {
-		margin-left: $spacing-h-lg;
-		// display: flex;
-		// align-items: center;
-		// height: 100%;
+		margin-right: $spacing-h-lg;
+
+		.s-button-plain {
+			border: unset;
+		}
+	}
+
+	&>view:nth-last-child(1) {
+		margin-right: -$spacing-h-lg;
 	}
 }
