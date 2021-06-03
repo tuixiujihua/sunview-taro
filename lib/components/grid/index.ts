@@ -15,10 +15,15 @@ export default {
 
 		provide("grid", props.column);
 
+		let mergedSlots: any = {
+			default: () => slots.default?.()
+		}
+		if (slots.title) {
+			mergedSlots.title = () => slots.title();
+		}
+
 		return () => h(View, {
 			class: ["s-grid"],
-		}, h(SPanel, mergeProps({}, attrs), {
-			default: () => slots.default?.()
-		}))
+		}, h(SPanel, mergeProps({}, attrs), mergedSlots))
 	}
 }

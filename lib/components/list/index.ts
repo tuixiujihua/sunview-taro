@@ -40,6 +40,10 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		itemNoMargin: {
+			type: Boolean,
+			default: false
+		},
 		loading: {
 			type: Boolean,
 			default: false
@@ -52,12 +56,18 @@ export default {
 		provide("size", props.size);
 		provide("itemCircle", props.itemCircle);
 		provide("itemRound", props.itemRound);
+		provide("itemNoMargin", props.itemNoMargin);
 		provide("loading", props.loading);
+
+		let mergedSlots: any = {
+			default: () => slots.default?.()
+		}
+		if (slots.title) {
+			mergedSlots.title = ()=> slots.title();
+		}
 
 		return () => h(View, {
 			class: ["s-list", props.gutterLine ? 's-list-gutter-line' : ''],
-		}, h(SPanel, mergeProps({}, attrs), {
-			default: () => slots.default?.()
-		}))
+		}, h(SPanel, mergeProps({}, attrs), mergedSlots))
 	}
 }

@@ -27,6 +27,10 @@ export default {
 			type: String,
 			default: ""
 		},
+		noMargin: {
+			type: Boolean,
+			default: false
+		},
 		arrow: {
 			type: Boolean,
 			default: false
@@ -87,6 +91,7 @@ export default {
 				`s-list-item-size-${inject("size") || props.size}`,
 				props.round || inject("itemRound") ? 's-list-item-round' : '',
 				props.circle || inject("itemCircle") ? 's-list-item-circle' : '',
+				props.noMargin || inject("itemNoMargin") ? 's-list-item-no-margin' : ''
 			],
 		}, attrs), [
 			props.icon ? h(SIcon, {
@@ -103,7 +108,7 @@ export default {
 
 
 			slots.extra ? h(View, {
-				class: ["s-list-item-extra", !props.arrow ? 's-list-item-extra-no-arrow' : ''],
+				class: ["s-list-item-extra"],
 			}, slots.extra?.()) : '',
 			props.arrow ? h(View, {
 				class: "s-list-item-arrow"

@@ -54,7 +54,7 @@ export default {
 				props.circle ? 's-tag-circle' : '',
 				props.plain ? 's-tag-plain' : ''],
 		}, attrs), {
-			default: () => props.title
+			default: () => slots.default ? slots.default() : props.title
 		})
 	}
 }

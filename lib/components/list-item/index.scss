@@ -5,10 +5,14 @@
 	justify-content: space-between;
 	align-items: center;
 	box-sizing: border-box;
-	padding: 0 $spacing-h-lg;
+	margin: 0 $spacing-h-lg;
 	font-size: $font-size-base;
 	line-height: $font-size-base;
 	overflow: hidden;
+
+	&.s-list-item-no-margin {
+		margin: 0;
+	}
 
 	&.s-list-item-round {
 		border-radius: 12rpx;
@@ -46,10 +50,12 @@
 		margin-top: $spacing-v-md;
 		margin-bottom: $spacing-v-md;
 		margin-right: $spacing-h-lg;
-		flex:1;
-		.s-list-item-title{
+		flex: 1;
+
+		.s-list-item-title {
 			margin-bottom: $spacing-v-sm;
 		}
+
 		.s-list-item-content {
 			font-size: 24rpx;
 		}
@@ -67,15 +73,14 @@
 
 	.s-list-item-extra {
 		margin-right: $spacing-h-lg;
-
-		&.s-list-item-extra-no-arrow {
-			margin-left: $spacing-h-lg;
-			margin-right: 0;
-		}
 	}
 
 	.s-list-item-arrow {
 		color: $color-text-secondary;
+		margin-right: $spacing-h-lg;
+	}
+
+	&>View:nth-last-child(1) {
 		margin-right: 0;
 	}
 }
