@@ -8,10 +8,19 @@
 		justify-content: center;
 		align-items: center;
 		color: $color-text-title;
+
 		.title {
+			margin-bottom: $spacing-h-xl;
+		}
+
+		.description {
+			font-size: 24rpx;
+			color: $color-text-secondary;
 			margin-bottom: $spacing-h-md;
 		}
-		.description {
+
+		.version {
+			font-size: 24rpx;
 			color: $color-text-secondary;
 		}
 	}
@@ -29,6 +38,7 @@
 			color: $color-text-secondary;
 		}
 	}
+
 	.extra-wrapper {
 		color: $color-text-secondary;
 	}
