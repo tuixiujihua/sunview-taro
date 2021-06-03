@@ -40,7 +40,7 @@ export default {
 			View, { class: ['page', 'page-index'] }, [
 			h(View, { class: "page-header" }, [
 				h(SHeading, { level: 5, class: "title" }, { default: () => "太阳视图" }),
-				h(SHeading, { level: 1, class: "description" }, { default: () => "Npm: sunview-taro@0.1.6" }),
+				h(SHeading, { level: 1, class: "description" }, { default: () => "Npm: sunview-taro@0.1.7" }),
 			]),
 			h(SList, { round: true, class: "list-wrapper" }, {
 				default: () => [
